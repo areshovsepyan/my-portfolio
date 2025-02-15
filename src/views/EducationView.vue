@@ -1,6 +1,6 @@
 <template>
-  <div class="home">
-    <h1>HOME PAGE</h1>
+  <div class="education">
+    <h1>EDUCATION PAGE</h1>
   </div>
 </template>
 

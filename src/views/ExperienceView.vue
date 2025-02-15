@@ -1,6 +1,6 @@
 <template>
-  <div class="home">
-    <h1>HOME PAGE</h1>
+  <div class="experience">
+    <h1>EXPERIENCE PAGE</h1>
   </div>
 </template>
 
