@@ -1,0 +1,25 @@
+// ROOT COLOR VARIANTS
+:root {
+  --vt-c-black: #000000;
+  --vt-c-white: #ffffff;
+
+  --vt-c-gray-900: #0c0c0d;
+  --vt-c-gray-800: #131313;
+  --vt-c-gray-700: #272727;
+  --vt-c-gray-400: #6f6f6f;
+  --vt-c-gray-300: #c8c8c8;
+
+  --vt-c-green: #5fb9b0;
+
+  --vt-c-purple-800: #6104d6;
+  --vt-c-purple-600: #9f53ff;
+  --vt-c-purple-400: #b292ff;
+  --vt-c-purple-300: #c69aff;
+
+  --vt-c-gray-gradient: linear-gradient(#232323 0%, #434343 49%, #232323 100%);
+}
+
+// ROOT VARIABLES
+:root {
+  --vt-transition-delay: 0.4s;
+}
