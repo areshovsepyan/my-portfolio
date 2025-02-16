@@ -1,7 +1,7 @@
 <template>
   <header :class="{ hidden: isHidden && innerWidth < 1024 }">
     <Transition name="fade" mode="out-in">
-      <RouterLink v-if="!isOnHomePage && innerWidth > 1024" to="/" class="back">
+      <RouterLink v-if="!isOnHomePage && innerWidth > 1024" to="/" class="back-link">
         <img src="/icons/icon_arrow-left.svg" alt="Arrow left" />
         back
       </RouterLink>
@@ -9,7 +9,7 @@
     <nav>
       <ul>
         <li v-for="{ label, path } in routes" :key="label">
-          <RouterLink :to="path">
+          <RouterLink class="social-links" :to="path">
             {{ label }}
           </RouterLink>
         </li>
@@ -17,11 +17,12 @@
       <ul v-if="innerWidth > 1024">
         <li v-for="{ href, type, img: { alt, icon } } in social" :key="href">
           <a
+            v-if="!type.toLocaleLowerCase().includes('phone')"
             class="social-icon"
-            :href="getLinkHref(type, href)"
+            :href="href"
             :target="type === 'link' ? '_blank' : '_self'"
           >
-            <img :src="`/icons/icon_${icon}.svg`" :alt="alt" />
+            <img :src="`/icons/social/icon_${icon}.svg`" :alt="alt" />
           </a>
         </li>
       </ul>
@@ -30,7 +31,14 @@
 </template>
 
 <script>
+import { useSocialStore } from '@/stores/social'
+
 export default {
+  setup() {
+    const { social } = useSocialStore()
+    return { social }
+  },
+
   data: () => {
     return {
       routes: [
@@ -38,33 +46,6 @@ export default {
         { label: 'education', path: '/education' },
         { label: 'experience', path: '/experience' },
         { label: 'contact', path: '/contact' },
-      ],
-
-      social: [
-        {
-          href: 'https://github.com/areshovsepyan/',
-          type: 'link',
-          img: {
-            alt: 'Github Icon',
-            icon: 'github',
-          },
-        },
-        {
-          href: 'https://www.linkedin.com/in/ara-hovsepyan0/',
-          type: 'link',
-          img: {
-            alt: 'LinkedIn Icon',
-            icon: 'linkedin',
-          },
-        },
-        {
-          href: 'areshovsepyan@yahoo.com',
-          type: 'email',
-          img: {
-            alt: 'Email Icon',
-            icon: 'email',
-          },
-        },
       ],
 
       innerWidth: window.innerWidth,
@@ -80,12 +61,6 @@ export default {
     },
   },
   methods: {
-    getLinkHref(type, href) {
-      if (type === 'link') return href
-      if (type === 'email') return `mailto:${href}`
-      if (type === 'phone') return `tel:${href}`
-    },
-
     handleScroll() {
       clearTimeout(this.timeout)
 
@@ -125,47 +100,39 @@ export default {
 
 <style lang="scss" scoped>
 header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
   transition:
     transform var(--vt-transition-delay) ease,
     opacity var(--vt-transition-delay) ease;
 
   nav {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    background: var(--vt-c-gray-800);
-    border-radius: 100px;
     max-width: 100%;
-    overflow: hidden;
     padding: 1.2rem;
+    gap: 1rem;
+    overflow: hidden;
 
     ul {
-      display: flex;
-      align-items: center;
       overflow-x: auto;
       overflow-y: hidden;
       scrollbar-width: none;
       -webkit-overflow-scrolling: touch;
 
-      .social-icon {
-        display: flex;
-        align-items: center;
-        padding: 0.4rem;
-      }
-
       &::-webkit-scrollbar {
         display: none;
       }
 
-      a {
-        padding: 6px 12px;
+      .social-links {
+        padding: 0.25rem 0.5rem;
 
         @media (min-width: 1024px) {
           padding: 0.5rem 1rem;
+        }
+      }
+
+      .social-icon {
+        &:hover {
+          img {
+            filter: contrast(1);
+          }
         }
       }
     }
@@ -185,9 +152,8 @@ header {
 
   @media (min-width: 1024px) {
     position: relative;
-    margin-bottom: 7rem;
 
-    .back {
+    .back-link {
       display: flex;
       justify-content: center;
       gap: 0.5rem;
