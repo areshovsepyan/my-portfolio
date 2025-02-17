@@ -147,7 +147,7 @@ header {
     width: 95%;
     top: 1rem;
     left: 2.5%;
-    z-index: 1;
+    z-index: 100;
   }
 
   @media (min-width: 1024px) {
