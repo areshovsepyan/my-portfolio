@@ -1,0 +1,51 @@
+@import 'vue3-carousel/carousel.css';
+
+:root {
+  --vc-pgn-background-color: #606060;
+  --vc-pgn-active-color: #d9d9d9;
+  --vc-pgn-border-radius: 100px;
+
+  --vc-nav-background: var(--vt-c-gray-700);
+  --vc-nav-border-radius: 50%;
+  --vc-nav-width: 60px;
+  --vc-nav-height: 60px;
+}
+
+.carousel {
+  width: 100%;
+  padding: unset;
+
+  &__icon {
+    transition: fill var(--vt-transition-delay);
+    fill: var(--vt-c-gray-300);
+  }
+
+  &__prev,
+  &__next {
+    opacity: 0.7;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  @media (min-width: 1024px) {
+  }
+}
+
+.carousel__pagination {
+  bottom: -2rem;
+
+  @media (min-width: 1024px) {
+    left: 0;
+    transform: translateX(3rem);
+  }
+}
+
+.carousel__pagination-button {
+  padding: 6px 10px;
+
+  &--active {
+    padding-inline: 30px;
+  }
+}
