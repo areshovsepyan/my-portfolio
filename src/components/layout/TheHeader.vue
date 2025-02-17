@@ -32,11 +32,13 @@
 
 <script>
 import { useSocialStore } from '@/stores/social'
+import { useResize } from '/composables/useResize.js'
 
 export default {
   setup() {
     const { social } = useSocialStore()
-    return { social }
+    const { innerWidth } = useResize()
+    return { social, innerWidth }
   },
 
   data: () => {
@@ -47,8 +49,6 @@ export default {
         { label: 'experience', path: '/experience' },
         { label: 'contact', path: '/contact' },
       ],
-
-      innerWidth: window.innerWidth,
 
       isHidden: false,
       lastScrollTop: 0,
@@ -80,19 +80,13 @@ export default {
         this.lastScrollTop = scrollTop <= 0 ? 0 : scrollTop
       }, 300)
     },
-
-    onResize() {
-      this.innerWidth = window.innerWidth
-    },
   },
 
   mounted() {
-    window.addEventListener('resize', this.onResize)
     window.addEventListener('scroll', this.handleScroll)
   },
 
   beforeUnmount() {
-    window.removeEventListener('resize', this.onResize)
     window.removeEventListener('scroll', this.handleScroll)
   },
 }
