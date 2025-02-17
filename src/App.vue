@@ -23,8 +23,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss" scoped>
-@media (min-width: 1024px) {
-}
-</style>
