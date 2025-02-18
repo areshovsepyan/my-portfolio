@@ -4,7 +4,7 @@
     <div class="text-box">
       <h3>Hi, I'm Ara</h3>
       <p>
-        During last <strong>4 years</strong> as a <strong>Front-End Developer</strong>, my role has
+        During these <strong>4 years</strong> as a <strong>Front-End Developer</strong>, my role has
         extended beyond coding to effective communication with various departments, to define new
         features, and spearhead the development of new apps.
       </p>
@@ -16,10 +16,6 @@
   </section>
 </template>
 
-<script>
-export default {}
-</script>
-
 <style lang="scss" scoped>
 .introduction-section {
   display: flex;
@@ -29,7 +25,6 @@ export default {}
 
   .text-box {
     text-align: center;
-    padding: 0 1.5rem;
 
     h3 {
       color: var(--vt-c-white);

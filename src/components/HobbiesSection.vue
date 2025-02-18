@@ -18,11 +18,20 @@
 .hobbies-section {
   display: flex;
   justify-content: center;
+  margin: 9rem 0 7rem 0;
+
+  @media (min-width: 1024px) {
+    margin: 7rem 0 5rem 0;
+  }
 
   ul {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 5rem;
+
+    @media (min-width: 1024px) {
+      gap: 7rem;
+    }
 
     li {
       text-align: center;
@@ -38,17 +47,13 @@
       }
 
       p {
-        font-size: 40px;
+        font-size: 50px;
         font-weight: 600;
 
         @media (min-width: 1024px) {
-          font-size: 90px;
+          font-size: 100px;
         }
       }
-    }
-
-    @media (min-width: 1024px) {
-      gap: 5rem;
     }
   }
 }
