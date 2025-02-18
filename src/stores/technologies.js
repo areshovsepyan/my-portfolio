@@ -32,14 +32,14 @@ export const useTechnologiesStore = defineStore('technologies', {
         },
       },
       {
-        label: 'Vue',
+        label: 'Vue.JS',
         img: {
           alt: 'Vue icon',
           icon: 'vue',
         },
       },
       {
-        label: 'Nuxt',
+        label: 'Nuxt.JS',
         img: {
           alt: 'Nuxt icon',
           icon: 'nuxt',

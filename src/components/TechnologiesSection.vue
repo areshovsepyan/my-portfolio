@@ -1,3 +1,25 @@
+<script setup>
+import { computed } from 'vue'
+
+import { Carousel, Slide, Navigation } from 'vue3-carousel'
+import BaseCard from '@/components/UI/BaseCard.vue'
+
+import { useTechnologiesStore } from '@/stores/technologies'
+import { useResize } from '/composables/useResize'
+
+const { technologies } = useTechnologiesStore()
+const { innerWidth } = useResize()
+
+const config = computed(() => {
+  return {
+    itemsToShow: 'auto',
+    gap: innerWidth.value > 1024 ? 20 : 10,
+    transition: 300,
+    wrapAround: true,
+  }
+})
+</script>
+
 <template>
   <section class="technologies-section">
     <p class="description">
@@ -5,54 +27,38 @@
       technologies I’ve been using
     </p>
     <div class="technologies">
-      <BaseCard
-        class="card"
-        v-for="{ label, img: { alt, icon } } in technologies"
-        :key="label"
-        :border_gradient="true"
-      >
-        <img :src="`/icons/technologies/icon_${icon}.svg`" :alt="alt" />
-        {{ label }}
-      </BaseCard>
+      <Carousel v-bind="config">
+        <Slide v-for="{ label, img: { alt, icon } } in technologies" :key="label">
+          <BaseCard class="card" :border_gradient="true">
+            <img :src="`/icons/technologies/icon_${icon}.svg`" :alt="alt" />
+            {{ label }}
+          </BaseCard>
+        </Slide>
+        <template v-if="innerWidth > 1024" #addons>
+          <Navigation />
+        </template>
+      </Carousel>
     </div>
   </section>
 </template>
 
-<script>
-import BaseCard from '@/components/UI/BaseCard.vue'
-import { useTechnologiesStore } from '@/stores/technologies'
-
-export default {
-  setup() {
-    const { technologies } = useTechnologiesStore()
-    return { technologies }
-  },
-  components: {
-    BaseCard,
-  },
-}
-</script>
-
 <style lang="scss" scoped>
 .technologies-section {
+  margin-bottom: 5rem;
   .description {
     color: var(--vt-c-gray-300);
     font-size: 32px;
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 5rem;
 
     @media (min-width: 1024px) {
       font-size: 60px;
-      margin-bottom: 6rem;
+      margin-bottom: 8rem;
       text-align: start;
     }
   }
 
   .technologies {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 12px;
     font-family: 'Nunito';
     color: var(--vt-c-white);
 
@@ -63,17 +69,15 @@ export default {
     }
 
     .card {
-      flex: 1;
-      width: 0;
       justify-content: center;
       align-items: center;
 
-      min-width: 115px;
-      max-width: 130px;
+      width: 150px;
+      height: 200px;
 
       @media (min-width: 1024px) {
-        min-width: 200px;
-        max-width: 250px;
+        width: 250px;
+        height: 300px;
       }
     }
 

@@ -1,3 +1,33 @@
+<script setup>
+import { computed } from 'vue'
+import { Carousel, Slide, Pagination } from 'vue3-carousel'
+import { useTechnologiesStore } from '@/stores/technologies'
+import { useResize } from '/composables/useResize.js'
+import BaseCard from '@/components/UI/BaseCard.vue'
+
+const { technologies } = useTechnologiesStore()
+const { innerWidth } = useResize()
+
+const favoriteTechnologies = computed(() => {
+  return technologies.filter((tech) => {
+    return (
+      tech.label.toLowerCase().includes('javascript') ||
+      tech.label.toLowerCase().includes('vue') ||
+      tech.label.toLowerCase().includes('nuxt') ||
+      tech.label.toLowerCase().includes('vite')
+    )
+  })
+})
+
+const config = computed(() => {
+  return {
+    itemsToShow: 'auto',
+    gap: innerWidth.value > 1024 ? 25 : 10,
+    transition: 300,
+  }
+})
+</script>
+
 <template>
   <section class="experience-section">
     <div class="text-box">
@@ -6,54 +36,29 @@
       <span>with one of the most popular front-end ecosystems </span>
     </div>
     <div class="technologies">
-      <BaseCard
-        class="card"
-        v-for="({ label, img: { alt, icon } }, index) in favoriteTechnologies"
-        :key="label"
-        :background_color="index + 1"
-        colored
-      >
-        <div class="image-box">
-          <img :src="`/icons/technologies/icon_${icon}.svg`" :alt="alt" />
-          <span> {{ label }}</span>
-        </div>
-      </BaseCard>
+      <Carousel v-bind="config">
+        <Slide v-for="({ label, img: { alt, icon } }, index) in favoriteTechnologies" :key="label">
+          <BaseCard class="card" :background_color="index + 1" colored>
+            <div class="image-box">
+              <img :src="`/icons/technologies/icon_${icon}.svg`" :alt="alt" />
+              <span> {{ label }}</span>
+            </div>
+          </BaseCard>
+        </Slide>
+
+        <template #addons>
+          <Pagination />
+        </template>
+      </Carousel>
     </div>
   </section>
 </template>
-
-<script>
-import BaseCard from '@/components/UI/BaseCard.vue'
-import { useTechnologiesStore } from '@/stores/technologies'
-
-export default {
-  setup() {
-    const { technologies } = useTechnologiesStore()
-    return { technologies }
-  },
-  components: {
-    BaseCard,
-  },
-  computed: {
-    favoriteTechnologies() {
-      return this.technologies.filter((tech) => {
-        return (
-          tech.label.toLowerCase() === 'javascript' ||
-          tech.label.toLowerCase() === 'vue' ||
-          tech.label.toLowerCase() === 'nuxt' ||
-          tech.label.toLowerCase() === 'vite'
-        )
-      })
-    },
-  },
-}
-</script>
 
 <style lang="scss" scoped>
 .experience-section {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 4rem;
 
   .text-box {
     display: flex;
@@ -85,11 +90,11 @@ export default {
   }
 
   .technologies {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 12px;
     font-family: 'Nunito';
+
+    @media (min-width: 1024px) {
+      width: 75%;
+    }
 
     .card {
       min-width: 220px;
@@ -129,6 +134,7 @@ export default {
   }
 
   @media (min-width: 1024px) {
+    align-items: center;
     flex-direction: row;
     gap: 6rem;
   }
