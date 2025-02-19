@@ -1,3 +1,8 @@
+<script setup>
+import TheHeader from '@/components/layout/TheHeader.vue'
+import TheFooter from '@/components/layout/TheFooter.vue'
+</script>
+
 <template>
   <TheHeader />
 
@@ -11,15 +16,3 @@
 
   <TheFooter />
 </template>
-
-<script>
-import TheHeader from '@/components/layout/TheHeader.vue'
-import TheFooter from '@/components/layout/TheFooter.vue'
-
-export default {
-  components: {
-    TheHeader,
-    TheFooter,
-  },
-}
-</script>

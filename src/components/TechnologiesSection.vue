@@ -1,14 +1,14 @@
 <script setup>
-import { computed } from 'vue'
+import { computed } from 'vue';
 
-import { Carousel, Slide, Navigation } from 'vue3-carousel'
-import BaseCard from '@/components/UI/BaseCard.vue'
+import { Carousel, Slide, Navigation } from 'vue3-carousel';
+import BaseCard from '@/components/UI/BaseCard.vue';
 
-import { useTechnologiesStore } from '@/stores/technologies'
-import { useResize } from '/composables/useResize'
+import { useTechnologiesStore } from '@/stores/technologies';
+import { useResize } from '/composables/useResize';
 
-const { technologies } = useTechnologiesStore()
-const { innerWidth } = useResize()
+const { technologies } = useTechnologiesStore();
+const { innerWidth } = useResize();
 
 const config = computed(() => {
   return {
@@ -16,8 +16,8 @@ const config = computed(() => {
     gap: innerWidth.value > 1024 ? 20 : 10,
     transition: 300,
     wrapAround: true,
-  }
-})
+  };
+});
 </script>
 
 <template>

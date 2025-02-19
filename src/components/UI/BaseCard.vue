@@ -1,3 +1,29 @@
+<script setup>
+import { computed } from 'vue';
+
+const props = defineProps({
+  border_gradient: {
+    type: Boolean,
+    default: false,
+    required: false,
+  },
+  background_color: {
+    type: Number,
+    default: undefined, // from 1 to 4
+    required: false,
+  },
+  colored: {
+    type: Boolean,
+    default: false,
+    required: false,
+  },
+});
+
+const getBackgroundColor = computed(() =>
+  props.background_color ? `backgroundColor: var(--vt-c-accent-${props.background_color})` : '',
+);
+</script>
+
 <template>
   <div
     class="card"
@@ -7,35 +33,6 @@
     <slot></slot>
   </div>
 </template>
-
-<script>
-export default {
-  props: {
-    border_gradient: {
-      type: Boolean,
-      default: false,
-      required: false,
-    },
-    background_color: {
-      type: Number,
-      default: undefined, // from 1 to 4
-      required: false,
-    },
-    colored: {
-      type: Boolean,
-      default: false,
-      required: false,
-    },
-  },
-  computed: {
-    getBackgroundColor() {
-      return this.background_color
-        ? `backgroundColor: var(--vt-c-accent-${this.background_color})`
-        : ''
-    },
-  },
-}
-</script>
 
 <style lang="scss" scoped>
 .card {

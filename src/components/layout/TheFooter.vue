@@ -1,3 +1,9 @@
+<script setup>
+import { useSocialStore } from '@/stores/social';
+
+const { social } = useSocialStore();
+</script>
+
 <template>
   <footer>
     <nav>
@@ -20,17 +26,6 @@
     <small> Copyright © 2025 Ara Hovsepyan. </small>
   </footer>
 </template>
-
-<script>
-import { useSocialStore } from '@/stores/social'
-
-export default {
-  setup() {
-    const { social } = useSocialStore()
-    return { social }
-  },
-}
-</script>
 
 <style lang="scss" scoped>
 footer {

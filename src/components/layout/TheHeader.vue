@@ -1,3 +1,50 @@
+<script setup>
+import { ref, computed, onMounted, onUnmounted } from 'vue';
+import { useRoute } from 'vue-router';
+import { useSocialStore } from '@/stores/social';
+import { useResize } from '/composables/useResize.js';
+
+const route = useRoute();
+const { social } = useSocialStore();
+const { innerWidth } = useResize();
+
+const routes = [
+  { label: 'home', path: '/' },
+  { label: 'education', path: '/education' },
+  { label: 'experience', path: '/experience' },
+  { label: 'contact', path: '/contact' },
+];
+
+const lastScrollTop = ref(0);
+const isHidden = ref(false);
+const atTop = ref(true);
+
+const isOnHomePage = computed(() => route.fullPath === '/');
+
+const handleScroll = function () {
+  const timeout = setTimeout(() => {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+
+    if (scrollTop === 0 || scrollTop < 50) {
+      isHidden.value = false;
+      atTop.value = true;
+    } else if (scrollTop > lastScrollTop.value) {
+      isHidden.value = true;
+    } else if (scrollTop < lastScrollTop.value) {
+      isHidden.value = false;
+      atTop.value = false;
+    }
+
+    lastScrollTop.value = scrollTop <= 0 ? 0 : scrollTop;
+
+    clearTimeout(timeout);
+  }, 300);
+};
+
+onMounted(() => window.addEventListener('scroll', handleScroll));
+onUnmounted(() => window.removeEventListener('scroll', handleScroll));
+</script>
+
 <template>
   <header :class="{ hidden: isHidden && innerWidth < 1024 }">
     <Transition name="fade" mode="out-in">
@@ -29,68 +76,6 @@
     </nav>
   </header>
 </template>
-
-<script>
-import { useSocialStore } from '@/stores/social'
-import { useResize } from '/composables/useResize.js'
-
-export default {
-  setup() {
-    const { social } = useSocialStore()
-    const { innerWidth } = useResize()
-    return { social, innerWidth }
-  },
-
-  data: () => {
-    return {
-      routes: [
-        { label: 'home', path: '/' },
-        { label: 'education', path: '/education' },
-        { label: 'experience', path: '/experience' },
-        { label: 'contact', path: '/contact' },
-      ],
-
-      isHidden: false,
-      lastScrollTop: 0,
-      atTop: true,
-    }
-  },
-  computed: {
-    isOnHomePage() {
-      return this.$route.fullPath === '/'
-    },
-  },
-  methods: {
-    handleScroll() {
-      clearTimeout(this.timeout)
-
-      this.timeout = setTimeout(() => {
-        const scrollTop = window.scrollY || document.documentElement.scrollTop
-
-        if (scrollTop === 0 || scrollTop < 50) {
-          this.isHidden = false
-          this.atTop = true
-        } else if (scrollTop > this.lastScrollTop) {
-          this.isHidden = true
-        } else if (scrollTop < this.lastScrollTop) {
-          this.isHidden = false
-          this.atTop = false
-        }
-
-        this.lastScrollTop = scrollTop <= 0 ? 0 : scrollTop
-      }, 300)
-    },
-  },
-
-  mounted() {
-    window.addEventListener('scroll', this.handleScroll)
-  },
-
-  beforeUnmount() {
-    window.removeEventListener('scroll', this.handleScroll)
-  },
-}
-</script>
 
 <style lang="scss" scoped>
 header {

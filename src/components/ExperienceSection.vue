@@ -1,12 +1,12 @@
 <script setup>
-import { computed } from 'vue'
-import { Carousel, Slide, Pagination } from 'vue3-carousel'
-import { useTechnologiesStore } from '@/stores/technologies'
-import { useResize } from '/composables/useResize.js'
-import BaseCard from '@/components/UI/BaseCard.vue'
+import { computed } from 'vue';
+import { Carousel, Slide, Pagination } from 'vue3-carousel';
+import { useTechnologiesStore } from '@/stores/technologies';
+import { useResize } from '/composables/useResize';
+import BaseCard from '@/components/UI/BaseCard.vue';
 
-const { technologies } = useTechnologiesStore()
-const { innerWidth } = useResize()
+const { technologies } = useTechnologiesStore();
+const { innerWidth } = useResize();
 
 const favoriteTechnologies = computed(() => {
   return technologies.filter((tech) => {
@@ -15,17 +15,17 @@ const favoriteTechnologies = computed(() => {
       tech.label.toLowerCase().includes('vue') ||
       tech.label.toLowerCase().includes('nuxt') ||
       tech.label.toLowerCase().includes('vite')
-    )
-  })
-})
+    );
+  });
+});
 
 const config = computed(() => {
   return {
     itemsToShow: 'auto',
     gap: innerWidth.value > 1024 ? 25 : 10,
     transition: 300,
-  }
-})
+  };
+});
 </script>
 
 <template>
