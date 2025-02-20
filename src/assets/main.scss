@@ -3,8 +3,14 @@
 @use './reset.scss';
 @use './carousel.scss';
 @use './input.scss';
+@use './button.scss';
+@use './loader.scss';
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&display=swap');
+
+html {
+  background: var(--vt-c-black);
+}
 
 body {
   display: flex;
@@ -72,17 +78,52 @@ section {
   }
 }
 
-.section-message {
+.section-greeting {
   color: var(--vt-c-gray-300);
   text-align: center;
   font-size: 16px;
   line-height: 32px;
   margin: 0 auto 4rem auto;
+  transition: all var(--vt-transition-delay);
 
   @media (min-width: 1024px) {
     font-size: 24px;
     line-height: 48px;
     margin-bottom: 5rem;
+  }
+}
+
+.form-submitted {
+  p {
+    color: var(--vt-c-purple-300);
+    font-size: 16px;
+    text-align: center;
+    margin: 0 auto;
+    line-height: 1.5;
+
+    @media (min-width: 1024px) {
+      font-size: 24px;
+      line-height: 1.6;
+    }
+
+    &:last-of-type {
+      font-size: 14px;
+      margin: 5rem auto 0.5rem auto;
+      color: var(--vt-c-gray-400);
+
+      @media (min-width: 1024px) {
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+.scaled-down {
+  transform: scale(0.9);
+  opacity: 0.5;
+
+  @media (min-width: 1024px) {
+    transform: scale(0.7);
   }
 }
 
@@ -101,14 +142,12 @@ h1 {
 
 p,
 span,
-button,
 a {
   font-size: 16px;
 }
 
 @media (min-width: 1024px) {
-  a,
-  button {
+  a {
     font-size: 20px;
   }
   p,
@@ -134,24 +173,6 @@ a {
     @media (min-width: 1024px) {
       width: 25px;
     }
-  }
-}
-
-button {
-  background-color: var(--vt-c-white);
-  color: var(--vt-c-gray-900);
-  font-family: 'Nunito';
-  font-weight: 500;
-  padding: 12px 40px;
-  border-radius: 100px;
-  border: unset;
-  max-width: fit-content;
-  cursor: pointer;
-
-  transition: all var(--vt-transition-delay);
-
-  &:hover {
-    scale: 1.05;
   }
 }
 

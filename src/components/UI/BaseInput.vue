@@ -8,6 +8,7 @@ const props = defineProps({
   type: { type: String, default: 'text' },
   textarea: Boolean,
   required: Boolean,
+  resetTrigger: Number,
 });
 
 const emit = defineEmits(['update:error']);
@@ -40,6 +41,10 @@ const validate = () => {
 };
 
 watch(model, validate);
+watch(
+  () => props.resetTrigger,
+  () => (error.value = ''),
+);
 
 defineExpose({ validate });
 </script>

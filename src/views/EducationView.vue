@@ -5,7 +5,7 @@ const { isOnMobile } = useResize();
 
 <template>
   <section class="education-section">
-    <p class="section-message">
+    <p class="section-greeting">
       &lt; This is where you can explore my <br v-if="isOnMobile" />
       academic journey <br v-if="!isOnMobile" />
       and see the <strong> knowledge </strong> <br v-if="isOnMobile" />

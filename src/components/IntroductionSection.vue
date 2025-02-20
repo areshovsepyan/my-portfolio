@@ -1,3 +1,7 @@
+<script setup>
+import BaseButton from './UI/BaseButton.vue';
+</script>
+
 <template>
   <section class="introduction-section">
     <img src="/images/developer.png" alt="Smiling developer in front of the laptop." />
@@ -9,7 +13,7 @@
         features, and spearhead the development of new apps.
       </p>
       <div class="actions">
-        <button>Download CV</button>
+        <BaseButton>Download CV</BaseButton>
         <RouterLink to="/experience"> See experiences </RouterLink>
       </div>
     </div>

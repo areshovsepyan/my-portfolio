@@ -1,0 +1,48 @@
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 44px;
+  min-width: 170px;
+
+  font-family: 'Nunito';
+  font-weight: 500;
+
+  padding: 0 25px;
+  border-radius: 100px;
+  border: unset;
+  max-width: fit-content;
+  cursor: pointer;
+  transition: all var(--vt-transition-delay);
+
+  @media (min-width: 1024px) {
+    height: 50px;
+    min-width: 210px;
+    padding: 0 30px;
+  }
+
+  span {
+    font-size: 16px;
+
+    @media (min-width: 1024px) {
+      font-size: 20px;
+    }
+  }
+
+  &:disabled {
+    cursor: unset;
+
+    &:hover {
+      scale: 1;
+    }
+  }
+}
+
+.btn-primary {
+  background-color: var(--vt-c-white);
+  color: var(--vt-c-gray-900);
+
+  &:hover {
+    scale: 1.05;
+  }
+}

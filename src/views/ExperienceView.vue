@@ -5,7 +5,7 @@ const { isOnMobile } = useResize();
 
 <template>
   <section class="experience-section">
-    <p class="section-message">
+    <p class="section-greeting">
       &lt; This is where you can know me <br v-if="isOnMobile" />
       a little more <br v-if="!isOnMobile" />
       and see my whole experience <br v-if="isOnMobile" />
