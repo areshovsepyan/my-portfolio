@@ -2,6 +2,7 @@
 @use './transition.scss';
 @use './reset.scss';
 @use './carousel.scss';
+@use './input.scss';
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&display=swap');
 
@@ -69,6 +70,24 @@ section {
   @media (min-width: 1024px) {
     padding: 7rem 2rem;
   }
+}
+
+.section-message {
+  color: var(--vt-c-gray-300);
+  text-align: center;
+  font-size: 16px;
+  line-height: 32px;
+  margin: 0 auto 4rem auto;
+
+  @media (min-width: 1024px) {
+    font-size: 24px;
+    line-height: 48px;
+    margin-bottom: 5rem;
+  }
+}
+
+strong {
+  font-weight: 600;
 }
 
 h1 {
