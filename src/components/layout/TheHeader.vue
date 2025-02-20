@@ -6,7 +6,7 @@ import { useResize } from '/composables/useResize.js';
 
 const route = useRoute();
 const { social } = useSocialStore();
-const { innerWidth } = useResize();
+const { isOnMobile } = useResize();
 
 const routes = [
   { label: 'home', path: '/' },
@@ -46,9 +46,9 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll));
 </script>
 
 <template>
-  <header :class="{ hidden: isHidden && innerWidth < 1024 }">
+  <header :class="{ hidden: isHidden && isOnMobile }">
     <Transition name="fade" mode="out-in">
-      <RouterLink v-if="!isOnHomePage && innerWidth > 1024" to="/" class="back-link">
+      <RouterLink v-if="!isOnHomePage && !isOnMobile" to="/" class="back-link">
         <img src="/icons/icon_arrow-left.svg" alt="Arrow left" />
         back
       </RouterLink>
@@ -61,7 +61,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll));
           </RouterLink>
         </li>
       </ul>
-      <ul v-if="innerWidth > 1024">
+      <ul v-if="!isOnMobile">
         <li v-for="{ href, type, img: { alt, icon } } in social" :key="href">
           <a
             v-if="!type.toLocaleLowerCase().includes('phone')"

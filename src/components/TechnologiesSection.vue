@@ -8,7 +8,7 @@ import { useTechnologiesStore } from '@/stores/technologies';
 import { useResize } from '/composables/useResize';
 
 const { technologies } = useTechnologiesStore();
-const { innerWidth } = useResize();
+const { innerWidth, isOnMobile } = useResize();
 
 const config = computed(() => {
   return {
@@ -34,7 +34,7 @@ const config = computed(() => {
             {{ label }}
           </BaseCard>
         </Slide>
-        <template v-if="innerWidth > 1024" #addons>
+        <template v-if="!isOnMobile" #addons>
           <Navigation />
         </template>
       </Carousel>

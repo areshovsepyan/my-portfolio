@@ -1,16 +1,18 @@
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue';
 
 export function useResize() {
-  const innerWidth = ref(0)
+  const innerWidth = ref(0);
 
   function onResize() {
-    innerWidth.value = window.innerWidth
+    innerWidth.value = window.innerWidth;
   }
 
-  onResize()
+  onResize();
 
-  onMounted(() => window.addEventListener('resize', onResize))
-  onUnmounted(() => window.removeEventListener('resize', onResize))
+  const isOnMobile = computed(() => innerWidth.value <= 1024);
 
-  return { innerWidth }
+  onMounted(() => window.addEventListener('resize', onResize));
+  onUnmounted(() => window.removeEventListener('resize', onResize));
+
+  return { innerWidth, isOnMobile };
 }
