@@ -15,6 +15,10 @@
   width: 100%;
   padding: unset;
 
+  button {
+    min-width: unset;
+  }
+
   &__icon {
     transition: fill var(--vt-transition-delay);
     fill: var(--vt-c-gray-300);
