@@ -116,6 +116,12 @@ const submitForm = () => {
 section {
   padding: 1rem 0 5rem 0;
 
+  .section-greeting {
+    @media (min-width: 1024px) {
+      margin-bottom: 4rem;
+    }
+  }
+
   @media (min-width: 1024px) {
     padding: 4rem 0;
   }

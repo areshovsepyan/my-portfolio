@@ -3,6 +3,7 @@
 @use './reset.scss';
 @use './carousel.scss';
 @use './input.scss';
+@use './card.scss';
 @use './button.scss';
 @use './loader.scss';
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100..900&display=swap');
@@ -84,13 +85,12 @@ section {
   text-align: center;
   font-size: 16px;
   line-height: 32px;
-  margin: 0 auto 4rem auto;
+  margin: 0 auto 3rem auto;
   transition: all var(--vt-transition-delay);
 
   @media (min-width: 1024px) {
     font-size: 24px;
     line-height: 48px;
-    margin-bottom: 5rem;
   }
 }
 
@@ -197,29 +197,6 @@ a {
   &:hover {
     color: var(--vt-c-white);
   }
-}
-
-.border-gradient {
-  position: relative;
-  border-radius: 12px;
-}
-
-.border-gradient::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 12px;
-  padding: 1.5px;
-  background: var(--vt-c-gray-gradient);
-  -webkit-mask:
-    linear-gradient(var(--vt-c-white) 0 0) content-box,
-    linear-gradient(var(--vt-c-white) 0 0);
-  mask:
-    linear-gradient(var(--vt-c-white) 0 0) content-box,
-    linear-gradient(var(--vt-c-white) 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
 }
 
 .hidden {

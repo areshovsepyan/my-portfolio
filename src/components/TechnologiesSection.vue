@@ -29,7 +29,7 @@ const config = computed(() => {
     <div class="technologies">
       <Carousel v-bind="config">
         <Slide v-for="{ label, img: { alt, icon } } in technologies" :key="label">
-          <BaseCard class="card" :border_gradient="true">
+          <BaseCard class="border-gradient">
             <img :src="`/icons/technologies/icon_${icon}.svg`" :alt="alt" />
             {{ label }}
           </BaseCard>
@@ -45,6 +45,7 @@ const config = computed(() => {
 <style lang="scss" scoped>
 .technologies-section {
   margin-bottom: 5rem;
+
   .description {
     color: var(--vt-c-gray-300);
     font-size: 32px;
@@ -69,6 +70,7 @@ const config = computed(() => {
     }
 
     .card {
+      flex-direction: column;
       justify-content: center;
       align-items: center;
 

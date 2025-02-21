@@ -38,7 +38,7 @@ const config = computed(() => {
     <div class="technologies">
       <Carousel v-bind="config">
         <Slide v-for="({ label, img: { alt, icon } }, index) in favoriteTechnologies" :key="label">
-          <BaseCard class="card" :background_color="index + 1" colored>
+          <BaseCard class="bg-colored" :background_color="index + 1">
             <div class="image-box">
               <img :src="`/icons/technologies/icon_${icon}.svg`" :alt="alt" />
               <span> {{ label }}</span>
@@ -97,6 +97,7 @@ const config = computed(() => {
     }
 
     .card {
+      flex-direction: column;
       min-width: 220px;
       min-height: 190px;
 
