@@ -31,4 +31,3 @@ coverage
 *.sw?
 
 *.tsbuildinfo
-.vercel
