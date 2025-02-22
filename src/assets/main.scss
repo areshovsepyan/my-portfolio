@@ -168,11 +168,12 @@ a {
 
   img {
     width: 20px;
-    aspect-ratio: 1;
+    height: 20px;
     filter: contrast(0.4);
 
     @media (min-width: 1024px) {
       width: 25px;
+      height: 25px;
     }
   }
 }

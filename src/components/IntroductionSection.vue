@@ -79,9 +79,11 @@ import BaseButton from './UI/BaseButton.vue';
 
   img {
     width: 125px;
+    height: 115px;
 
     @media (min-width: 1024px) {
       width: 360px;
+      height: 331px;
       align-self: flex-start;
     }
   }
