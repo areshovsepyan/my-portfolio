@@ -1,10 +1,12 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { useSocialStore } from '@/stores/social';
 import { useResize } from '/composables/useResize.js';
 
+const router = useRouter();
 const route = useRoute();
+
 const { social } = useSocialStore();
 const { isOnMobile } = useResize();
 
@@ -41,6 +43,11 @@ const handleScroll = function () {
   }, 300);
 };
 
+const goBack = function () {
+  if (window.history.length > 1) router.back();
+  else router.push('/');
+};
+
 onMounted(() => window.addEventListener('scroll', handleScroll));
 onUnmounted(() => window.removeEventListener('scroll', handleScroll));
 </script>
@@ -48,10 +55,10 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll));
 <template>
   <header :class="{ hidden: isHidden && isOnMobile }">
     <Transition name="fade" mode="out-in">
-      <RouterLink v-if="!isOnHomePage && !isOnMobile" to="/" class="back-link">
+      <button v-if="!isOnHomePage && !isOnMobile" @click="goBack" class="btn-back">
         <img src="/icons/icon_arrow-left.svg" alt="Arrow left" />
         back
-      </RouterLink>
+      </button>
     </Transition>
     <nav>
       <ul>
@@ -82,6 +89,10 @@ header {
   transition:
     transform var(--vt-transition-delay) ease,
     opacity var(--vt-transition-delay) ease;
+
+  @media (min-width: 1024px) {
+    position: relative;
+  }
 
   nav {
     max-width: 100%;
@@ -129,19 +140,16 @@ header {
     z-index: 100;
   }
 
-  @media (min-width: 1024px) {
-    position: relative;
+  .btn-back {
+    all: unset;
 
-    .back-link {
-      display: flex;
-      justify-content: center;
-      gap: 0.5rem;
-
-      color: var(--vt-c-white);
-
-      position: absolute;
-      left: 0;
-    }
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    color: var(--vt-c-white);
+    cursor: pointer;
+    position: absolute;
+    left: 0;
   }
 }
 </style>
