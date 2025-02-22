@@ -1,5 +1,7 @@
 <script setup>
 import { Analytics } from '@vercel/analytics/vue';
+import { SpeedInsights } from '@vercel/speed-insights/vue';
+
 import TheHeader from '@/components/layout/TheHeader.vue';
 import TheFooter from '@/components/layout/TheFooter.vue';
 
@@ -17,6 +19,8 @@ router.afterEach((to, from) => {
 
 <template>
   <Analytics />
+  <SpeedInsights />
+
   <TheHeader />
 
   <router-view v-slot="{ Component, route }">
