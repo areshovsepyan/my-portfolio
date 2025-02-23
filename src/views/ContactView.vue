@@ -36,21 +36,31 @@ const validateForm = () => {
   return isNameValid && isEmailValid && isMessageValid;
 };
 
-const submitForm = () => {
-  if (!validateForm() || loading.value) return;
+const submitForm = async () => {
+  try {
+    if (!validateForm() || loading.value) return;
 
-  loading.value = true;
+    loading.value = true;
 
-  // HANDLE FORM SUBMISSION HERE
-  setTimeout(() => {
-    console.log('Form submitted:', form.value);
+    const response = await fetch('/api/send-email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(form.value),
+    });
 
-    // RESET FORM AND ERRORS
-    reset(form);
-    reset(errors);
+    if (response.status === 200) {
+      reset(form);
+      reset(errors);
+
+      formSubmitted.value = true;
+    }
+  } catch (error) {
+    console.log('Email sending failed:', error);
+  } finally {
     loading.value = false;
-    formSubmitted.value = true;
-  }, 1000);
+  }
 };
 </script>
 
