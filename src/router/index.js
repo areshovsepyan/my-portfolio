@@ -3,9 +3,9 @@ import { createRouter, createWebHistory } from 'vue-router';
 import AdminLayout from '@/layouts/AdminLayout.vue';
 import LoginLayout from '@/layouts/LoginLayout.vue';
 
-import DashboardView from '@/views/DashboardView.vue';
 import UserManagementView from '@/views/UserManagementView.vue';
 import SettingsView from '@/views/SettingsView.vue';
+import DashboardView from '@/views/DashboardVIew.vue';
 
 import HomeView from '@/views/HomeView.vue';
 import EducationView from '@/views/EducationView.vue';
