@@ -1,8 +1,8 @@
 <script setup>
 import { ref } from 'vue';
-import BaseInput from '../components/UI/BaseInput.vue';
-import BaseButton from '../components/UI/BaseButton.vue';
-import { useResize } from '/composables/useResize';
+import BaseInput from '@/components/UI/BaseInput.vue';
+import BaseButton from '@/components/UI/BaseButton.vue';
+import { useResize } from '@/composables/useResize';
 
 const { isOnMobile } = useResize();
 

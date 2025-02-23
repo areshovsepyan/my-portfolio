@@ -5,7 +5,7 @@ import { Carousel, Slide, Navigation } from 'vue3-carousel';
 import BaseCard from '@/components/UI/BaseCard.vue';
 
 import { useTechnologiesStore } from '@/stores/technologies';
-import { useResize } from '/composables/useResize';
+import { useResize } from '@/composables/useResize';
 
 const { technologies } = useTechnologiesStore();
 const { innerWidth, isOnMobile } = useResize();

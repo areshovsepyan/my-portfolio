@@ -2,8 +2,8 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useToast } from 'vue-toastification';
-import BaseInput from '../components/UI/BaseInput.vue';
-import BaseButton from '../components/UI/BaseButton.vue';
+import BaseInput from '@/components/UI/BaseInput.vue';
+import BaseButton from '@/components/UI/BaseButton.vue';
 
 const router = useRouter();
 const toast = useToast();

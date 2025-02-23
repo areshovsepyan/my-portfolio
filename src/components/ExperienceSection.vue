@@ -2,7 +2,7 @@
 import { computed } from 'vue';
 import { Carousel, Slide, Pagination } from 'vue3-carousel';
 import { useTechnologiesStore } from '@/stores/technologies';
-import { useResize } from '/composables/useResize';
+import { useResize } from '@/composables/useResize';
 import BaseCard from '@/components/UI/BaseCard.vue';
 
 const { technologies } = useTechnologiesStore();

@@ -2,7 +2,7 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useSocialStore } from '@/stores/social';
-import { useResize } from '/composables/useResize.js';
+import { useResize } from '@/composables/useResize.js';
 
 const router = useRouter();
 const route = useRoute();

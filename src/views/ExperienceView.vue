@@ -2,7 +2,7 @@
 import BaseCard from '@/components/UI/BaseCard.vue';
 import BaseButton from '@/components/UI/BaseButton.vue';
 
-import { useResize } from '/composables/useResize';
+import { useResize } from '@/composables/useResize';
 const { isOnMobile } = useResize();
 </script>
 
