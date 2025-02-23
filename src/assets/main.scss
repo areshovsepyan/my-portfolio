@@ -8,6 +8,7 @@
 @use './loader.scss';
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&display=swap');
+@import 'vue-toastification/dist/index.css';
 
 html {
   background: var(--vt-c-black);

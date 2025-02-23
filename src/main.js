@@ -1,14 +1,24 @@
-import './assets/main.scss'
+import './assets/main.scss';
 
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+import { createApp } from 'vue';
+import { createPinia } from 'pinia';
 
-import App from './App.vue'
-import router from './router'
+import App from './App.vue';
+import Toast from 'vue-toastification';
+import router from './router';
 
-const app = createApp(App)
+const app = createApp(App);
 
-app.use(createPinia())
-app.use(router)
+app.use(createPinia());
+app.use(router);
 
-app.mount('#app')
+app.use(Toast, {
+  closeButton: false,
+  position: 'top-right',
+  timeout: 5000,
+  maxToasts: 10,
+  closeOnClick: true,
+  hideProgressBar: true,
+});
+
+app.mount('#app');

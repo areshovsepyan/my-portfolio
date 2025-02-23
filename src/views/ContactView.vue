@@ -107,9 +107,7 @@ const submitForm = async () => {
           ref="messageInput"
         />
 
-        <BaseButton @click.prevent="submitForm" :isLoading="loading" type="submit"
-          >Submit Message</BaseButton
-        >
+        <BaseButton :isLoading="loading" type="submit">Submit Message</BaseButton>
       </form>
       <div v-else class="form-submitted">
         <p>Thank you for reaching out!</p>

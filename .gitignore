@@ -19,9 +19,11 @@ coverage
 
 # Ignore env files
 .env
+.env*.local
 
 # Editor directories and files
 .vscode/*
+.vercel
 !.vscode/extensions.json
 .idea
 *.suo
@@ -29,5 +31,4 @@ coverage
 *.njsproj
 *.sln
 *.sw?
-
 *.tsbuildinfo
