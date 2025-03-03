@@ -14,9 +14,9 @@ const formResetTrigger = ref(0);
 const formSubmitted = ref(false);
 const isLoading = ref(false);
 const form = ref({
-  name: 'Ara',
-  email: 'ara@mail.com',
-  message: 'Hello there.',
+  name: '',
+  email: '',
+  message: '',
 });
 const errors = ref({
   name: '',
