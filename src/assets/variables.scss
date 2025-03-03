@@ -22,6 +22,16 @@
   --vt-c-accent-4: #c0e5d7;
 
   --vt-c-gray-gradient: linear-gradient(#232323 0%, #434343 49%, #232323 100%);
+  --vt-c-dark-gradient: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  --vt-c-to-right-gradient: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(255, 255, 255, 0) 50%
+  );
 }
 
 // ROOT VARIABLES

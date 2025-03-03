@@ -9,17 +9,18 @@ const toast = useToast();
 
 const isLoading = ref(false);
 const isRotating = ref(false);
-const bannedIPs = ref([]);
+const logs = ref([]);
 
-onMounted(() => fetchBannedIPs());
+onMounted(() => fetchLogs());
 
-const fetchBannedIPs = async () => {
+const fetchLogs = async () => {
   try {
     isLoading.value = true;
 
-    const { data } = await admin.get('banned-ips');
+    const { data } = await admin.get('/logs');
+    console.log('ERROR LOGS:', data.logs);
 
-    bannedIPs.value = [...data.bannedIPs];
+    logs.value = [...data.logs];
   } catch ({ error }) {
     toast.error(error);
   } finally {
@@ -27,32 +28,17 @@ const fetchBannedIPs = async () => {
   }
 };
 
-const manualFetchBannedIPs = async () => {
+const manualFetchLogs = async () => {
   try {
     if (isLoading.value) return;
 
     isRotating.value = true;
 
-    await fetchBannedIPs();
-  } catch ({ error }) {
-    toast.error(error);
+    await fetchLogs();
+  } catch (error) {
+    console.log(error);
   } finally {
     isRotating.value = false;
-  }
-};
-
-const unbanIP = async (ip) => {
-  try {
-    isLoading.value = true;
-
-    const { data } = await admin.delete(`banned-ips?ip=${ip}`);
-
-    bannedIPs.value = [...data.bannedIPs];
-    toast.success(data.message);
-  } catch ({ error }) {
-    toast.error(error);
-  } finally {
-    isLoading.value = false;
   }
 };
 </script>
@@ -60,8 +46,8 @@ const unbanIP = async (ip) => {
 <template>
   <div class="settings">
     <div class="header-box">
-      <h2 class="admin-header">Banned IPs</h2>
-      <BaseButton @click="manualFetchBannedIPs()" btn_class="btn-icon">
+      <h2 class="admin-header">Error Logs</h2>
+      <BaseButton @click="manualFetchLogs()" btn_class="btn-icon">
         <img
           src="/icons/admin/icon_refresh.svg"
           :class="{ rotating: isRotating }"
@@ -72,14 +58,13 @@ const unbanIP = async (ip) => {
     <div>
       <BaseLoader v-if="isLoading" :isLoading="isLoading" loader_type="code" />
       <div v-else>
-        <ul v-if="bannedIPs.length">
-          <li v-for="ip in bannedIPs" :key="ip" class="ip-item">
-            <div class="dot"></div>
-            <span>{{ ip }}</span>
-            <BaseButton @click="unbanIP(ip)" btn_class="btn-admin">Unban</BaseButton>
+        <ul v-if="logs.length">
+          <li v-for="{ timestamp, error } in logs" :key="timestamp" class="ip-item">
+            <strong>{{ timestamp }}:</strong>
+            <span>{{ error }}</span>
           </li>
         </ul>
-        <p v-else class="no-ips">No banned IPs found.</p>
+        <p v-else class="no-ips">No error logs found.</p>
       </div>
     </div>
   </div>

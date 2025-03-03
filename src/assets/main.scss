@@ -158,6 +158,20 @@ a {
   }
 }
 
+.header-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem 1rem 0;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--vt-c-gray-400);
+}
+
+.admin-header {
+  font-size: 32px;
+  color: var(--vt-c-gray-300);
+}
+
 .social-icon {
   display: flex;
   align-items: center;
@@ -204,4 +218,17 @@ a {
 .hidden {
   transform: translateY(-100%);
   opacity: 0;
+}
+
+.rotating {
+  animation: spin var(--vt-transition-delay) linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

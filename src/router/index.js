@@ -1,11 +1,12 @@
+// import { api } from '@/utils/axios';
 import { createRouter, createWebHistory } from 'vue-router';
 
 import AdminLayout from '@/layouts/AdminLayout.vue';
 import LoginLayout from '@/layouts/LoginLayout.vue';
 
-import UserManagementView from '@/views/UserManagementView.vue';
+import DashboardView from '@/views/DashboardView.vue';
 import SettingsView from '@/views/SettingsView.vue';
-import DashboardView from '@/views/DashboardVIew.vue';
+import LogsView from '@/views/LogsView.vue';
 
 import HomeView from '@/views/HomeView.vue';
 import EducationView from '@/views/EducationView.vue';
@@ -45,8 +46,8 @@ const router = createRouter({
       component: AdminLayout,
       children: [
         { path: 'dashboard', alias: '/admin', component: DashboardView },
-        { path: 'users', component: UserManagementView },
         { path: 'settings', component: SettingsView },
+        { path: 'logs', component: LogsView },
       ],
       beforeEnter: async (to, from, next) => {
         const token = localStorage.getItem('token');
@@ -82,6 +83,13 @@ const router = createRouter({
       return { top: 0 };
     }
   },
+});
+router.beforeEach((to, from, next) => {
+  if (to.path.startsWith('/admin')) {
+    document.body.style.backgroundColor = '#15161A';
+    document.getElementById('app').style.padding = '2rem';
+  }
+  next();
 });
 
 export default router;

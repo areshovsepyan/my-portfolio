@@ -22,6 +22,8 @@ watch(
 );
 
 router.afterEach((to, from) => {
+  if (!to?.meta?.id || !from?.meta?.id) return;
+
   const toId = to.meta.id;
   const fromId = from.meta.id;
 

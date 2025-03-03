@@ -1,6 +1,14 @@
 <script setup>
 import { useRouter } from 'vue-router';
+import BaseButton from '@/components/UI/BaseButton.vue';
+
 const router = useRouter();
+
+const routes = [
+  { label: 'Dashboard', path: '/admin', icon: 'dash', alt: 'Dash Icon' },
+  { label: 'Settings', path: '/admin/settings', icon: 'settings', alt: 'Settings Icon' },
+  { label: 'Logs', path: '/admin/logs', icon: 'logs', alt: 'Logs Icon' },
+];
 
 const logout = () => {
   localStorage.removeItem('token');
@@ -10,24 +18,22 @@ const logout = () => {
 
 <template>
   <div class="admin-layout">
-    <!-- Side navigation for admin -->
-    <div class="sidebar">
+    <div class="sidebar border-gradient-dark">
       <ul>
-        <li><router-link to="/admin">Dashboard</router-link></li>
-        <li><router-link to="/admin/users">User Management</router-link></li>
-        <li><router-link to="/admin/settings">Settings</router-link></li>
-        <li><button @click="logout" class="logout-btn">Logout</button></li>
+        <li v-for="{ label, path, icon, alt } in routes" :key="label">
+          <RouterLink :to="path">
+            <img :src="`/icons/admin/icon_${icon}.svg`" :alt="alt" />
+          </RouterLink>
+        </li>
+        <li>
+          <BaseButton @click="logout" btn_class="btn-signout">
+            <img src="/icons/admin/icon_signout.svg" alt="Signout icon" />
+          </BaseButton>
+        </li>
       </ul>
     </div>
 
-    <!-- Main content area -->
-    <div class="content">
-      <!-- Optional header for the admin -->
-      <header>
-        <h1>Admin Panel</h1>
-      </header>
-
-      <!-- Render the page content here -->
+    <div class="content card-admin border-gradient-content">
       <router-view />
     </div>
   </div>
@@ -36,60 +42,76 @@ const logout = () => {
 <style lang="scss" scoped>
 .admin-layout {
   display: flex;
-  min-height: 100vh;
+  min-height: calc(100vh - 4rem);
+  gap: 1rem;
 
   .sidebar {
-    width: 250px;
-    background-color: #2d3748;
-    color: white;
-    padding: 20px;
     display: flex;
     flex-direction: column;
-    position: fixed;
-    height: 100vh;
+    width: 65px;
+    height: 500px;
+    padding: 5px;
+    box-shadow:
+      0px 1px 2px rgba(0, 0, 0, 0.04),
+      0px 3px 8px rgba(0, 0, 0, 0.12),
+      0px 8px 16px rgba(0, 0, 0, 0.6);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%),
+      rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
 
     ul {
-      list-style-type: none;
-      padding: 0;
-    }
+      display: flex;
+      flex-direction: column;
+      height: 100%;
 
-    li {
-      margin: 20px 0;
-
-      a {
-        color: white;
-        text-decoration: none;
-        font-size: 18px;
-
-        &:hover {
-          text-decoration: underline;
+      li {
+        &:last-of-type {
+          margin-top: auto;
         }
-      }
-      .logout-btn {
-        background-color: #ff4d4d;
-        color: white;
-        border: none;
-        padding: 8px 12px;
-        cursor: pointer;
-      }
 
-      .logout-btn:hover {
-        background-color: #d43f3f;
+        .router-link-active {
+          background-color: rgba(255, 255, 255, 0.15);
+
+          img {
+            width: 32px;
+            height: 32px;
+            filter: opacity(1);
+          }
+          &:hover {
+            img {
+              scale: 1;
+            }
+          }
+        }
+        a {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          height: 55px;
+          width: 55px;
+          border-radius: 50%;
+
+          img {
+            width: 24px;
+            height: 24px;
+            filter: opacity(0.5);
+          }
+
+          &:hover {
+            img {
+              scale: 1.3;
+            }
+          }
+        }
       }
     }
   }
 
   .content {
-    margin-left: 250px;
     padding: 20px;
-    width: calc(100% - 250px);
-
-    header {
-      background-color: #edf2f7;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
+    width: 100%;
   }
 }
 </style>

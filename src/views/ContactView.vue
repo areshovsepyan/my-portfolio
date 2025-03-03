@@ -1,18 +1,22 @@
 <script setup>
+import { api } from '../../utils/axios';
 import { ref } from 'vue';
 import BaseInput from '@/components/UI/BaseInput.vue';
 import BaseButton from '@/components/UI/BaseButton.vue';
 import { useResize } from '@/composables/useResize';
+import { useToast } from 'vue-toastification';
+
+const toast = useToast();
 
 const { isOnMobile } = useResize();
 
 const formResetTrigger = ref(0);
 const formSubmitted = ref(false);
-const loading = ref(false);
+const isLoading = ref(false);
 const form = ref({
-  name: '',
-  email: '',
-  message: '',
+  name: 'Ara',
+  email: 'ara@mail.com',
+  message: 'Hello there.',
 });
 const errors = ref({
   name: '',
@@ -38,28 +42,22 @@ const validateForm = () => {
 
 const submitForm = async () => {
   try {
-    if (!validateForm() || loading.value) return;
+    if (!validateForm() || isLoading.value) return;
 
-    loading.value = true;
+    isLoading.value = true;
 
-    const response = await fetch('/api/send-email', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(form.value),
-    });
+    const { data } = await api.post('send-email', form.value);
 
-    if (response.status === 200) {
-      reset(form);
-      reset(errors);
+    toast.success(data.message);
 
-      formSubmitted.value = true;
-    }
-  } catch (error) {
-    console.log('Email sending failed:', error);
+    reset(form);
+    reset(errors);
+
+    formSubmitted.value = true;
+  } catch ({ error }) {
+    toast.error(error);
   } finally {
-    loading.value = false;
+    isLoading.value = false;
   }
 };
 </script>
@@ -107,7 +105,7 @@ const submitForm = async () => {
           ref="messageInput"
         />
 
-        <BaseButton :isLoading="loading" type="submit">Submit Message</BaseButton>
+        <BaseButton :isLoading="isLoading" type="submit">Submit Message</BaseButton>
       </form>
       <div v-else class="form-submitted">
         <p>Thank you for reaching out!</p>

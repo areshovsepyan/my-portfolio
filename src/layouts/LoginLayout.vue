@@ -1,4 +1,5 @@
 <script setup>
+import { api } from '../../utils/axios';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useToast } from 'vue-toastification';
@@ -8,7 +9,7 @@ import BaseButton from '@/components/UI/BaseButton.vue';
 const router = useRouter();
 const toast = useToast();
 
-const loading = ref(false);
+const isLoading = ref(false);
 
 const username = ref('');
 const password = ref('');
@@ -19,12 +20,7 @@ const passwordInput = ref(null);
 const errors = ref({
   name: '',
   email: '',
-  message: '',
 });
-
-const showErrorToast = () => {
-  toast.error(errors.value.message);
-};
 
 const validateInputs = () => {
   const isUsernameValid = usernameInput.value?.validate();
@@ -39,35 +35,24 @@ const resetErrors = () => {
 
 const login = async () => {
   try {
-    if (!validateInputs() || loading.value) return;
+    if (!validateInputs() || isLoading.value) return;
 
-    loading.value = true;
+    isLoading.value = true;
 
-    const res = await fetch('/api/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ username: username.value, password: password.value }),
+    const { data } = await api.post('/login', {
+      username: username.value,
+      password: password.value,
     });
 
-    if (res.ok) {
-      const data = await res.json();
+    resetErrors();
 
-      resetErrors();
+    localStorage.setItem('token', data.token);
 
-      localStorage.setItem('token', data.token);
-
-      router.push('/admin');
-    } else {
-      const error = await res.json();
-      errors.value.message = error?.error;
-      showErrorToast();
-    }
-  } catch (error) {
-    console.log('ERROR IN LOGIN VIEW:', error);
+    router.push('/admin');
+  } catch ({ error }) {
+    toast.error(error);
   } finally {
-    loading.value = false;
+    isLoading.value = false;
   }
 };
 </script>
@@ -101,7 +86,7 @@ const login = async () => {
             ref="passwordInput"
           />
 
-          <BaseButton type="submit" :isLoading="loading">Sign In</BaseButton>
+          <BaseButton type="submit" :isLoading="isLoading">Sign In</BaseButton>
         </form>
       </div>
     </div>

@@ -15,7 +15,7 @@ app.use(router);
 app.use(Toast, {
   closeButton: false,
   position: 'top-right',
-  timeout: 5000,
+  timeout: 3000,
   maxToasts: 10,
   closeOnClick: true,
   hideProgressBar: true,
