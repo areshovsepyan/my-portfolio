@@ -1,0 +1,63 @@
+@use 'sass:math';
+
+.glitch {
+  color: white;
+  font-family: sans-serif;
+  font-weight: 800;
+  position: relative;
+  padding: 2rem;
+  font-size: 100px;
+}
+
+.glitch::before,
+.glitch::after {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  color: white;
+  content: '404';
+
+  background: black;
+  overflow: hidden;
+  top: 0;
+}
+.glitch::before {
+  left: 3px;
+  text-shadow: -2px 0 red;
+  animation-name: glitch-animation-1;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-delay: 0s;
+  animation-iteration-count: infinite;
+  animation-direction: reverse-alternate;
+}
+
+.glitch::after {
+  left: -3px;
+  text-shadow: -2px 0 blue;
+  animation-name: glitch-animation-2;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-delay: 0s;
+  animation-iteration-count: infinite;
+  animation-direction: reverse-alternate;
+}
+
+@keyframes glitch-animation-1 {
+  $steps: 20;
+  @for $i from 0 through $steps {
+    #{math.percentage(math.div($i, $steps))} {
+      clip: rect(math.random(150) + px, 350px, math.random(150) + px, 30px);
+    }
+  }
+}
+
+@keyframes glitch-animation-2 {
+  $steps: 20;
+  @for $i from 0 through $steps {
+    #{math.percentage(math.div($i, $steps))} {
+      clip: rect(math.random(150) + px, 350px, math.random(150) + px, 30px);
+    }
+  }
+}
