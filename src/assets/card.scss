@@ -75,6 +75,28 @@
   background-color: var(--vt-c-green);
 }
 
+.dot-big {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  padding: 0;
+  box-shadow:
+    inset 2px 2px 4px rgba(255, 255, 255, 0.5),
+    inset -2px -2px 4px rgba(0, 0, 0, 0.2),
+    2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.warn {
+  background: linear-gradient(to bottom, #ffd966, #ffbf00);
+}
+.error {
+  background: linear-gradient(to bottom, #ff8080, #ff4d4d);
+}
+.info {
+  background: linear-gradient(to bottom, #72b8f4, #4a90e2);
+}
+
 .bg-gray {
   background-color: var(--vt-c-gray-800);
   border-radius: 40px;

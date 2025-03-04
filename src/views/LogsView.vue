@@ -11,6 +11,18 @@ const isLoading = ref(false);
 const isRotating = ref(false);
 const logs = ref([]);
 
+const formatISO = function (iso) {
+  return new Intl.DateTimeFormat('en-US', {
+    hour: 'numeric',
+    minute: '2-digit',
+    day: 'numeric',
+    weekday: 'short',
+    month: 'short',
+  })
+    .format(new Date(iso))
+    .replace(',', '');
+};
+
 onMounted(() => fetchLogs());
 
 const fetchLogs = async () => {
@@ -18,7 +30,6 @@ const fetchLogs = async () => {
     isLoading.value = true;
 
     const { data } = await admin.get('/logs');
-    console.log('ERROR LOGS:', data.logs);
 
     logs.value = [...data.logs];
   } catch ({ error }) {
@@ -27,7 +38,6 @@ const fetchLogs = async () => {
     isLoading.value = false;
   }
 };
-
 const manualFetchLogs = async () => {
   try {
     if (isLoading.value) return;
@@ -44,7 +54,7 @@ const manualFetchLogs = async () => {
 </script>
 
 <template>
-  <div class="settings">
+  <div class="logs">
     <div class="header-box">
       <h2 class="admin-header">Error Logs</h2>
       <BaseButton @click="manualFetchLogs()" btn_class="btn-icon">
@@ -59,66 +69,42 @@ const manualFetchLogs = async () => {
       <BaseLoader v-if="isLoading" :isLoading="isLoading" loader_type="code" />
       <div v-else>
         <ul v-if="logs.length">
-          <li v-for="{ timestamp, error } in logs" :key="timestamp" class="ip-item">
-            <strong>{{ timestamp }}:</strong>
-            <span>{{ error }}</span>
+          <li v-for="{ level, timestamp, message } in logs" :key="timestamp" class="log-item">
+            <div class="dot-big" :class="level"></div>
+            <span>{{ formatISO(timestamp) }}:</span>
+            <span class="message">{{ message }}</span>
           </li>
         </ul>
-        <p v-else class="no-ips">No error logs found.</p>
+        <p v-else class="no-items">No error logs found.</p>
       </div>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.settings {
-  .ip-item {
+.logs {
+  .log-item {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    height: 50px;
+    min-height: 50px;
     margin-bottom: 1rem;
-    padding: 0 1rem;
+    padding: 1rem;
     border-radius: 8px;
-    position: relative;
-
-    &:before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 8px;
-      padding: 2px;
-      background: var(--vt-c-to-right-gradient);
-      -webkit-mask:
-        linear-gradient(var(--vt-c-white) 0 0) content-box,
-        linear-gradient(var(--vt-c-white) 0 0);
-      mask:
-        linear-gradient(var(--vt-c-white) 0 0) content-box,
-        linear-gradient(var(--vt-c-white) 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none;
-    }
+    border: 1px solid var(--vt-c-gray-400);
 
     span {
       color: var(--vt-c-gray-300);
-      font-size: 18px;
-      font-weight: 700;
+      font-size: 16px;
+      font-weight: 500;
       font-family: 'Nunito';
     }
 
-    button {
-      min-width: 80px;
-      max-height: 35px;
-      margin-left: auto;
-    }
-  }
-  .no-ips {
-    color: var(--vt-c-gray-300);
-    font-size: 18px;
-    font-weight: 500;
-    text-align: center;
-    font-family: 'Nunito';
+    // button {
+    //   min-width: 80px;
+    //   max-height: 35px;
+    //   margin-left: auto;
+    // }
   }
 }
 </style>

@@ -5,7 +5,7 @@ import AdminLayout from '@/layouts/AdminLayout.vue';
 import LoginLayout from '@/layouts/LoginLayout.vue';
 
 import DashboardView from '@/views/DashboardView.vue';
-import SettingsView from '@/views/SettingsView.vue';
+import BannedIPsView from '@/views/BannedIPsView.vue';
 import LogsView from '@/views/LogsView.vue';
 
 import HomeView from '@/views/HomeView.vue';
@@ -13,13 +13,13 @@ import EducationView from '@/views/EducationView.vue';
 import ExperienceView from '@/views/ExperienceView.vue';
 import ContactView from '@/views/ContactView.vue';
 
-import NotFound from '@/views/NotFound.vue';
+import NotFoundView from '@/views/NotFoundView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     { path: '/', alias: '/home', component: HomeView, meta: { title: 'Home', id: 0 } },
-    { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
+    { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFoundView },
     { path: '/education', component: EducationView, meta: { title: 'Education', id: 1 } },
     { path: '/experience', component: ExperienceView, meta: { title: 'Experience', id: 2 } },
     { path: '/contact', component: ContactView, meta: { title: 'Contact', id: 3 } },
@@ -49,7 +49,7 @@ const router = createRouter({
       component: AdminLayout,
       children: [
         { path: 'dashboard', alias: '/admin', component: DashboardView },
-        { path: 'settings', component: SettingsView },
+        { path: 'banned-ips', component: BannedIPsView },
         { path: 'logs', component: LogsView },
       ],
       beforeEnter: async (to, from, next) => {

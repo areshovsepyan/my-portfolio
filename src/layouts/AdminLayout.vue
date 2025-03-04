@@ -6,7 +6,7 @@ const router = useRouter();
 
 const routes = [
   { label: 'Dashboard', path: '/admin', icon: 'dash', alt: 'Dash Icon' },
-  { label: 'Settings', path: '/admin/settings', icon: 'settings', alt: 'Settings Icon' },
+  { label: 'Banned IPs', path: '/admin/banned-ips', icon: 'banned-ips', alt: 'Banned IPs Icon' },
   { label: 'Logs', path: '/admin/logs', icon: 'logs', alt: 'Logs Icon' },
 ];
 

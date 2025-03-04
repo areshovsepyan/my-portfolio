@@ -79,7 +79,7 @@ const unbanIP = async (ip) => {
             <BaseButton @click="unbanIP(ip)" btn_class="btn-admin">Unban</BaseButton>
           </li>
         </ul>
-        <p v-else class="no-ips">No banned IPs found.</p>
+        <p v-else class="no-items">No banned IPs found.</p>
       </div>
     </div>
   </div>
@@ -127,13 +127,6 @@ const unbanIP = async (ip) => {
       max-height: 35px;
       margin-left: auto;
     }
-  }
-  .no-ips {
-    color: var(--vt-c-gray-300);
-    font-size: 18px;
-    font-weight: 500;
-    text-align: center;
-    font-family: 'Nunito';
   }
 }
 </style>

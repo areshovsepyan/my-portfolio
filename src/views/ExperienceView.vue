@@ -42,31 +42,6 @@ const { isOnMobile } = useResize();
           </p>
         </div>
       </BaseCard>
-      <BaseCard class="bg-gray">
-        <div class="info-block">
-          <h2 class="card-title">Front End Developer</h2>
-          <p class="employment-type">Contract</p>
-          <div class="date-block">
-            <span>Jan 2020</span>
-            <div class="dot"></div>
-            <span>Present</span>
-          </div>
-          <p class="location">Yerevan, Armenia</p>
-        </div>
-        <div class="text-block">
-          <h2 class="company-name">Direlli</h2>
-          <p class="job-description">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-            has been the industry's standard dummy text ever since the 1500s, when an unknown
-            printer took a galley of type and scrambled it to make a type specimen book.
-          </p>
-          <p class="job-description">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-            has been the industry's standard dummy text ever since the 1500s, when an unknown
-            printer took a galley of type and scrambled it to make a type specimen book.
-          </p>
-        </div>
-      </BaseCard>
     </div>
   </section>
 </template>
