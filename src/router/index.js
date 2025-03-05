@@ -18,11 +18,10 @@ import NotFoundView from '@/views/NotFoundView.vue';
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    { path: '/', alias: '/home', component: HomeView, meta: { title: 'Home', id: 0 } },
-    { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFoundView },
-    { path: '/education', component: EducationView, meta: { title: 'Education', id: 1 } },
-    { path: '/experience', component: ExperienceView, meta: { title: 'Experience', id: 2 } },
-    { path: '/contact', component: ContactView, meta: { title: 'Contact', id: 3 } },
+    { path: '/', alias: '/home', component: HomeView, meta: { title: 'Home', id: 1 } },
+    { path: '/education', component: EducationView, meta: { title: 'Education', id: 2 } },
+    { path: '/experience', component: ExperienceView, meta: { title: 'Experience', id: 3 } },
+    { path: '/contact', component: ContactView, meta: { title: 'Contact', id: 4 } },
     {
       path: '/login',
       component: LoginLayout,
@@ -70,6 +69,7 @@ const router = createRouter({
         } else next('/login');
       },
     },
+    { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFoundView },
     // {
     //   path: '/about',
     //   name: 'about',
