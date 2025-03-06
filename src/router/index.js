@@ -7,6 +7,7 @@ import LoginLayout from '@/layouts/LoginLayout.vue';
 import DashboardView from '@/views/DashboardView.vue';
 import BannedIPsView from '@/views/BannedIPsView.vue';
 import LogsView from '@/views/LogsView.vue';
+import InboxView from '@/views/InboxView.vue';
 
 import HomeView from '@/views/HomeView.vue';
 import EducationView from '@/views/EducationView.vue';
@@ -50,6 +51,7 @@ const router = createRouter({
         { path: 'dashboard', alias: '/admin', component: DashboardView },
         { path: 'banned-ips', component: BannedIPsView },
         { path: 'logs', component: LogsView },
+        { path: 'inbox', component: InboxView },
       ],
       beforeEnter: async (to, from, next) => {
         const token = localStorage.getItem('token');

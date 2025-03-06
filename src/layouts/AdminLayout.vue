@@ -8,6 +8,7 @@ const routes = [
   { label: 'Dashboard', path: '/admin', icon: 'dash', alt: 'Dash Icon' },
   { label: 'Banned IPs', path: '/admin/banned-ips', icon: 'banned-ips', alt: 'Banned IPs Icon' },
   { label: 'Logs', path: '/admin/logs', icon: 'logs', alt: 'Logs Icon' },
+  { label: 'Inbox', path: '/admin/inbox', icon: 'envelope', alt: 'Envelope Icon' },
 ];
 
 const logout = () => {
