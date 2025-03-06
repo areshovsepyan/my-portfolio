@@ -4,9 +4,7 @@ import { ref } from 'vue';
 import BaseInput from '@/components/UI/BaseInput.vue';
 import BaseButton from '@/components/UI/BaseButton.vue';
 import { useResize } from '@/composables/useResize';
-import { useToast } from 'vue-toastification';
-
-const toast = useToast();
+import toast from '../../utils/toast';
 
 const { isOnMobile } = useResize();
 

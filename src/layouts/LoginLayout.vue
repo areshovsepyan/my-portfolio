@@ -2,12 +2,11 @@
 import { api } from '../../utils/axios';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { useToast } from 'vue-toastification';
+import toast from '../../utils/toast';
 import BaseInput from '@/components/UI/BaseInput.vue';
 import BaseButton from '@/components/UI/BaseButton.vue';
 
 const router = useRouter();
-const toast = useToast();
 
 const isLoading = ref(false);
 

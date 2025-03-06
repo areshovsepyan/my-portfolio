@@ -3,9 +3,7 @@ import { admin } from '../../utils/axios';
 import { ref, onMounted } from 'vue';
 import BaseButton from '@/components/UI/BaseButton.vue';
 import BaseLoader from '@/components/UI/BaseLoader.vue';
-import { useToast } from 'vue-toastification';
-
-const toast = useToast();
+import toast from '../../utils/toast';
 
 const isLoading = ref(false);
 const isRotating = ref(false);
