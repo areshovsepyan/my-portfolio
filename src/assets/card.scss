@@ -73,6 +73,14 @@
   height: 6px;
   border-radius: 50%;
   background-color: var(--vt-c-green);
+
+  &-purple {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--vt-c-purple-300);
+  }
 }
 
 .dot-big {

@@ -1,7 +1,32 @@
 <script setup>
+import { ref, onMounted } from 'vue';
+import { api } from '../../utils/axios';
+import toast from '../../utils/toast';
 import BaseCard from '@/components/UI/BaseCard.vue';
+import BaseLoader from '@/components/UI/BaseLoader.vue';
 import { useResize } from '@/composables/useResize';
+
 const { isOnMobile } = useResize();
+
+const education = ref([]);
+const isLoading = ref(false);
+
+onMounted(() => fetchData());
+
+const fetchData = async () => {
+  try {
+    isLoading.value = true;
+    education.value.length = 0;
+
+    const { data } = await api.get('/education');
+
+    education.value = [...data];
+  } catch (error) {
+    toast.error(error);
+  } finally {
+    isLoading.value = false;
+  }
+};
 </script>
 
 <template>
@@ -13,34 +38,26 @@ const { isOnMobile } = useResize();
       and <strong> skills </strong> I've gained along the way. /&gt;
     </p>
 
-    <div class="cards-container">
-      <BaseCard class="border-gray">
-        <div class="info-block">
-          <h2 class="card-title">Yerevan State University</h2>
-          <p class="certificate-name">Certificate in advanced English</p>
-          <div class="date-block">
-            <span>Jan 2020</span>
-            <div class="dot"></div>
-            <span>Present</span>
-          </div>
-        </div>
-        <div>
-          <a href="">View Certificate</a>
-        </div>
-      </BaseCard>
+    <BaseLoader v-if="isLoading" :isLoading="isLoading" loader_type="code" />
 
-      <BaseCard class="border-gray">
+    <div v-else class="cards-container">
+      <BaseCard v-for="(item, index) in education" :key="item.title + index" class="border-gray">
         <div class="info-block">
-          <h2 class="card-title">Yerevan State University</h2>
-          <p class="certificate-name">Certificate in advanced English</p>
+          <h2 class="card-title">{{ item.institution }}</h2>
+          <p class="certificate-name">
+            {{ item.title }}<span v-if="item.field_of_study"> - {{ item.field_of_study }}</span>
+          </p>
+
           <div class="date-block">
-            <span>Jan 2020</span>
+            <span>{{ item.start_year }}</span>
             <div class="dot"></div>
-            <span>Present</span>
+            <span>{{ item.end_year }}</span>
           </div>
         </div>
         <div>
-          <a href="">View Certificate</a>
+          <a v-if="item.certificate_url" :href="item.certificate_url" target="_blank"
+            >View Certificate</a
+          >
         </div>
       </BaseCard>
     </div>

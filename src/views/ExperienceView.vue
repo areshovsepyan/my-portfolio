@@ -1,9 +1,33 @@
 <script setup>
+import { ref, onMounted } from 'vue';
+import { api } from '../../utils/axios';
+import toast from '../../utils/toast';
 import BaseCard from '@/components/UI/BaseCard.vue';
 import BaseButton from '@/components/UI/BaseButton.vue';
-
+import BaseLoader from '@/components/UI/BaseLoader.vue';
 import { useResize } from '@/composables/useResize';
+
 const { isOnMobile } = useResize();
+
+const experience = ref([]);
+const isLoading = ref(false);
+
+onMounted(() => fetchData());
+
+const fetchData = async () => {
+  try {
+    isLoading.value = true;
+    experience.value.length = 0;
+
+    const { data } = await api.get('/experience');
+
+    experience.value = [...data];
+  } catch (error) {
+    toast.error(error);
+  } finally {
+    isLoading.value = false;
+  }
+};
 </script>
 
 <template>
@@ -16,30 +40,31 @@ const { isOnMobile } = useResize();
     </p>
     <BaseButton>Download CV</BaseButton>
 
-    <div class="cards-container">
-      <BaseCard class="bg-gray">
+    <BaseLoader v-if="isLoading" :isLoading="isLoading" loader_type="code" />
+
+    <div v-else class="cards-container">
+      <BaseCard v-for="(item, index) in experience" :key="item.company + index" class="bg-gray">
         <div class="info-block">
-          <h2 class="card-title">Front End Developer</h2>
-          <p class="employment-type">Contract</p>
+          <h2 class="card-title">{{ item.position }}</h2>
+          <p class="employment-type">{{ item.employment_type }}</p>
           <div class="date-block">
-            <span>Jan 2020</span>
+            <span>{{ item.start_date }}</span>
             <div class="dot"></div>
-            <span>Present</span>
+            <span>{{ item.end_date }}</span>
           </div>
-          <p class="location">Yerevan, Armenia</p>
+          <p class="location">{{ item.location }}</p>
         </div>
         <div class="text-block">
-          <h2 class="company-name">Direlli</h2>
+          <h2 class="company-name">{{ item.company }}</h2>
           <p class="job-description">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-            has been the industry's standard dummy text ever since the 1500s, when an unknown
-            printer took a galley of type and scrambled it to make a type specimen book.
+            {{ item.description }}
           </p>
-          <p class="job-description">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-            has been the industry's standard dummy text ever since the 1500s, when an unknown
-            printer took a galley of type and scrambled it to make a type specimen book.
-          </p>
+          <ul class="job-technologies">
+            <li v-for="technology in item.technologies" :key="technology" class="job-technology">
+              <div class="dot-purple"></div>
+              {{ technology }}
+            </li>
+          </ul>
         </div>
       </BaseCard>
     </div>
@@ -84,9 +109,32 @@ section {
     font-size: 14px;
     line-height: 30px;
 
+    margin-bottom: 3rem;
+
     @media (min-width: 1024px) {
       font-size: 22px;
       line-height: 42px;
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  .job-technologies {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+
+    @media (min-width: 1024px) {
+      gap: 1.5rem;
+    }
+
+    .job-technology {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--vt-c-purple-300);
+      font-size: 14px;
     }
   }
 
