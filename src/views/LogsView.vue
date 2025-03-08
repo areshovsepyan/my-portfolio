@@ -26,6 +26,7 @@ onMounted(() => fetchLogs());
 const fetchLogs = async () => {
   try {
     isLoading.value = true;
+    logs.value.length = 0;
 
     const { data } = await admin.get('/logs');
 

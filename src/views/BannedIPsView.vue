@@ -14,6 +14,7 @@ onMounted(() => fetchBannedIPs());
 const fetchBannedIPs = async () => {
   try {
     isLoading.value = true;
+    bannedIPs.value.length = 0;
 
     const { data } = await admin.get('banned-ips');
 
