@@ -74,12 +74,12 @@ const config = computed(() => {
       justify-content: center;
       align-items: center;
 
-      width: 150px;
-      height: 200px;
+      width: 120px;
+      height: 150px;
 
       @media (min-width: 1024px) {
-        width: 250px;
-        height: 300px;
+        width: 220px;
+        height: 250px;
       }
     }
 

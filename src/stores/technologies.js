@@ -1,4 +1,4 @@
-import { defineStore } from 'pinia'
+import { defineStore } from 'pinia';
 
 export const useTechnologiesStore = defineStore('technologies', {
   state: () => ({
@@ -39,10 +39,24 @@ export const useTechnologiesStore = defineStore('technologies', {
         },
       },
       {
+        label: 'Pinia',
+        img: {
+          alt: 'Pinia icon',
+          icon: 'pinia',
+        },
+      },
+      {
         label: 'Nuxt.JS',
         img: {
           alt: 'Nuxt icon',
           icon: 'nuxt',
+        },
+      },
+      {
+        label: 'Vuetify',
+        img: {
+          alt: 'Vuetify icon',
+          icon: 'vuetify',
         },
       },
       {
@@ -52,8 +66,57 @@ export const useTechnologiesStore = defineStore('technologies', {
           icon: 'vite',
         },
       },
+      {
+        label: 'Vercel',
+        img: {
+          alt: 'Vercel icon',
+          icon: 'vercel',
+        },
+      },
+      {
+        label: 'SASS',
+        img: {
+          alt: 'SASS icon',
+          icon: 'sass',
+        },
+      },
+      {
+        label: 'Tailwind',
+        img: {
+          alt: 'Tailwind icon',
+          icon: 'tailwind',
+        },
+      },
+      {
+        label: 'Jest',
+        img: {
+          alt: 'Jest icon',
+          icon: 'jest',
+        },
+      },
+      {
+        label: 'Figma',
+        img: {
+          alt: 'Figma icon',
+          icon: 'figma',
+        },
+      },
+      {
+        label: 'Postman',
+        img: {
+          alt: 'Postman icon',
+          icon: 'postman',
+        },
+      },
+      {
+        label: 'Apollo',
+        img: {
+          alt: 'Apollo icon',
+          icon: 'apollo',
+        },
+      },
     ],
   }),
   getters: {},
   actions: {},
-})
+});
