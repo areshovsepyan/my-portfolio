@@ -1,12 +1,10 @@
 import { admin } from '../../utils/axios.js';
 
-const LOGS_ID = process.env.GITHUB_LOGS_ID;
-
 const logs = [];
 
 async function fetchLogs() {
   try {
-    const { data } = await admin.get(`github?id=${LOGS_ID}`);
+    const { data } = await admin.get('/github');
 
     return JSON.parse(data.files['logs.json'].content) || [];
   } catch (error) {

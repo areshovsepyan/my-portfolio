@@ -16,7 +16,7 @@ const fetchBannedIPs = async () => {
     isLoading.value = true;
     bannedIPs.value.length = 0;
 
-    const { data } = await admin.get('banned-ips');
+    const { data } = await admin.get('/banned-ips');
 
     bannedIPs.value = [...data.bannedIPs];
   } catch ({ error }) {

@@ -21,7 +21,7 @@ export default async function handler(request, response) {
       'Unknown IP';
 
     try {
-      const { data } = await admin.get('banned-ips');
+      const { data } = await admin.get('/banned-ips');
       bannedIPs.push(...data.bannedIPs);
     } catch (error) {
       logger.error(`Failed to fetch banned IPs: ${error.message}`);

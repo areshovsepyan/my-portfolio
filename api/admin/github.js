@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const GITHUB_GIST_TOKEN = process.env.GITHUB_GIST_TOKEN;
+const GITHUB_GIST_ID = process.env.GITHUB_GIST_ID;
 
 const github = axios.create({
   baseURL: 'https://api.github.com/gists/',
@@ -10,15 +11,14 @@ const github = axios.create({
   },
 });
 
-export default async function handler({ method, body, query }, response) {
+export default async function handler({ method, body }, response) {
   try {
     if (!GITHUB_GIST_TOKEN) return response.status(500).json({ error: 'GitHub token is missing' });
-
-    const gistId = query.id;
+    if (!GITHUB_GIST_ID) return response.status(500).json({ error: 'Gist ID is missing' });
 
     const { data } = await github({
       method,
-      url: gistId || '',
+      url: GITHUB_GIST_ID || '',
       data: body,
     });
 

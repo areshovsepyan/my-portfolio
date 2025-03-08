@@ -1,12 +1,10 @@
 import { admin } from '../../utils/axios.js';
 
-const IPS_ID = process.env.GITHUB_IPS_ID;
-
 const bannedIPs = [];
 
 async function fetchBannedIPs() {
   try {
-    const { data } = await admin.get(`github?id=${IPS_ID}`);
+    const { data } = await admin.get('/github');
 
     return JSON.parse(data.files['banned-ips.json'].content) || [];
   } catch (error) {
@@ -17,7 +15,7 @@ async function fetchBannedIPs() {
 
 async function updateBannedIPs(bannedIPs) {
   try {
-    await admin.patch(`github?id=${IPS_ID}`, {
+    await admin.patch('github', {
       files: {
         'banned-ips.json': {
           content: JSON.stringify(bannedIPs, null, 2),
