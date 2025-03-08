@@ -5,19 +5,8 @@ import { useTechnologiesStore } from '@/stores/technologies';
 import { useResize } from '@/composables/useResize';
 import BaseCard from '@/components/UI/BaseCard.vue';
 
-const { technologies } = useTechnologiesStore();
+const { favoriteTechnologies } = useTechnologiesStore();
 const { innerWidth } = useResize();
-
-const favoriteTechnologies = computed(() => {
-  return technologies.filter((tech) => {
-    return (
-      tech.label.toLowerCase().includes('javascript') ||
-      tech.label.toLowerCase().includes('vue') ||
-      tech.label.toLowerCase().includes('nuxt') ||
-      tech.label.toLowerCase().includes('vite')
-    );
-  });
-});
 
 const config = computed(() => {
   return {
@@ -40,7 +29,7 @@ const config = computed(() => {
         <Slide v-for="({ label, img: { alt, icon } }, index) in favoriteTechnologies" :key="label">
           <BaseCard class="bg-colored" :background_color="index + 1">
             <div class="image-box">
-              <img :src="`/icons/technologies/icon_${icon}.svg`" :alt="alt" />
+              <img :src="`/icons/technologies/icon_${icon}-dark.svg`" :alt="alt" />
               <span> {{ label }}</span>
             </div>
           </BaseCard>
@@ -114,11 +103,11 @@ const config = computed(() => {
         gap: 1rem;
 
         img {
-          height: 50px;
+          height: 68px;
           aspect-ratio: 1;
 
           @media (min-width: 1024px) {
-            height: 75px;
+            height: 96px;
           }
         }
 

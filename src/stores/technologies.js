@@ -117,6 +117,17 @@ export const useTechnologiesStore = defineStore('technologies', {
       },
     ],
   }),
-  getters: {},
+  getters: {
+    favoriteTechnologies() {
+      return this.technologies.filter((tech) => {
+        return (
+          tech.label.toLowerCase().includes('javascript') ||
+          tech.label.toLowerCase().includes('vue.js') ||
+          tech.label.toLowerCase().includes('nuxt.js') ||
+          tech.label.toLowerCase().includes('vite')
+        );
+      });
+    },
+  },
   actions: {},
 });
