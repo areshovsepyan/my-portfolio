@@ -55,13 +55,27 @@ const fetchData = async () => {
           <p class="location">{{ item.location }}</p>
         </div>
         <div class="text-block">
-          <h2 class="company-name">{{ item.company }}</h2>
+          <a
+            class="company-name"
+            v-if="item.company_website"
+            :href="item.company_website"
+            target="_blank"
+          >
+            {{ item.company }}
+          </a>
+          <h2 v-else>
+            {{ item.company }}
+          </h2>
           <p class="job-description">
             {{ item.description }}
           </p>
           <ul class="job-technologies">
-            <li v-for="technology in item.technologies" :key="technology" class="job-technology">
-              <div class="dot-purple"></div>
+            <li
+              v-for="(technology, index) in item.technologies"
+              :key="technology"
+              class="job-technology"
+            >
+              <div v-if="index" class="dot-purple"></div>
               {{ technology }}
             </li>
           </ul>
@@ -125,7 +139,7 @@ section {
     gap: 0.5rem;
 
     @media (min-width: 1024px) {
-      gap: 1.5rem;
+      gap: 1rem;
     }
 
     .job-technology {
@@ -135,6 +149,10 @@ section {
       gap: 0.5rem;
       color: var(--vt-c-purple-300);
       font-size: 14px;
+
+      @media (min-width: 1024px) {
+        gap: 1rem;
+      }
     }
   }
 
