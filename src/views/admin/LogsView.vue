@@ -1,9 +1,10 @@
 <script setup>
-import { admin } from '../../utils/axios';
 import { ref, onMounted } from 'vue';
+import { admin } from '../../../utils/axios';
+import toast from '../../../utils/toast';
 import BaseButton from '@/components/UI/BaseButton.vue';
 import BaseLoader from '@/components/UI/BaseLoader.vue';
-import toast from '../../utils/toast';
+import TheHeader from '@/components/admin/TheHeader.vue';
 
 const isLoading = ref(false);
 const isRotating = ref(false);
@@ -21,49 +22,57 @@ const formatISO = function (iso) {
     .replace(',', '');
 };
 
-onMounted(() => fetchLogs());
+onMounted(() => fetchData());
 
-const fetchLogs = async () => {
+const fetchData = async () => {
   try {
     isLoading.value = true;
     logs.value.length = 0;
 
-    const { data } = await admin.get('/logs');
+    const { data } = await admin.get('/data?category=logs');
 
-    logs.value = [...data.logs];
+    logs.value = [...data];
   } catch ({ error }) {
     toast.error(error);
   } finally {
     isLoading.value = false;
   }
 };
-const manualFetchLogs = async () => {
+const manualFetchData = async () => {
   try {
     if (isLoading.value) return;
 
     isRotating.value = true;
 
-    await fetchLogs();
+    await fetchData();
   } catch (error) {
     toast.error(error);
   } finally {
     isRotating.value = false;
   }
 };
+const deleteItem = async (timestamp) => {
+  try {
+    isLoading.value = true;
+
+    const { data, message } = (await admin.delete(`/data?category=logs&timestamp=${timestamp}`))
+      .data;
+
+    logs.value = [...data];
+
+    toast.success(message);
+  } catch ({ error }) {
+    toast.error(error);
+  } finally {
+    isLoading.value = false;
+  }
+};
 </script>
 
 <template>
   <div class="logs">
-    <div class="header-box">
-      <h2 class="admin-header">Error Logs</h2>
-      <BaseButton @click="manualFetchLogs()" btn_class="btn-icon">
-        <img
-          src="/icons/admin/icon_refresh.svg"
-          :class="{ rotating: isRotating }"
-          alt="Refresh icon"
-        />
-      </BaseButton>
-    </div>
+    <TheHeader title="Error Logs" :onRefresh="manualFetchData" :isRotating="isRotating" />
+
     <div>
       <BaseLoader v-if="isLoading" :isLoading="isLoading" loader_type="code" />
       <div v-else>
@@ -72,6 +81,7 @@ const manualFetchLogs = async () => {
             <div class="dot-big" :class="level"></div>
             <span>{{ formatISO(timestamp) }}:</span>
             <span class="message">{{ message }}</span>
+            <BaseButton @click="deleteItem(timestamp)" btn_class="btn-admin">Delete</BaseButton>
           </li>
         </ul>
         <p v-else class="no-items">No error logs found.</p>
@@ -99,11 +109,9 @@ const manualFetchLogs = async () => {
       font-family: 'Nunito';
     }
 
-    // button {
-    //   min-width: 80px;
-    //   max-height: 35px;
-    //   margin-left: auto;
-    // }
+    button {
+      margin-left: auto;
+    }
   }
 }
 </style>

@@ -21,7 +21,7 @@ export default async function handler(request, response) {
       'Unknown IP';
 
     try {
-      const { data } = await admin.get('/banned-ips');
+      const { data } = await admin.get('/data?category=banned-ips');
       bannedIPs.push(...data.bannedIPs);
     } catch (error) {
       logger.error(`Failed to fetch banned IPs: ${error.message}`);
@@ -39,7 +39,7 @@ export default async function handler(request, response) {
 
     if (requestCount >= MAX_REQUESTS) {
       if (requestCount >= BAN_THRESHOLD) {
-        await admin.patch(`banned-ips?ip=${clientIP}`);
+        await admin.patch(`/data?category=banned-ips&ip=${clientIP}`);
         logger.warn(`Banned IP: ${clientIP} (Exceeded ${BAN_THRESHOLD} requests)`);
         return response
           .status(403)

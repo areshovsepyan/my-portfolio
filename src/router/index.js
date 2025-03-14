@@ -4,10 +4,12 @@ import { createRouter, createWebHistory } from 'vue-router';
 import AdminLayout from '@/layouts/AdminLayout.vue';
 import LoginLayout from '@/layouts/LoginLayout.vue';
 
-import DashboardView from '@/views/DashboardView.vue';
-import BannedIPsView from '@/views/BannedIPsView.vue';
-import LogsView from '@/views/LogsView.vue';
-import InboxView from '@/views/InboxView.vue';
+import AdminDashboardView from '@/views/admin/DashboardView.vue';
+import AdminExperienceView from '@/views/admin/ExperienceView.vue';
+import AdminEducationView from '@/views/admin/EducationView.vue';
+import AdminBannedIPsView from '@/views/admin/BannedIPsView.vue';
+import AdminLogsView from '@/views/admin/LogsView.vue';
+import AdminInboxView from '@/views/admin/InboxView.vue';
 
 import HomeView from '@/views/HomeView.vue';
 import EducationView from '@/views/EducationView.vue';
@@ -48,10 +50,12 @@ const router = createRouter({
       path: '/admin',
       component: AdminLayout,
       children: [
-        { path: 'dashboard', alias: '/admin', component: DashboardView },
-        { path: 'banned-ips', component: BannedIPsView },
-        { path: 'logs', component: LogsView },
-        { path: 'inbox', component: InboxView },
+        { path: 'dashboard', alias: '/admin', component: AdminDashboardView },
+        { path: 'experience', component: AdminExperienceView },
+        { path: 'education', component: AdminEducationView },
+        { path: 'banned-ips', component: AdminBannedIPsView },
+        { path: 'logs', component: AdminLogsView },
+        { path: 'inbox', component: AdminInboxView },
       ],
       beforeEnter: async (to, from, next) => {
         const token = localStorage.getItem('token');

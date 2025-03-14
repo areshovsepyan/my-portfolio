@@ -1,9 +1,10 @@
 <script setup>
-import { admin } from '../../utils/axios';
 import { ref, watch, onMounted } from 'vue';
-import BaseButton from '@/components/UI/BaseButton.vue';
+import { admin } from '../../../utils/axios';
+import toast from '../../../utils/toast';
 import BaseLoader from '@/components/UI/BaseLoader.vue';
-import toast from '../../utils/toast';
+import TheHeader from '@/components/admin/TheHeader.vue';
+import BasePaginator from '@/components/UI/BasePaginator.vue';
 
 const isLoading = ref(false);
 const isRotating = ref(false);
@@ -11,13 +12,13 @@ const inbox = ref([]);
 
 const is_last_page = ref(false);
 const page = ref(1);
-const qty = ref(10);
+const qty = ref(1);
 
 onMounted(() => fetchInbox());
 
 watch([page, qty], async () => await fetchInbox());
 
-const formatISO = function (iso) {
+const formatISO = (iso) => {
   return new Intl.DateTimeFormat('en-US', {
     hour: 'numeric',
     minute: '2-digit',
@@ -60,18 +61,11 @@ const manualFetchInbox = async () => {
 
 <template>
   <div class="inbox">
-    <div class="header-box">
-      <h2 class="admin-header">Inbox</h2>
-      <BaseButton @click="manualFetchInbox()" btn_class="btn-icon">
-        <img
-          src="/icons/admin/icon_refresh.svg"
-          :class="{ rotating: isRotating }"
-          alt="Refresh icon"
-        />
-      </BaseButton>
-    </div>
+    <TheHeader title="Input" :onRefresh="manualFetchInbox" :isRotating="isRotating" />
+
     <div>
       <BaseLoader v-if="isLoading" :isLoading="isLoading" loader_type="code" />
+
       <div v-else>
         <ul v-if="inbox.length">
           <li v-for="row in inbox" :key="row.id">
@@ -101,17 +95,35 @@ const manualFetchInbox = async () => {
         <p v-else class="no-items">Inbox is empty.</p>
       </div>
     </div>
+
+    <BasePaginator
+      v-if="inbox.length"
+      :page="page"
+      :itemsPerPage="qty"
+      :isLastPage="is_last_page"
+      :disabled="isLoading"
+      @page-changed="(val) => (page = val)"
+      @items-changed="(val) => (qty = val)"
+    />
   </div>
 </template>
 
 <style lang="scss" scoped>
 .inbox {
+  display: flex;
+  flex-direction: column;
   position: relative;
+  height: 100%;
+
+  .paginator {
+    margin-top: auto;
+  }
 
   ul {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    margin-bottom: 3rem;
 
     li {
       padding: 1rem 2.5rem;

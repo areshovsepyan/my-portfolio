@@ -30,6 +30,46 @@ textarea {
   color: var(--vt-c-white);
   font-size: 16px;
   transition: border-color var(--vt-transition-delay);
+
+  &:hover {
+    border-color: var(--vt-c-gray-400);
+  }
+
+  &:focus {
+    border-color: var(--vt-c-gray-300);
+    outline-width: 0;
+    outline: none;
+  }
+}
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  background-color: transparent;
+  border: 2px solid var(--vt-c-gray-700);
+  color: var(--vt-c-gray-400);
+  border-radius: 12px;
+  font-weight: 600;
+  height: 35px;
+  width: 60px;
+  padding: 0 12px;
+
+  background-image: url('/icons/base/icon_down-arrow.svg');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 14px;
+  cursor: pointer;
+  transition: border-color var(--vt-transition-delay);
+
+  &:hover {
+    border-color: var(--vt-c-gray-400);
+  }
+
+  &:focus {
+    outline-width: 0;
+    outline: none;
+  }
 }
 
 textarea {
@@ -37,11 +77,46 @@ textarea {
   height: 250px;
 }
 
-input:focus,
-textarea:focus {
-  border-color: var(--vt-c-gray-300);
-  outline-width: 0;
-  outline: none;
-  // appearance: none;
-  // -webkit-appearance: none;
+input[type='checkbox'] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border: 2px solid #555;
+  border-radius: 4px;
+  position: relative;
+  cursor: pointer;
+  transition: all var(--vt-transition-delay);
+
+  &:checked {
+    background-color: var(--vt-c-purple-400);
+    border-color: var(--vt-c-purple-400);
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      height: 10px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+      left: 4px;
+      top: 1px;
+      opacity: 1;
+    }
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    left: 4px;
+    top: 1px;
+    opacity: 0;
+    transition: opacity var(--vt-transition-delay);
+  }
 }

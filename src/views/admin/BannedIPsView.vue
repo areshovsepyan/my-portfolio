@@ -1,24 +1,25 @@
 <script setup>
-import { admin } from '../../utils/axios';
 import { ref, onMounted } from 'vue';
+import { admin } from '../../../utils/axios';
+import toast from '../../../utils/toast';
 import BaseButton from '@/components/UI/BaseButton.vue';
 import BaseLoader from '@/components/UI/BaseLoader.vue';
-import toast from '../../utils/toast';
+import TheHeader from '@/components/admin/TheHeader.vue';
 
 const isLoading = ref(false);
 const isRotating = ref(false);
 const bannedIPs = ref([]);
 
-onMounted(() => fetchBannedIPs());
+onMounted(() => fetchData());
 
-const fetchBannedIPs = async () => {
+const fetchData = async () => {
   try {
     isLoading.value = true;
     bannedIPs.value.length = 0;
 
-    const { data } = await admin.get('/banned-ips');
+    const { data } = await admin.get('/data?category=banned-ips');
 
-    bannedIPs.value = [...data.bannedIPs];
+    bannedIPs.value = [...data];
   } catch ({ error }) {
     toast.error(error);
   } finally {
@@ -26,13 +27,13 @@ const fetchBannedIPs = async () => {
   }
 };
 
-const manualFetchBannedIPs = async () => {
+const manualFetchData = async () => {
   try {
     if (isLoading.value) return;
 
     isRotating.value = true;
 
-    await fetchBannedIPs();
+    await fetchData();
   } catch ({ error }) {
     toast.error(error);
   } finally {
@@ -40,14 +41,15 @@ const manualFetchBannedIPs = async () => {
   }
 };
 
-const unbanIP = async (ip) => {
+const deleteItem = async (ip) => {
   try {
     isLoading.value = true;
 
-    const { data } = await admin.delete(`banned-ips?ip=${ip}`);
+    const { data, message } = (await admin.delete(`/data?category=banned-ips&ip=${ip}`)).data;
 
-    bannedIPs.value = [...data.bannedIPs];
-    toast.success(data.message);
+    bannedIPs.value = [...data];
+
+    toast.success(message);
   } catch ({ error }) {
     toast.error(error);
   } finally {
@@ -58,16 +60,8 @@ const unbanIP = async (ip) => {
 
 <template>
   <div class="settings">
-    <div class="header-box">
-      <h2 class="admin-header">Banned IPs</h2>
-      <BaseButton @click="manualFetchBannedIPs()" btn_class="btn-icon">
-        <img
-          src="/icons/admin/icon_refresh.svg"
-          :class="{ rotating: isRotating }"
-          alt="Refresh icon"
-        />
-      </BaseButton>
-    </div>
+    <TheHeader title="Banned IPs" :onRefresh="manualFetchData" :isRotating="isRotating" />
+
     <div>
       <BaseLoader v-if="isLoading" :isLoading="isLoading" loader_type="code" />
       <div v-else>
@@ -75,7 +69,7 @@ const unbanIP = async (ip) => {
           <li v-for="ip in bannedIPs" :key="ip" class="ip-item">
             <div class="dot"></div>
             <span>{{ ip }}</span>
-            <BaseButton @click="unbanIP(ip)" btn_class="btn-admin">Unban</BaseButton>
+            <BaseButton @click="deleteItem(ip)" btn_class="btn-admin">Unban</BaseButton>
           </li>
         </ul>
         <p v-else class="no-items">No banned IPs found.</p>
@@ -122,8 +116,6 @@ const unbanIP = async (ip) => {
     }
 
     button {
-      min-width: 80px;
-      max-height: 35px;
       margin-left: auto;
     }
   }

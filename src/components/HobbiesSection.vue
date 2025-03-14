@@ -1,14 +1,42 @@
+<script setup>
+import { Motion } from '@oku-ui/motion';
+</script>
+
 <template>
   <section class="hobbies-section">
     <ul>
       <li>
-        <p>Javascript</p>
+        <Motion
+          as="p"
+          :initial="{ opacity: 0, y: 100 }"
+          :in-view="{ opacity: 1, y: 0 }"
+          :in-view-options="{ threshold: 0, once: true }"
+          :transition="{ duration: 1.5, ease: 'easeOut' }"
+        >
+          Javascript
+        </Motion>
       </li>
       <li>
-        <p>Vue</p>
+        <Motion
+          as="p"
+          :initial="{ opacity: 0, y: 200 }"
+          :in-view="{ opacity: 1, y: 0 }"
+          :in-view-options="{ threshold: 0, once: true }"
+          :transition="{ duration: 1.5, ease: 'easeOut' }"
+        >
+          Vue
+        </Motion>
       </li>
       <li>
-        <p>Coffee</p>
+        <Motion
+          as="p"
+          :initial="{ opacity: 0, y: 300 }"
+          :in-view="{ opacity: 1, y: 0 }"
+          :in-view-options="{ threshold: 0, once: true }"
+          :transition="{ duration: 1.5, ease: 'easeOut' }"
+        >
+          Coffee
+        </Motion>
       </li>
     </ul>
   </section>

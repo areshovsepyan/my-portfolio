@@ -19,7 +19,7 @@ const fetchData = async () => {
     isLoading.value = true;
     experience.value.length = 0;
 
-    const { data } = await api.get('/experience');
+    const { data } = await api.get('/pages?name=experience');
 
     experience.value = [...data];
   } catch (error) {
@@ -43,7 +43,7 @@ const fetchData = async () => {
     <BaseLoader v-if="isLoading" :isLoading="isLoading" loader_type="code" />
 
     <div v-else class="cards-container">
-      <BaseCard v-for="(item, index) in experience" :key="item.company + index" class="bg-gray">
+      <BaseCard v-for="item in experience" :key="item.id" class="bg-gray">
         <div class="info-block">
           <h2 class="card-title">{{ item.position }}</h2>
           <p class="employment-type">{{ item.employment_type }}</p>

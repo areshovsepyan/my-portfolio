@@ -1,17 +1,25 @@
 <script setup>
-import { api } from '../../utils/axios';
 import { ref } from 'vue';
+import { Motion } from '@oku-ui/motion';
+import { api } from '../../utils/axios';
 import { useRouter } from 'vue-router';
 import toast from '../../utils/toast';
+import { useResize } from '@/composables/useResize';
 import BaseInput from '@/components/UI/BaseInput.vue';
 import BaseButton from '@/components/UI/BaseButton.vue';
+import BaseCheckbox from '@/components/UI/BaseCheckbox.vue';
+
+const { isOnMobile } = useResize();
 
 const router = useRouter();
 
 const isLoading = ref(false);
 
+const mousePosition = ref({ x: 0, y: 0 });
+
 const username = ref('');
 const password = ref('');
+const rememberMe = ref(false);
 
 const usernameInput = ref(null);
 const passwordInput = ref(null);
@@ -41,6 +49,7 @@ const login = async () => {
     const { data } = await api.post('/login', {
       username: username.value,
       password: password.value,
+      remember: rememberMe.value,
     });
 
     resetErrors();
@@ -54,15 +63,38 @@ const login = async () => {
     isLoading.value = false;
   }
 };
+
+const handleMouseMove = (event) => {
+  mousePosition.value = { x: event.clientX, y: event.clientY };
+};
 </script>
 
 <template>
-  <div class="login-container">
-    <div class="login-image">
-      <img src="/images/art.jpeg" alt="Login art" loading="lazy" />
-    </div>
+  <div class="login-container" @mousemove="handleMouseMove">
+    <Motion
+      class="login-image"
+      as="div"
+      :initial="isOnMobile ? { top: -100, opacity: 0 } : { left: -300, opacity: 0 }"
+      :animate="isOnMobile ? { top: 0, opacity: 1 } : { left: 0, opacity: 1 }"
+      :transition="{ duration: 0.8 }"
+    >
+      <Motion
+        as="img"
+        :animate="!isOnMobile && { x: mousePosition.x * 0.02, y: mousePosition.y * 0.02 }"
+        :transition="{ duration: 0.5 }"
+        src="/images/art-4.jpeg"
+        alt="Login art"
+        loading="lazy"
+      />
+    </Motion>
 
-    <div class="login-form">
+    <Motion
+      class="login-form"
+      as="div"
+      :initial="{ scale: 0.5, opacity: 0 }"
+      :animate="{ scale: 1, opacity: 1 }"
+      :transition="{ duration: 0.8 }"
+    >
       <div class="form-content">
         <h2>Welcome Back</h2>
 
@@ -84,11 +116,12 @@ const login = async () => {
             @update:error="errors.password = $event"
             ref="passwordInput"
           />
+          <BaseCheckbox v-model="rememberMe" label="Remember me" id="rememberMe" />
 
           <BaseButton type="submit" :isLoading="isLoading">Sign In</BaseButton>
         </form>
       </div>
-    </div>
+    </Motion>
   </div>
 </template>
 
@@ -101,6 +134,10 @@ const login = async () => {
   @media (min-width: 1024px) {
     height: calc(100dvh - 4rem);
     flex-direction: row;
+  }
+
+  .input-group:last-of-type {
+    margin-left: 4px;
   }
 
   .login-form {
@@ -147,6 +184,7 @@ const login = async () => {
   .login-image {
     width: 100%;
     height: 25%;
+    position: relative;
 
     @media (min-width: 1024px) {
       width: 50%;
@@ -159,6 +197,40 @@ const login = async () => {
       object-fit: cover;
       border-radius: 24px;
     }
+  }
+
+  /* 🎭 Cubist Shapes */
+  .shape {
+    position: absolute;
+    opacity: 0.3;
+    filter: blur(5px);
+  }
+
+  .red {
+    width: 150px;
+    height: 150px;
+    background: #780c09;
+    rotate: 20deg;
+    top: 10%;
+    left: 15%;
+  }
+
+  .blue {
+    width: 120px;
+    height: 120px;
+    background: #009d91;
+    rotate: -15deg;
+    top: 60%;
+    right: 20%;
+  }
+
+  .yellow {
+    width: 80px;
+    height: 80px;
+    background: #db8700;
+    rotate: 30deg;
+    bottom: 20%;
+    left: 40%;
   }
 }
 </style>

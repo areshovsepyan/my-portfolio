@@ -2,6 +2,7 @@ import './assets/main.scss';
 
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
+import { motionPlugin } from '@oku-ui/motion';
 
 import App from './App.vue';
 import Toast from 'vue-toastification';
@@ -10,6 +11,9 @@ import router from './router';
 const app = createApp(App);
 
 app.use(createPinia());
+
+app.use(motionPlugin);
+
 app.use(router);
 
 app.use(Toast, {

@@ -18,7 +18,7 @@ const fetchData = async () => {
     isLoading.value = true;
     education.value.length = 0;
 
-    const { data } = await api.get('/education');
+    const { data } = await api.get('/pages?name=education');
 
     education.value = [...data];
   } catch (error) {
@@ -41,7 +41,7 @@ const fetchData = async () => {
     <BaseLoader v-if="isLoading" :isLoading="isLoading" loader_type="code" />
 
     <div v-else class="cards-container">
-      <BaseCard v-for="(item, index) in education" :key="item.title + index" class="border-gray">
+      <BaseCard v-for="item in education" :key="item.id" class="border-gray">
         <div class="info-block">
           <h2 class="card-title">{{ item.institution }}</h2>
           <p class="certificate-name">
