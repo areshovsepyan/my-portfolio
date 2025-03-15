@@ -35,10 +35,12 @@ body {
 #app {
   display: flex;
   flex-direction: column;
-  padding: 7rem 1rem 4rem 1rem;
+  padding: 7rem 1rem 2rem 1rem;
+  max-width: 1600px;
+  margin-inline: auto;
 
   @media (min-width: 1024px) {
-    padding: 2rem;
+    padding: 5rem 2rem 2rem 2rem;
   }
 }
 
@@ -60,8 +62,8 @@ footer {
   nav {
     display: flex;
     align-items: center;
-    background: var(--vt-c-gray-800);
     border-radius: 100px;
+    background-color: var(--vt-c-gray-900);
 
     ul {
       display: flex;
@@ -79,6 +81,20 @@ section {
 
   @media (min-width: 1024px) {
     padding: 7rem 2rem;
+  }
+
+  &-header {
+    text-align: center;
+    margin-bottom: 3rem;
+
+    @media (min-width: 1024px) {
+      margin-bottom: 4rem;
+      text-align: start;
+    }
+
+    strong {
+      color: var(--vt-c-white);
+    }
   }
 }
 
@@ -135,11 +151,16 @@ strong {
 }
 
 h1 {
-  color: var(--vt-c-white);
+  color: var(--vt-c-gray-300);
   font-size: 32px;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 3rem;
 
   @media (min-width: 1024px) {
-    font-size: 75px;
+    font-size: 48px;
+    margin-bottom: 4rem;
+    text-align: start;
   }
 }
 
@@ -212,12 +233,14 @@ a {
 }
 
 a {
-  text-decoration: none;
   color: var(--vt-c-purple-300);
+  text-decoration: none;
+  font-weight: 500;
   transition: var(--vt-transition-delay);
 
   &:hover {
     color: var(--vt-c-purple-600);
+
     img {
       transition: all var(--vt-transition-delay);
       scale: 1.1;

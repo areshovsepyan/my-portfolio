@@ -1,15 +1,15 @@
 <script setup>
 import IntroductionSection from '@/components/IntroductionSection.vue';
-import HobbiesSection from '@/components/HobbiesSection.vue';
-import ExperienceSection from '@/components/ExperienceSection.vue';
 import TechnologiesSection from '@/components/TechnologiesSection.vue';
+import ProjectsSection from '@/components/ProjectsSection.vue';
+// import HobbiesSection from '@/components/HobbiesSection.vue';
 </script>
 
 <template>
   <IntroductionSection />
-  <ExperienceSection />
-  <HobbiesSection />
   <TechnologiesSection />
+  <ProjectsSection />
+  <!-- <HobbiesSection /> -->
 </template>
 
 <style lang="scss" scoped></style>

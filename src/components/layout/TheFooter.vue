@@ -6,7 +6,7 @@ const { social } = useSocialStore();
 
 <template>
   <footer>
-    <nav>
+    <nav class="border-gradient-nav">
       <p class="footer-text">Find me in:</p>
 
       <ul>
@@ -32,7 +32,7 @@ footer {
   flex-direction: column;
 
   nav {
-    width: 95%;
+    width: 100%;
     padding: 0.5rem 1.5rem;
     margin-bottom: 2rem;
 

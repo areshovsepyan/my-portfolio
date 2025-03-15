@@ -1,42 +1,14 @@
-<script setup>
-import { Motion } from '@oku-ui/motion';
-</script>
-
 <template>
   <section class="hobbies-section">
     <ul>
       <li>
-        <Motion
-          as="p"
-          :initial="{ opacity: 0, y: 100 }"
-          :in-view="{ opacity: 1, y: 0 }"
-          :in-view-options="{ threshold: 0, once: true }"
-          :transition="{ duration: 1.5, ease: 'easeOut' }"
-        >
-          Javascript
-        </Motion>
+        <p>Javascript</p>
       </li>
       <li>
-        <Motion
-          as="p"
-          :initial="{ opacity: 0, y: 200 }"
-          :in-view="{ opacity: 1, y: 0 }"
-          :in-view-options="{ threshold: 0, once: true }"
-          :transition="{ duration: 1.5, ease: 'easeOut' }"
-        >
-          Vue
-        </Motion>
+        <p>Vue</p>
       </li>
       <li>
-        <Motion
-          as="p"
-          :initial="{ opacity: 0, y: 300 }"
-          :in-view="{ opacity: 1, y: 0 }"
-          :in-view-options="{ threshold: 0, once: true }"
-          :transition="{ duration: 1.5, ease: 'easeOut' }"
-        >
-          Coffee
-        </Motion>
+        <p>Coffee</p>
       </li>
     </ul>
   </section>
@@ -46,11 +18,6 @@ import { Motion } from '@oku-ui/motion';
 .hobbies-section {
   display: flex;
   justify-content: center;
-  margin: 9rem 0 7rem 0;
-
-  @media (min-width: 1024px) {
-    margin: 7rem 0 5rem 0;
-  }
 
   ul {
     display: flex;
@@ -75,7 +42,7 @@ import { Motion } from '@oku-ui/motion';
       }
 
       p {
-        font-size: 50px;
+        font-size: 60px;
         font-weight: 600;
 
         @media (min-width: 1024px) {

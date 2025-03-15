@@ -1,95 +1,146 @@
 <script setup>
-import { computed } from 'vue';
-
-import { Carousel, Slide, Navigation } from 'vue3-carousel';
+import { ref } from 'vue';
 import BaseCard from '@/components/UI/BaseCard.vue';
 
-import { useTechnologiesStore } from '@/stores/technologies';
-import { useResize } from '@/composables/useResize';
-
-const { technologies } = useTechnologiesStore();
-const { innerWidth, isOnMobile } = useResize();
-
-const config = computed(() => {
-  return {
-    itemsToShow: 'auto',
-    gap: innerWidth.value > 1024 ? 20 : 10,
-    transition: 300,
-    wrapAround: true,
-  };
-});
+const technologies = ref([
+  {
+    label: 'TypeScript',
+    description: 'JavaScript but better',
+    img: {
+      alt: 'Typescript icon',
+      icon: 'typescript',
+    },
+  },
+  {
+    label: 'Vue.JS',
+    description: 'JavaScript framework',
+    img: {
+      alt: 'Vue icon',
+      icon: 'vue',
+    },
+  },
+  {
+    label: 'Nuxt.JS',
+    description: 'Vue framework',
+    img: {
+      alt: 'Nuxt icon',
+      icon: 'nuxt',
+    },
+  },
+  {
+    label: 'Vite',
+    description: 'Frontend build tool',
+    img: {
+      alt: 'Vite icon',
+      icon: 'vite',
+    },
+  },
+  {
+    label: 'Git',
+    description: 'Version control',
+    img: {
+      alt: 'Git icon',
+      icon: 'git',
+    },
+  },
+  {
+    label: 'Tailwind',
+    description: 'CSS framework',
+    img: {
+      alt: 'Tailwind icon',
+      icon: 'tailwind',
+    },
+  },
+  {
+    label: 'Vercel',
+    description: 'App deployment tool',
+    img: {
+      alt: 'Vercel icon',
+      icon: 'vercel',
+    },
+  },
+  {
+    label: 'Apollo',
+    description: 'Smart fetching tool',
+    img: {
+      alt: 'Apollo icon',
+      icon: 'apollo',
+    },
+  },
+]);
 </script>
 
 <template>
   <section class="technologies-section">
-    <p class="description">
+    <h1 class="section-header">
       These are the <br />
-      technologies I’ve been using
-    </p>
+      <strong>technologies</strong>
+      I’ve been using.
+    </h1>
+
     <div class="technologies">
-      <Carousel v-bind="config">
-        <Slide v-for="{ label, img: { alt, icon } } in technologies" :key="label">
-          <BaseCard class="border-gradient">
-            <img :src="`/icons/technologies/icon_${icon}.svg`" :alt="alt" />
-            {{ label }}
-          </BaseCard>
-        </Slide>
-        <template v-if="!isOnMobile" #addons>
-          <Navigation />
-        </template>
-      </Carousel>
+      <BaseCard
+        v-for="{ label, description, img: { alt, icon } } in technologies"
+        :key="label"
+        class="border-gradient"
+      >
+        <img :src="`/icons/technologies/icon_${icon}.svg`" :alt="alt" />
+        <div class="card-text">
+          {{ label }}
+          <small>{{ description }}</small>
+        </div>
+      </BaseCard>
     </div>
   </section>
 </template>
 
 <style lang="scss" scoped>
 .technologies-section {
-  margin-bottom: 5rem;
-
-  .description {
-    color: var(--vt-c-gray-300);
-    font-size: 32px;
-    text-align: center;
-    margin-bottom: 5rem;
-
-    @media (min-width: 1024px) {
-      font-size: 60px;
-      margin-bottom: 8rem;
-      text-align: start;
-    }
-  }
-
   .technologies {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 0.5rem;
     font-family: 'Nunito';
     color: var(--vt-c-white);
+    font-size: 18px;
 
-    @media (min-width: 1024px) {
-      gap: 2rem;
-      font-size: 18px;
-      font-weight: 500;
+    @media (min-width: 1200px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    @media ((max-width: 1200px) and (min-width: 640px)) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 639px) {
+      grid-template-columns: 1fr;
+      font-size: 16px;
     }
 
     .card {
-      flex-direction: column;
-      justify-content: center;
       align-items: center;
+      padding: 0.8rem 1.5rem;
+      border-radius: 12px;
+      transition: all var(--vt-transition-delay);
 
-      width: 120px;
-      height: 150px;
+      &-text {
+        display: flex;
+        flex-direction: column;
 
-      @media (min-width: 1024px) {
-        width: 220px;
-        height: 250px;
+        small {
+          color: var(--vt-c-gray-400);
+        }
+      }
+
+      &:hover {
+        background-color: var(--vt-c-gray-800);
+        scale: 1.025;
       }
     }
 
     img {
-      height: 48px;
+      height: 60px;
       aspect-ratio: 1;
-
-      @media (min-width: 1024px) {
-        height: 96px;
-      }
     }
   }
 }

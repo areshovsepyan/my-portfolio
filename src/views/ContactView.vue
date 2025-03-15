@@ -85,7 +85,7 @@ const submitForm = async () => {
           v-model="form.email"
           name="email"
           type="email"
-          label="Email Address"
+          label="Your Email"
           required
           :resetTrigger="formResetTrigger"
           @update:error="errors.email = $event"

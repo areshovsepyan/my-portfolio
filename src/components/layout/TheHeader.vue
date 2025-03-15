@@ -27,7 +27,7 @@ const handleScroll = function () {
   const timeout = setTimeout(() => {
     const scrollTop = window.scrollY || document.documentElement.scrollTop;
 
-    if (scrollTop === 0 || scrollTop < 50) {
+    if (scrollTop === 0 || scrollTop < 150) {
       isHidden.value = false;
       atTop.value = true;
     } else if (scrollTop > lastScrollTop.value) {
@@ -40,7 +40,7 @@ const handleScroll = function () {
     lastScrollTop.value = scrollTop <= 0 ? 0 : scrollTop;
 
     clearTimeout(timeout);
-  }, 300);
+  }, 100);
 };
 
 const goBack = function () {
@@ -53,14 +53,14 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll));
 </script>
 
 <template>
-  <header :class="{ hidden: isHidden && isOnMobile }">
+  <header :class="{ hidden: isHidden }">
     <Transition name="fade" mode="out-in">
       <button v-if="!isOnHomePage && !isOnMobile" @click="goBack" class="btn-back">
         <img src="/icons/icon_arrow-left.svg" alt="Arrow left" />
         back
       </button>
     </Transition>
-    <nav>
+    <nav class="border-gradient-nav">
       <ul>
         <li v-for="{ label, path } in routes" :key="label">
           <RouterLink class="social-links" :to="path">
@@ -86,19 +86,24 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll));
 
 <style lang="scss" scoped>
 header {
+  position: fixed;
+  width: 100%;
+  top: 1rem;
+  left: 0;
+  z-index: 100;
   transition:
     transform var(--vt-transition-delay) ease,
     opacity var(--vt-transition-delay) ease;
-
-  @media (min-width: 1024px) {
-    position: relative;
-  }
 
   nav {
     max-width: 100%;
     padding: 1.2rem;
     gap: 1rem;
     overflow: hidden;
+
+    @media (min-width: 1024px) {
+      padding: 0.75rem 1.5rem;
+    }
 
     ul {
       overflow-x: auto;
@@ -126,23 +131,10 @@ header {
         }
       }
     }
-
-    @media (min-width: 1024px) {
-      padding: 1rem 1.5rem;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    position: fixed;
-    width: 95%;
-    top: 1rem;
-    left: 2.5%;
-    z-index: 100;
   }
 
   .btn-back {
     all: unset;
-
     display: flex;
     justify-content: center;
     gap: 0.5rem;

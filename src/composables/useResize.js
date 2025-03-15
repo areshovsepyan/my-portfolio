@@ -9,7 +9,7 @@ export function useResize() {
 
   onResize();
 
-  const isOnMobile = computed(() => innerWidth.value <= 1024);
+  const isOnMobile = computed(() => innerWidth.value < 1024);
 
   onMounted(() => window.addEventListener('resize', onResize));
   onUnmounted(() => window.removeEventListener('resize', onResize));
