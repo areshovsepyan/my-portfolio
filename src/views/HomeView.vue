@@ -7,15 +7,20 @@ import ProjectsSection from '@/components/ProjectsSection.vue';
 import TestimonialsSection from '@/components/TestimonialsSection.vue';
 
 onMounted(() => {
-  toast.warning(
-    {
-      title: 'Website Under Development',
-      text: 'This website is currently in development. Most of the data shown is mock data and subject to change. Stay tuned for updates!',
-    },
-    {
-      timeout: 10000,
-    },
-  );
+  if (!sessionStorage.getItem('hasSeenToast')) {
+    setTimeout(() => {
+      toast.warning(
+        {
+          title: 'Website Under Development',
+          text: 'This website is currently in development. Most of the data shown is mock data and subject to change. Stay tuned for updates!',
+        },
+        {
+          timeout: 10000,
+        },
+      );
+      sessionStorage.setItem('hasSeenToast', 'true');
+    }, 3000);
+  }
 });
 </script>
 
