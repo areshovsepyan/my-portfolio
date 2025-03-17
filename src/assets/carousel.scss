@@ -38,18 +38,13 @@
 }
 
 .carousel__pagination {
-  bottom: -2rem;
-
-  @media (min-width: 1024px) {
-    left: 0;
-    transform: translateX(3rem);
-  }
+  bottom: -1.5rem;
 }
 
 .carousel__pagination-button {
-  padding: 6px 10px;
+  padding: 3px 8px;
 
   &--active {
-    padding-inline: 30px;
+    padding-inline: 16px;
   }
 }
