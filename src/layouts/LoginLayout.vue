@@ -82,8 +82,8 @@ const handleMouseMove = (event) => {
         as="img"
         :animate="!isOnMobile && { x: mousePosition.x * 0.02, y: mousePosition.y * 0.02 }"
         :transition="{ duration: 0.5 }"
-        src="/images/art-4.jpeg"
-        alt="Login art"
+        src="/images/art-knight.jpg"
+        alt="Login art - night in the flowers."
         loading="lazy"
       />
     </Motion>
@@ -129,11 +129,13 @@ const handleMouseMove = (event) => {
 .login-container {
   display: flex;
   flex-direction: column;
-  height: calc(100dvh - 11rem);
+  gap: 2rem;
+  // height: calc(100dvh - 11rem);
 
   @media (min-width: 1024px) {
     height: calc(100dvh - 4rem);
     flex-direction: row;
+    gap: 0;
   }
 
   .input-group:last-of-type {
@@ -141,12 +143,10 @@ const handleMouseMove = (event) => {
   }
 
   .login-form {
-    width: 100%;
-    height: 75%;
-
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
 
     @media (min-width: 1024px) {
       width: 50%;
@@ -183,7 +183,7 @@ const handleMouseMove = (event) => {
 
   .login-image {
     width: 100%;
-    height: 25%;
+    height: 25dvh;
     position: relative;
 
     @media (min-width: 1024px) {

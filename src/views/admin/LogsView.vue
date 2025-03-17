@@ -78,7 +78,7 @@ const deleteItem = async (timestamp) => {
       <div v-else>
         <ul v-if="logs.length">
           <li v-for="{ level, timestamp, message } in logs" :key="timestamp" class="log-item">
-            <div class="dot-big" :class="level"></div>
+            <div class="dot-big" :class="`log-${level}`"></div>
             <span>{{ formatISO(timestamp) }}:</span>
             <span class="message">{{ message }}</span>
             <BaseButton @click="deleteItem(timestamp)" btn_class="btn-admin">Delete</BaseButton>

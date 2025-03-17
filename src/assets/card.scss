@@ -95,13 +95,13 @@
     2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.warn {
+.log-warn {
   background: linear-gradient(to bottom, #ffd966, #ffbf00);
 }
-.error {
+.log-error {
   background: linear-gradient(to bottom, #ff8080, #ff4d4d);
 }
-.info {
+.log-info {
   background: linear-gradient(to bottom, #72b8f4, #4a90e2);
 }
 

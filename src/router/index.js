@@ -98,6 +98,9 @@ router.beforeEach((to, from, next) => {
     document.body.style.backgroundColor = '#15161A';
     document.getElementById('app').style.padding = '2rem';
   }
+  if (to.path.startsWith('/login')) {
+    document.getElementById('app').style.paddingTop = '2rem';
+  }
   next();
 });
 
