@@ -1,33 +1,29 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import { api } from '../../utils/axios';
+import toast from '../../utils/toast';
+import BaseLoader from '@/components/UI/BaseLoader.vue';
 import BaseProject from '@/components/UI/BaseProject.vue';
 
-const projects = ref([
-  {
-    title: 'OrderSpark',
-    technologies: ['HTML', 'CSS', 'JavaScript', 'Vue', 'Pinia', 'Nuxt'],
-    image: {
-      url: '/images/project-1.jpg',
-      alt: '',
-    },
-  },
-  {
-    title: 'OrderSpark',
-    technologies: ['HTML', 'CSS', 'JavaScript', 'Vue', 'Pinia', 'Nuxt'],
-    image: {
-      url: '/images/project-2.jpg',
-      alt: '',
-    },
-  },
-  {
-    title: 'OrderSpark',
-    technologies: ['HTML', 'CSS', 'JavaScript', 'Vue', 'Pinia', 'Nuxt'],
-    image: {
-      url: '/images/project-3.jpg',
-      alt: '',
-    },
-  },
-]);
+const featuredProjects = ref([]);
+const isLoading = ref(false);
+
+onMounted(() => fetchData());
+
+const fetchData = async () => {
+  try {
+    isLoading.value = true;
+    featuredProjects.value.length = 0;
+
+    const { data } = await api.get('/pages?name=projects');
+
+    featuredProjects.value = [...data.filter((project) => project.featured)];
+  } catch (error) {
+    toast.error(error);
+  } finally {
+    isLoading.value = false;
+  }
+};
 </script>
 
 <template>
@@ -40,15 +36,18 @@ const projects = ref([
       <RouterLink to="/projects"> See projects </RouterLink>
     </div>
 
-    <div class="projects">
+    <BaseLoader v-if="isLoading" :isLoading="isLoading" loader_type="code" />
+
+    <div v-else-if="featuredProjects.length" class="projects-container">
       <BaseProject
-        v-for="{ title, technologies, image } in projects"
+        v-for="{ title, technologies, image } in featuredProjects"
         :key="title"
         :title
         :technologies
         :image
       />
     </div>
+    <p v-else class="no-items">No featured projects found.</p>
   </section>
 </template>
 
@@ -65,54 +64,6 @@ const projects = ref([
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-
-  .projects {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    font-family: 'Nunito';
-
-    @media (min-width: 1024px) {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .card {
-      flex-direction: column;
-      min-width: 220px;
-      min-height: 190px;
-
-      @media (min-width: 1024px) {
-        min-width: 400px;
-        min-height: 277px;
-      }
-
-      .image-box {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-        gap: 1rem;
-
-        img {
-          height: 68px;
-          aspect-ratio: 1;
-
-          @media (min-width: 1024px) {
-            height: 96px;
-          }
-        }
-
-        span {
-          font-size: 16px;
-          font-weight: 700;
-
-          @media (min-width: 1024px) {
-            font-size: 24px;
-          }
-        }
-      }
-    }
   }
 }
 </style>

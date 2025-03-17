@@ -42,7 +42,7 @@ const fetchData = async () => {
 
     <BaseLoader v-if="isLoading" :isLoading="isLoading" loader_type="code" />
 
-    <div v-else class="cards-container">
+    <div v-else-if="experience.length" class="cards-container">
       <BaseCard v-for="item in experience" :key="item.id" class="bg-gray">
         <div class="info-block">
           <h2 class="card-title">{{ item.position }}</h2>
@@ -82,6 +82,7 @@ const fetchData = async () => {
         </div>
       </BaseCard>
     </div>
+    <p v-else class="no-items">No experiences found.</p>
   </section>
 </template>
 

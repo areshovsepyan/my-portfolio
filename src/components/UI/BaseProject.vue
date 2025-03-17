@@ -9,7 +9,7 @@ defineProps({
 <template>
   <div class="project-card">
     <div class="image-container">
-      <img :src="image.url" :alt="image.alt" />
+      <img :src="`/images/projects/${image.url}.jpg`" :alt="image.alt" />
     </div>
 
     <div class="project-details">

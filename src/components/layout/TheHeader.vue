@@ -12,7 +12,7 @@ const { isOnMobile } = useResize();
 
 const routes = [
   { label: 'home', path: '/' },
-  { label: 'education', path: '/education' },
+  { label: 'projects', path: '/projects' },
   { label: 'experience', path: '/experience' },
   { label: 'contact', path: '/contact' },
 ];

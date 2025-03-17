@@ -12,7 +12,7 @@ import AdminLogsView from '@/views/admin/LogsView.vue';
 import AdminInboxView from '@/views/admin/InboxView.vue';
 
 import HomeView from '@/views/HomeView.vue';
-import EducationView from '@/views/EducationView.vue';
+import ProjectsView from '@/views/ProjectsView.vue';
 import ExperienceView from '@/views/ExperienceView.vue';
 import ContactView from '@/views/ContactView.vue';
 
@@ -22,7 +22,7 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     { path: '/', alias: '/home', component: HomeView, meta: { title: 'Home', id: 1 } },
-    { path: '/education', component: EducationView, meta: { title: 'Education', id: 2 } },
+    { path: '/projects', component: ProjectsView, meta: { title: 'Projects', id: 2 } },
     { path: '/experience', component: ExperienceView, meta: { title: 'Experience', id: 3 } },
     { path: '/contact', component: ContactView, meta: { title: 'Contact', id: 4 } },
     {
