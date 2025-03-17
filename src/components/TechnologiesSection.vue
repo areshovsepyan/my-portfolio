@@ -72,11 +72,13 @@ const technologies = ref([
 
 <template>
   <section class="technologies-section">
-    <h1 class="section-header">
-      These are the <br />
-      <strong>technologies</strong>
-      I’ve been using.
-    </h1>
+    <div class="section-header">
+      <h1>
+        These are the <br />
+        <strong>technologies</strong>
+        I’ve been using.
+      </h1>
+    </div>
 
     <div class="technologies">
       <BaseCard

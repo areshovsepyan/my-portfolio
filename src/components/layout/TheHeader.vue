@@ -57,9 +57,10 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll));
     <Transition name="fade" mode="out-in">
       <button v-if="!isOnHomePage && !isOnMobile" @click="goBack" class="btn-back">
         <img src="/icons/icon_arrow-left.svg" alt="Arrow left" />
-        back
+        <span>back</span>
       </button>
     </Transition>
+
     <nav class="border-gradient-nav">
       <ul>
         <li v-for="{ label, path } in routes" :key="label">
@@ -122,26 +123,12 @@ header {
           padding: 0.5rem 1rem;
         }
       }
-
-      .social-icon {
-        &:hover {
-          img {
-            filter: contrast(1);
-          }
-        }
-      }
     }
   }
 
   .btn-back {
-    all: unset;
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    color: var(--vt-c-white);
-    cursor: pointer;
     position: absolute;
-    left: 0;
+    left: 2rem;
   }
 }
 </style>

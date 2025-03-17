@@ -59,7 +59,7 @@ import BaseButton from './UI/BaseButton.vue';
     }
 
     span {
-      color: var(--vt-c-purple-300);
+      color: var(--vt-c-green);
       font-size: 12px;
       font-weight: 600;
 

@@ -32,10 +32,13 @@ const projects = ref([
 
 <template>
   <section class="projects-section">
-    <h1 class="section-header">
-      Here are some<br />
-      of my <strong>featured projects</strong>.
-    </h1>
+    <div class="section-header">
+      <h1>
+        Here are some<br />
+        of my <strong>featured projects</strong>.
+      </h1>
+      <RouterLink to="/projects"> See projects </RouterLink>
+    </div>
 
     <div class="projects">
       <BaseProject
@@ -56,6 +59,14 @@ const projects = ref([
     flex-direction: row;
     gap: 6rem;
   }
+
+  .header-box {
+    all: unset;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .projects {
     display: grid;
     grid-template-columns: 1fr;

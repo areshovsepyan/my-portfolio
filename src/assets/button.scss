@@ -47,6 +47,7 @@ button {
     scale: 1.05;
   }
 }
+
 .btn-secondary {
   background-color: transparent;
   color: var(--vt-c-gray-300);
@@ -57,6 +58,7 @@ button {
     color: var(--vt-c-purple-600);
   }
 }
+
 .btn-admin {
   padding: 0.5rem 1rem;
   border-radius: 8px;
@@ -85,6 +87,7 @@ button {
     }
   }
 }
+
 .btn-signout {
   height: 55px;
   padding: unset;
@@ -131,4 +134,19 @@ button {
     width: 35px;
     height: 35px;
   }
+}
+
+.btn-back {
+  all: unset;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+
+  color: var(--vt-c-white);
+  font-family: 'Nunito';
+  font-weight: 600;
+  font-size: 18px;
+
+  cursor: pointer;
 }

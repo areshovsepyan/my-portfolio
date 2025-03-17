@@ -109,13 +109,12 @@ defineProps({
         justify-content: center;
 
         a {
-          height: 33px;
-          width: 33px;
-          margin-inline: auto;
+          height: 25px;
+          width: 25px;
+          margin: 4px auto;
 
           @media (min-width: 1024px) {
-            height: 36px;
-            width: 36px;
+            margin: 5.5px auto;
           }
 
           img {
