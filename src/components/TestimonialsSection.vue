@@ -1,5 +1,7 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import { api } from '../../utils/axios';
+import toast from '../../utils/toast';
 import { Carousel, Slide, Pagination } from 'vue3-carousel';
 
 const config = {
@@ -11,43 +13,35 @@ const config = {
   pauseAutoplayOnHover: true,
 };
 
-const testimonials = ref([
-  {
-    id: 0,
-    from: {
-      name: 'Alex Geana',
-      position: 'CEO and Founder of OrderSpark',
-      image: {
-        url: 'alex',
-        alt: 'Picture of Alex Geana',
-      },
-    },
-    stars: 5,
-    text: 'I really enjoyed working with Ara and look forward to working with him again. He’s a very talented developer, and I can’t recommend him enough. Ara was always present, reported his work in a timely manner, and, most importantly, consistently wrote clean, efficient code. He’s also a great person, and I thoroughly enjoyed getting to know him. He was one of the best members of my team and played a key role in helping us achieve our goals. Developers who communicate well and deliver on their promises are rare in tech, but Ara stands out as someone who does both effortlessly.',
-  },
-  {
-    id: 1,
-    from: {
-      name: 'Anna Kolko',
-      position: 'Project Manager at OrderSpark',
-      image: {
-        url: 'anna',
-        alt: 'Picture of Anna Kolko',
-      },
-    },
-    stars: 5,
-    text: 'I had the privilege of working with Ara at OrderSpark. As a Project Manager I felt very confident working with him. Ara is a very passionate person and it also includes his attitude towards quality of his work, no matter the complexity or deadlines. Also should be highlighted his proactive problem-solving mindset which I observed during the OrderSpark platform development. He is positive, easy-going, willing to go extra mile to support the team. I do recommend him to any project. I’m confident about his professionalism and expertise.',
-  },
-]);
+const testimonials = ref([]);
+
+onMounted(() => fetchData());
+
+const fetchData = async () => {
+  try {
+    testimonials.value.length = 0;
+
+    const { data } = await api.get('/pages?name=testimonials');
+
+    testimonials.value = [...data];
+  } catch (error) {
+    toast.error(error);
+  }
+};
 </script>
 
 <template>
   <section class="testimonials-section">
-    <Carousel v-bind="config">
-      <Slide v-for="{ id, from, stars, text } in testimonials" :key="id">
+    <Carousel v-if="testimonials.length" v-bind="config">
+      <Slide v-for="{ id, from, stars, text } in testimonials" :key="Number(id)">
         <div class="testimonial">
           <div class="testimonial-stars">
-            <img v-for="star in stars" :key="star" src="/icons/icon_star.svg" alt="Star icon" />
+            <img
+              v-for="star in Number(stars)"
+              :key="star"
+              src="/icons/icon_star.svg"
+              alt="Star icon"
+            />
           </div>
 
           <p class="testimonial-text">"{{ text }}"</p>
