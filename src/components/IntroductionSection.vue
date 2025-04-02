@@ -5,13 +5,13 @@ import BaseButton from './UI/BaseButton.vue';
 <template>
   <section class="introduction-section">
     <div class="image-box">
-      <div class="profile-picture"></div>
+      <img class="profile-picture" src="/images/brackets.jpg" alt="HTML brackets" />
     </div>
     <div class="text-box">
       <span>BASED IN ARMENIA</span>
       <h3>Hi, I'm Ara</h3>
       <p>
-        a coding wizard with <strong>4+ years</strong> of experience in
+        a coding wizard with <strong>5+ years</strong> of experience in
         <strong>Front-End Development</strong>, crafting intuitive, visually stunning, and highly
         functional web applications.
       </p>
@@ -93,6 +93,7 @@ import BaseButton from './UI/BaseButton.vue';
 
   .image-box {
     flex: 1;
+    display: flex;
 
     .profile-picture {
       background-color: var(--vt-c-purple-800);
@@ -101,6 +102,7 @@ import BaseButton from './UI/BaseButton.vue';
       width: 125px;
       height: 125px;
       margin-inline: auto;
+      border: 1.5px solid var(--vt-c-gray-300);
 
       @media (min-width: 1024px) {
         width: 350px;
