@@ -9,7 +9,7 @@ const routes = [
   { label: 'Experience', path: '/admin/experience', icon: 'briefcase', alt: 'Briefcase Icon' },
   { label: 'Education', path: '/admin/education', icon: 'hat', alt: 'Hat Icon' },
   { label: 'Inbox', path: '/admin/inbox', icon: 'envelope', alt: 'Envelope Icon' },
-  { label: 'Banned IPs', path: '/admin/banned-ips', icon: 'banned-ips', alt: 'Banned IPs Icon' },
+  { label: 'Banned IPs', path: '/admin/banned-ips', icon: 'ban', alt: 'Banned IPs Icon' },
   { label: 'Logs', path: '/admin/logs', icon: 'logs', alt: 'Logs Icon' },
 ];
 
@@ -29,7 +29,7 @@ const logout = () => {
           </RouterLink>
         </li>
         <li>
-          <BaseButton @click="logout" btn_class="btn-signout">
+          <BaseButton @click="logout" btn_class="btn-icon" class="btn-signout">
             <img src="/icons/admin/icon_signout.svg" alt="Signout icon" />
           </BaseButton>
         </li>
@@ -81,13 +81,16 @@ const logout = () => {
             height: 32px;
             filter: opacity(1);
           }
+
           &:hover {
             img {
               scale: 1;
             }
           }
         }
-        a {
+
+        a,
+        button {
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -95,7 +98,9 @@ const logout = () => {
           height: 55px;
           width: 55px;
           border-radius: 50%;
+        }
 
+        a {
           img {
             width: 24px;
             height: 24px;

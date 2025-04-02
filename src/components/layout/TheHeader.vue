@@ -8,7 +8,7 @@ const router = useRouter();
 const route = useRoute();
 
 const { social } = useSocialStore();
-const { isOnMobile } = useResize();
+const { isOnDesktop, isOnMobile } = useResize();
 
 const routes = [
   { label: 'home', path: '/' },
@@ -55,7 +55,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll));
 <template>
   <header :class="{ hidden: isHidden }">
     <Transition name="fade" mode="out-in">
-      <button v-if="!isOnHomePage && !isOnMobile" @click="goBack" class="btn-back">
+      <button v-if="!isOnHomePage && isOnDesktop" @click="goBack" class="btn-back">
         <img src="/icons/icon_arrow-left.svg" alt="Arrow left" />
         <span>back</span>
       </button>
@@ -98,12 +98,16 @@ header {
 
   nav {
     max-width: 100%;
-    padding: 1.2rem;
+    padding: 1rem 1.2rem;
     gap: 1rem;
     overflow: hidden;
 
     @media (min-width: 1024px) {
       padding: 0.75rem 1.5rem;
+    }
+
+    @media (max-width: 1024px) and (min-width: 768px) {
+      padding: 0.6rem 1.2rem;
     }
 
     ul {

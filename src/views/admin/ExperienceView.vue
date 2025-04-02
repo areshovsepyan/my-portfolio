@@ -36,71 +36,25 @@ const deleteItem = async (id) => {
 </script>
 
 <template>
-  <div class="settings">
-    <TheHeader
-      title="Experience"
-      :onAdd="addNew"
-      :onRefresh="manualFetchData"
-      :isRotating="isRotating"
-    />
+  <TheHeader
+    title="Experience"
+    :onAdd="addNew"
+    :onRefresh="manualFetchData"
+    :isRotating="isRotating"
+  />
 
-    <div>
-      <BaseLoader v-if="isLoading" :isLoading="isLoading" loader_type="code" />
-      <div v-else>
-        <ul v-if="dataList.length">
-          <li v-for="item in dataList" :key="item.id" class="ip-item">
-            <span>{{ item.company }}</span>
-            <BaseButton @click="deleteItem(id)" btn_class="btn-admin">Delete</BaseButton>
-          </li>
-        </ul>
-        <p v-else class="no-items">No experience data found.</p>
-      </div>
+  <div>
+    <BaseLoader v-if="isLoading" :isLoading="isLoading" loader_type="code" />
+    <div v-else>
+      <ul v-if="dataList.length">
+        <li v-for="item in dataList" :key="item.id" class="ip-item">
+          <span>{{ item.company }}</span>
+          <BaseButton @click="deleteItem(id)" btn_class="btn-admin">Delete</BaseButton>
+        </li>
+      </ul>
+      <p v-else class="no-items">No experience data found.</p>
     </div>
   </div>
 </template>
 
-<style lang="scss" scoped>
-.settings {
-  .ip-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    height: 50px;
-    margin-bottom: 1rem;
-    padding: 0 1rem;
-    border-radius: 8px;
-    position: relative;
-
-    &:before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 8px;
-      padding: 2px;
-      background: var(--vt-c-to-right-gradient);
-      -webkit-mask:
-        linear-gradient(var(--vt-c-white) 0 0) content-box,
-        linear-gradient(var(--vt-c-white) 0 0);
-      mask:
-        linear-gradient(var(--vt-c-white) 0 0) content-box,
-        linear-gradient(var(--vt-c-white) 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none;
-    }
-
-    span {
-      color: var(--vt-c-gray-300);
-      font-size: 18px;
-      font-weight: 700;
-      font-family: 'Nunito';
-    }
-
-    button {
-      min-width: 80px;
-      max-height: 35px;
-      margin-left: auto;
-    }
-  }
-}
-</style>
+<style lang="scss" scoped></style>

@@ -19,6 +19,18 @@
     min-width: unset;
   }
 
+  &__pagination {
+    bottom: -1.5rem;
+
+    &-button {
+      padding: 3px 8px;
+
+      &--active {
+        padding-inline: 16px;
+      }
+    }
+  }
+
   &__icon {
     transition: fill var(--vt-transition-delay);
     fill: var(--vt-c-gray-300);
@@ -31,20 +43,5 @@
     &:hover {
       opacity: 1;
     }
-  }
-
-  @media (min-width: 1024px) {
-  }
-}
-
-.carousel__pagination {
-  bottom: -1.5rem;
-}
-
-.carousel__pagination-button {
-  padding: 3px 8px;
-
-  &--active {
-    padding-inline: 16px;
   }
 }

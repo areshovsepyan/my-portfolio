@@ -7,7 +7,7 @@ import BaseButton from '@/components/UI/BaseButton.vue';
 import BaseLoader from '@/components/UI/BaseLoader.vue';
 import { useResize } from '@/composables/useResize';
 
-const { isOnMobile } = useResize();
+const { isOnDesktop } = useResize();
 
 const experience = ref([]);
 const isLoading = ref(false);
@@ -33,9 +33,9 @@ const fetchData = async () => {
 <template>
   <section class="experience-section">
     <p class="section-greeting">
-      &lt; This is where you can know me <br v-if="isOnMobile" />
-      a little more <br v-if="!isOnMobile" />
-      and see my whole experience <br v-if="isOnMobile" />
+      &lt; This is where you can know me <br v-if="!isOnDesktop" />
+      a little more <br v-if="isOnDesktop" />
+      and see my whole experience <br v-if="!isOnDesktop" />
       as a <strong>Front-End Developer.</strong> /&gt;
     </p>
     <BaseButton>Download CV</BaseButton>
@@ -49,7 +49,7 @@ const fetchData = async () => {
           <p class="employment-type">{{ item.employment_type }}</p>
           <div class="date-block">
             <span>{{ item.start_date }}</span>
-            <div class="dot"></div>
+            <div class="dot-green"></div>
             <span>{{ item.end_date }}</span>
           </div>
           <p class="location">{{ item.location }}</p>

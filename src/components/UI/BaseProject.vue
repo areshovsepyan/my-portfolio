@@ -65,13 +65,7 @@ defineProps({
 
   .project-details {
     h2 {
-      color: var(--vt-c-gray-300);
-      font-size: 24px;
       margin-bottom: 1rem;
-
-      @media (min-width: 1024px) {
-        font-size: 30px;
-      }
     }
 
     .row-wrapper {

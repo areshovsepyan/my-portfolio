@@ -6,10 +6,11 @@ import LoginLayout from '@/layouts/LoginLayout.vue';
 
 import AdminDashboardView from '@/views/admin/DashboardView.vue';
 import AdminExperienceView from '@/views/admin/ExperienceView.vue';
-import AdminEducationView from '@/views/admin/EducationView.vue';
+import AdminTestimonialsView from '@/views/admin/TestimonialsView.vue';
+import AdminProjectsView from '@/views/admin/ProjectsView.vue';
+import AdminInboxView from '@/views/admin/InboxView.vue';
 import AdminBannedIPsView from '@/views/admin/BannedIPsView.vue';
 import AdminLogsView from '@/views/admin/LogsView.vue';
-import AdminInboxView from '@/views/admin/InboxView.vue';
 
 import HomeView from '@/views/HomeView.vue';
 import ProjectsView from '@/views/ProjectsView.vue';
@@ -52,7 +53,8 @@ const router = createRouter({
       children: [
         { path: 'dashboard', alias: '/admin', component: AdminDashboardView },
         { path: 'experience', component: AdminExperienceView },
-        { path: 'education', component: AdminEducationView },
+        { path: 'testimonials', component: AdminTestimonialsView },
+        { path: 'projects', component: AdminProjectsView },
         { path: 'banned-ips', component: AdminBannedIPsView },
         { path: 'logs', component: AdminLogsView },
         { path: 'inbox', component: AdminInboxView },
@@ -96,7 +98,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   if (to.path.startsWith('/admin')) {
     document.body.style.backgroundColor = '#15161A';
-    document.getElementById('app').style.padding = '2rem';
+    document.getElementById('app').style.padding = '1rem';
   }
   if (to.path.startsWith('/login')) {
     document.getElementById('app').style.paddingTop = '2rem';

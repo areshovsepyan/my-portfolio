@@ -1,15 +1,15 @@
 <script setup>
 import { useResize } from '@/composables/useResize';
-const { isOnMobile } = useResize();
+const { isOnDesktop } = useResize();
 </script>
 
 <template>
   <section class="not-found">
     <h1 class="glitch">404</h1>
     <p class="section-greeting">
-      &lt; Oops! This page doesn’t exist. <br v-if="isOnMobile" />
-      The link you <br v-if="!isOnMobile" />
-      followed may be broken, <br v-if="isOnMobile" />
+      &lt; Oops! This page doesn’t exist. <br v-if="!isOnDesktop" />
+      The link you <br v-if="isOnDesktop" />
+      followed may be broken, <br v-if="!isOnDesktop" />
       or the page has been moved. /&gt;
     </p>
     <router-link to="/">Go Home</router-link>

@@ -1,4 +1,3 @@
-// ROOT COLOR VARIANTS
 :root {
   --vt-c-black: #000000;
   --vt-c-white: #ffffff;
@@ -16,11 +15,6 @@
   --vt-c-purple-400: #b292ff;
   --vt-c-purple-300: #c69aff;
 
-  --vt-c-accent-1: #c3c99e;
-  --vt-c-accent-2: #7d9ca5;
-  --vt-c-accent-3: #c2c2c2;
-  --vt-c-accent-4: #c0e5d7;
-
   --vt-c-gray-gradient: linear-gradient(#232323 0%, #434343 49%, #232323 100%);
   --vt-c-dark-gradient: linear-gradient(
     to bottom,
@@ -34,7 +28,6 @@
   );
 }
 
-// ROOT VARIABLES
 :root {
   --vt-transition-delay: 0.4s;
 }

@@ -9,10 +9,12 @@ export function useResize() {
 
   onResize();
 
-  const isOnMobile = computed(() => innerWidth.value < 1024);
+  const isOnDesktop = computed(() => innerWidth.value > 1024);
+  const isOnTablet = computed(() => innerWidth.value > 768 && innerWidth.value < 1024);
+  const isOnMobile = computed(() => innerWidth.value < 768);
 
   onMounted(() => window.addEventListener('resize', onResize));
   onUnmounted(() => window.removeEventListener('resize', onResize));
 
-  return { innerWidth, isOnMobile };
+  return { innerWidth, isOnDesktop, isOnTablet, isOnMobile };
 }

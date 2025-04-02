@@ -9,7 +9,7 @@ import BaseInput from '@/components/UI/BaseInput.vue';
 import BaseButton from '@/components/UI/BaseButton.vue';
 import BaseCheckbox from '@/components/UI/BaseCheckbox.vue';
 
-const { isOnMobile } = useResize();
+const { isOnDesktop } = useResize();
 
 const router = useRouter();
 
@@ -74,13 +74,13 @@ const handleMouseMove = (event) => {
     <Motion
       class="login-image"
       as="div"
-      :initial="isOnMobile ? { top: -100, opacity: 0 } : { left: -300, opacity: 0 }"
-      :animate="isOnMobile ? { top: 0, opacity: 1 } : { left: 0, opacity: 1 }"
+      :initial="isOnDesktop ? { left: -300, opacity: 0 } : { top: -100, opacity: 0 }"
+      :animate="isOnDesktop ? { left: 0, opacity: 1 } : { top: 0, opacity: 1 }"
       :transition="{ duration: 0.8 }"
     >
       <Motion
         as="img"
-        :animate="!isOnMobile && { x: mousePosition.x * 0.02, y: mousePosition.y * 0.02 }"
+        :animate="isOnDesktop && { x: mousePosition.x * 0.02, y: mousePosition.y * 0.02 }"
         :transition="{ duration: 0.5 }"
         src="/images/art-knight.jpg"
         alt="Login art - night in the flowers."
@@ -130,7 +130,6 @@ const handleMouseMove = (event) => {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  // height: calc(100dvh - 11rem);
 
   @media (min-width: 1024px) {
     height: calc(100dvh - 4rem);
@@ -197,40 +196,6 @@ const handleMouseMove = (event) => {
       object-fit: cover;
       border-radius: 24px;
     }
-  }
-
-  /* 🎭 Cubist Shapes */
-  .shape {
-    position: absolute;
-    opacity: 0.3;
-    filter: blur(5px);
-  }
-
-  .red {
-    width: 150px;
-    height: 150px;
-    background: #780c09;
-    rotate: 20deg;
-    top: 10%;
-    left: 15%;
-  }
-
-  .blue {
-    width: 120px;
-    height: 120px;
-    background: #009d91;
-    rotate: -15deg;
-    top: 60%;
-    right: 20%;
-  }
-
-  .yellow {
-    width: 80px;
-    height: 80px;
-    background: #db8700;
-    rotate: 30deg;
-    bottom: 20%;
-    left: 40%;
   }
 }
 </style>

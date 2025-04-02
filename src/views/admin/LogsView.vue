@@ -70,48 +70,44 @@ const deleteItem = async (timestamp) => {
 </script>
 
 <template>
-  <div class="logs">
-    <TheHeader title="Error Logs" :onRefresh="manualFetchData" :isRotating="isRotating" />
+  <TheHeader title="Error Logs" :onRefresh="manualFetchData" :isRotating="isRotating" />
 
-    <div>
-      <BaseLoader v-if="isLoading" :isLoading="isLoading" loader_type="code" />
-      <div v-else>
-        <ul v-if="logs.length">
-          <li v-for="{ level, timestamp, message } in logs" :key="timestamp" class="log-item">
-            <div class="dot-big" :class="`log-${level}`"></div>
-            <span>{{ formatISO(timestamp) }}:</span>
-            <span class="message">{{ message }}</span>
-            <BaseButton @click="deleteItem(timestamp)" btn_class="btn-admin">Delete</BaseButton>
-          </li>
-        </ul>
-        <p v-else class="no-items">No error logs found.</p>
-      </div>
+  <div>
+    <BaseLoader v-if="isLoading" :isLoading="isLoading" loader_type="code" />
+    <div v-else>
+      <ul v-if="logs.length">
+        <li v-for="{ level, timestamp, message } in logs" :key="timestamp" class="log-item">
+          <div class="dot-big" :class="`log-${level}`"></div>
+          <span>{{ formatISO(timestamp) }}:</span>
+          <span class="message">{{ message }}</span>
+          <BaseButton @click="deleteItem(timestamp)" btn_class="btn-admin">Delete</BaseButton>
+        </li>
+      </ul>
+      <p v-else class="no-items">No error logs found.</p>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.logs {
-  .log-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    min-height: 50px;
-    margin-bottom: 1rem;
-    padding: 1rem;
-    border-radius: 8px;
-    border: 1px solid var(--vt-c-gray-400);
+.log-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 50px;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--vt-c-gray-400);
 
-    span {
-      color: var(--vt-c-gray-300);
-      font-size: 16px;
-      font-weight: 500;
-      font-family: 'Nunito';
-    }
+  span {
+    color: var(--vt-c-gray-300);
+    font-size: 16px;
+    font-weight: 500;
+    font-family: 'Nunito';
+  }
 
-    button {
-      margin-left: auto;
-    }
+  button {
+    margin-left: auto;
   }
 }
 </style>

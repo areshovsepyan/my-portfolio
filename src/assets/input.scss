@@ -14,12 +14,6 @@ label {
   }
 }
 
-.error {
-  font-size: 14px;
-  padding: 8px 0 0 20px;
-  color: red;
-}
-
 input,
 textarea {
   background-color: var(--vt-c-black);
@@ -41,6 +35,12 @@ textarea {
     outline: none;
   }
 }
+
+textarea {
+  resize: none;
+  height: 250px;
+}
+
 select {
   appearance: none;
   -webkit-appearance: none;
@@ -59,8 +59,8 @@ select {
   background-repeat: no-repeat;
   background-position: right 10px center;
   background-size: 14px;
-  cursor: pointer;
   transition: border-color var(--vt-transition-delay);
+  cursor: pointer;
 
   &:hover {
     border-color: var(--vt-c-gray-400);
@@ -72,21 +72,16 @@ select {
   }
 }
 
-textarea {
-  resize: none;
-  height: 250px;
-}
-
 input[type='checkbox'] {
+  position: relative;
   appearance: none;
   width: 18px;
   height: 18px;
   padding: 0;
   border: 2px solid #555;
   border-radius: 4px;
-  position: relative;
-  cursor: pointer;
   transition: all var(--vt-transition-delay);
+  cursor: pointer;
 
   &:checked {
     background-color: var(--vt-c-purple-400);
@@ -119,4 +114,10 @@ input[type='checkbox'] {
     opacity: 0;
     transition: opacity var(--vt-transition-delay);
   }
+}
+
+.error {
+  font-size: 14px;
+  padding: 8px 0 0 20px;
+  color: red;
 }

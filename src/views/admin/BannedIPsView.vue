@@ -59,65 +59,45 @@ const deleteItem = async (ip) => {
 </script>
 
 <template>
-  <div class="settings">
-    <TheHeader title="Banned IPs" :onRefresh="manualFetchData" :isRotating="isRotating" />
+  <TheHeader title="Banned IPs" :onRefresh="manualFetchData" :isRotating="isRotating" />
 
-    <div>
-      <BaseLoader v-if="isLoading" :isLoading="isLoading" loader_type="code" />
-      <div v-else>
-        <ul v-if="bannedIPs.length">
-          <li v-for="ip in bannedIPs" :key="ip" class="ip-item">
-            <div class="dot"></div>
-            <span>{{ ip }}</span>
-            <BaseButton @click="deleteItem(ip)" btn_class="btn-admin">Unban</BaseButton>
-          </li>
-        </ul>
-        <p v-else class="no-items">No banned IPs found.</p>
-      </div>
+  <div>
+    <BaseLoader v-if="isLoading" :isLoading="isLoading" loader_type="code" />
+    <div v-else>
+      <ul v-if="bannedIPs.length">
+        <li v-for="ip in bannedIPs" :key="ip" class="ip-item">
+          <div class="dot-green"></div>
+          <span>{{ ip }}</span>
+          <BaseButton @click="deleteItem(ip)" btn_class="btn-secondary">Unban</BaseButton>
+        </li>
+      </ul>
+      <p v-else class="no-items">No banned IPs found.</p>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.settings {
-  .ip-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    height: 50px;
-    margin-bottom: 1rem;
-    padding: 0 1rem;
-    border-radius: 8px;
-    position: relative;
+.ip-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 24px;
+  box-shadow:
+    0px 1px 2px rgba(0, 0, 0, 0.04),
+    0px 3px 8px rgba(0, 0, 0, 0.12),
+    0px 3px 8px rgba(0, 0, 0, 0.6);
 
-    &:before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 8px;
-      padding: 2px;
-      background: var(--vt-c-to-right-gradient);
-      -webkit-mask:
-        linear-gradient(var(--vt-c-white) 0 0) content-box,
-        linear-gradient(var(--vt-c-white) 0 0);
-      mask:
-        linear-gradient(var(--vt-c-white) 0 0) content-box,
-        linear-gradient(var(--vt-c-white) 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none;
-    }
+  span {
+    color: var(--vt-c-gray-300);
+    font-size: 18px;
+    font-weight: 700;
+    font-family: 'Nunito';
+  }
 
-    span {
-      color: var(--vt-c-gray-300);
-      font-size: 18px;
-      font-weight: 700;
-      font-family: 'Nunito';
-    }
-
-    button {
-      margin-left: auto;
-    }
+  button {
+    margin-left: auto;
   }
 }
 </style>

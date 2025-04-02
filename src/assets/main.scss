@@ -1,14 +1,20 @@
 @use './variables.scss';
-@use './transition.scss';
 @use './reset.scss';
+
+@use './transition.scss';
+@use './animations.scss';
+@use './keyframes.scss';
+
 @use './carousel.scss';
+
+@use './text.scss';
 @use './input.scss';
+@use './button.scss';
+
 @use './project.scss';
 @use './card.scss';
-@use './button.scss';
-@use './loader.scss';
 @use './toast.scss';
-@use './not_found.scss';
+
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&display=swap');
 @import 'vue-toastification/dist/index.css';
@@ -162,69 +168,9 @@ section {
   }
 }
 
-strong {
-  font-weight: 600;
-}
-
-h1 {
-  color: var(--vt-c-gray-300);
-  font-size: 32px;
-  font-weight: 400;
-  text-align: center;
-  margin-bottom: 3rem;
-
-  @media (min-width: 1024px) {
-    font-size: 48px;
-    margin-bottom: 4rem;
-    text-align: start;
-  }
-}
-
-p,
-span,
-a {
-  font-size: 16px;
-}
-
-@media (min-width: 1024px) {
-  a {
-    font-size: 20px;
-  }
-  p,
-  span {
-    font-size: 24px;
-  }
-}
-
-.header-box {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 1rem 1rem 0;
-  margin-bottom: 2rem;
-  border-bottom: 1px solid var(--vt-c-gray-400);
-}
-
 .admin-header {
   font-size: 32px;
   color: var(--vt-c-gray-300);
-}
-
-.header-actions {
-  display: flex;
-  gap: 0.4rem;
-
-  button {
-    img {
-      transition: all var(--vt-transition-delay);
-      scale: 0.9;
-    }
-    &:hover {
-      img {
-        scale: 1;
-      }
-    }
-  }
 }
 
 .social-icon {
@@ -248,22 +194,6 @@ a {
   }
 }
 
-a {
-  color: var(--vt-c-purple-300);
-  text-decoration: none;
-  font-weight: 600;
-  font-family: 'Nunito';
-  transition: var(--vt-transition-delay);
-
-  &:hover {
-    color: var(--vt-c-purple-600);
-
-    img {
-      scale: 1.1;
-    }
-  }
-}
-
 .router-link-active {
   color: var(--vt-c-white);
 
@@ -283,17 +213,4 @@ a {
 .hidden {
   transform: translateY(-100%);
   opacity: 0;
-}
-
-.rotating {
-  animation: spin var(--vt-transition-delay) linear infinite;
-}
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }

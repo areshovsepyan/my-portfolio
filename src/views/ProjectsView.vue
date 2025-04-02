@@ -6,7 +6,7 @@ import BaseProject from '@/components/UI/BaseProject.vue';
 import BaseLoader from '@/components/UI/BaseLoader.vue';
 import { useResize } from '@/composables/useResize';
 
-const { isOnMobile } = useResize();
+const { isOnDesktop } = useResize();
 
 const projects = ref([]);
 const isLoading = ref(false);
@@ -32,9 +32,9 @@ const fetchData = async () => {
 <template>
   <section class="projects-section">
     <p class="section-greeting">
-      &lt; This is where you can explore my <br v-if="isOnMobile" />
-      work <br v-if="!isOnMobile" />
-      and see the projects that showcase <br v-if="isOnMobile" />
+      &lt; This is where you can explore my <br v-if="!isOnDesktop" />
+      work <br v-if="isOnDesktop" />
+      and see the projects that showcase <br v-if="!isOnDesktop" />
       my <strong>skills</strong> and <strong>creativity</strong>. /&gt;
     </p>
 

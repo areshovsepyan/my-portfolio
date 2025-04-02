@@ -9,11 +9,11 @@ import TheHeader from '@/components/admin/TheHeader.vue';
 
 const { isLoading, isRotating, dataList, generateId, manualFetchData } = useFetchData();
 
-const newEducation = ref({});
+const newExperience = ref({});
 
 const addNew = () => {
-  newEducation.value.id = generateId();
-  dataList.value.unshift(newEducation);
+  newExperience.value.id = generateId();
+  dataList.value.unshift(newExperience);
 };
 
 const deleteItem = async (id) => {
@@ -22,7 +22,7 @@ const deleteItem = async (id) => {
 
     isLoading.value = true;
 
-    const { data, message } = (await admin.delete(`/data?category=education&id=${id}`)).data;
+    const { data, message } = (await admin.delete(`/data?category=experience&id=${id}`)).data;
 
     dataList.value = [...data];
 
@@ -37,7 +37,7 @@ const deleteItem = async (id) => {
 
 <template>
   <TheHeader
-    title="Education"
+    title="Projects"
     :onAdd="addNew"
     :onRefresh="manualFetchData"
     :isRotating="isRotating"
@@ -47,30 +47,14 @@ const deleteItem = async (id) => {
     <BaseLoader v-if="isLoading" :isLoading="isLoading" loader_type="code" />
     <div v-else>
       <ul v-if="dataList.length">
-        <li v-for="item in dataList" :key="item.id">
-          <span>{{ item.title }}</span>
+        <li v-for="item in dataList" :key="item.id" class="ip-item">
+          <span>{{ item.company }}</span>
           <BaseButton @click="deleteItem(id)" btn_class="btn-admin">Delete</BaseButton>
         </li>
       </ul>
-      <!-- SHOW EMPTY FIELDS -->
-      <p v-else class="no-items">No education data found.</p>
+      <p v-else class="no-items">No projects found.</p>
     </div>
   </div>
 </template>
 
-<style lang="scss" scoped>
-ul {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-
-  li {
-    padding: 1rem 2.5rem;
-    border-radius: 24px;
-    box-shadow:
-      0px 1px 2px rgba(0, 0, 0, 0.04),
-      0px 3px 8px rgba(0, 0, 0, 0.12),
-      0px 3px 8px rgba(0, 0, 0, 0.6);
-  }
-}
-</style>
+<style lang="scss" scoped></style>

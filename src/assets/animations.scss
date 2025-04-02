@@ -1,0 +1,143 @@
+.spinner {
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  position: relative;
+  animation: rotate 1s linear infinite;
+
+  &::before {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    inset: 0px;
+    border-radius: 50%;
+    border: 3.5px solid var(--vt-c-gray-700);
+    animation: prixClipFix 2s linear infinite;
+  }
+}
+
+.round-arrow {
+  width: 27px;
+  height: 27px;
+  border: 3px solid var(--vt-c-gray-700);
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+
+  &::after {
+    content: '';
+    position: absolute;
+    box-sizing: border-box;
+    left: 12px;
+    top: 16px;
+    border: 5px solid transparent;
+    border-right-color: var(--vt-c-gray-700);
+    transform: rotate(-50deg);
+  }
+}
+
+.code {
+  color: #fff;
+  font-family: Consolas, Menlo, Monaco, monospace;
+  font-weight: bold;
+  font-size: 78px;
+  opacity: 0.8;
+
+  &::before {
+    content: '{';
+    display: inline-block;
+    animation: pulse 0.4s alternate infinite ease-in-out;
+  }
+  &::after {
+    content: '}';
+    display: inline-block;
+    animation: pulse 0.4s 0.3s alternate infinite ease-in-out;
+  }
+}
+
+.rotating {
+  animation: spin var(--vt-transition-delay) linear infinite;
+}
+
+.loader,
+.loader:before,
+.loader:after {
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  animation-fill-mode: both;
+  animation: bubbleFadeInOut 1.4s infinite ease-in-out;
+}
+
+.loader {
+  color: var(--vt-c-gray-700);
+  font-size: 5px;
+  animation-delay: -0.16s;
+  text-indent: -9999em;
+
+  position: relative;
+  top: -12px;
+  transform: translateZ(0);
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+  }
+  &::before {
+    left: -18px;
+    animation-delay: -0.32s;
+  }
+  &::after {
+    left: 18px;
+  }
+}
+
+.glitch {
+  color: white;
+  font-family: sans-serif;
+  font-weight: 800;
+  position: relative;
+  padding: 2rem;
+  font-size: 100px;
+
+  &::before,
+  &::after {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
+    color: white;
+    content: '404';
+
+    background: black;
+    overflow: hidden;
+    top: 0;
+  }
+
+  &::before {
+    left: 3px;
+    text-shadow: -2px 0 red;
+    animation-name: glitch-animation-1;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-direction: reverse-alternate;
+  }
+
+  &::after {
+    left: -3px;
+    text-shadow: -2px 0 blue;
+    animation-name: glitch-animation-2;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-direction: reverse-alternate;
+  }
+}

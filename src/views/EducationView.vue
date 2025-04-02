@@ -6,7 +6,7 @@ import BaseCard from '@/components/UI/BaseCard.vue';
 import BaseLoader from '@/components/UI/BaseLoader.vue';
 import { useResize } from '@/composables/useResize';
 
-const { isOnMobile } = useResize();
+const { isOnDesktop } = useResize();
 
 const education = ref([]);
 const isLoading = ref(false);
@@ -32,9 +32,9 @@ const fetchData = async () => {
 <template>
   <section class="education-section">
     <p class="section-greeting">
-      &lt; This is where you can explore my <br v-if="isOnMobile" />
-      academic journey <br v-if="!isOnMobile" />
-      and see the <strong> knowledge </strong> <br v-if="isOnMobile" />
+      &lt; This is where you can explore my <br v-if="!isOnDesktop" />
+      academic journey <br v-if="isOnDesktop" />
+      and see the <strong> knowledge </strong> <br v-if="!isOnDesktop" />
       and <strong> skills </strong> I've gained along the way. /&gt;
     </p>
 
@@ -50,7 +50,7 @@ const fetchData = async () => {
 
           <div class="date-block">
             <span>{{ item.start_year }}</span>
-            <div class="dot"></div>
+            <div class="dot-green"></div>
             <span>{{ item.end_year }}</span>
           </div>
         </div>

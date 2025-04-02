@@ -6,7 +6,7 @@ import BaseButton from '@/components/UI/BaseButton.vue';
 import { useResize } from '@/composables/useResize';
 import toast from '../../utils/toast';
 
-const { isOnMobile } = useResize();
+const { isOnDesktop } = useResize();
 
 const formResetTrigger = ref(0);
 const formSubmitted = ref(false);
@@ -63,9 +63,9 @@ const submitForm = async () => {
 <template>
   <section class="contact-section">
     <p :class="['section-greeting', { 'scaled-down': formSubmitted }]">
-      &lt; This is where you can <strong>reach out to me</strong> <br v-if="isOnMobile" />
-      — whether <br v-if="!isOnMobile" />
-      you have a project, a question, <br v-if="isOnMobile" />
+      &lt; This is where you can <strong>reach out to me</strong> <br v-if="!isOnDesktop" />
+      — whether <br v-if="isOnDesktop" />
+      you have a project, a question, <br v-if="isOnDesktop" />
       or just want to <strong> say hello.</strong> /&gt;
     </p>
 
