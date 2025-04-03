@@ -1,4 +1,8 @@
 <script setup>
+import { useResize } from '@/composables/useResize.js';
+
+const { isOnMobile } = useResize();
+
 defineProps({
   image: Object,
   title: String,
@@ -11,7 +15,18 @@ defineProps({
 <template>
   <div class="project-card">
     <div class="image-container">
-      <img :src="`/images/projects/${image.url}.png`" loading="lazy" :alt="image.alt" />
+      <img
+        v-if="!isOnMobile"
+        :src="`/images/projects/${image.url}.png`"
+        loading="lazy"
+        :alt="image.alt"
+      />
+      <img
+        v-else
+        :src="`/images/projects/${image.url}-mobile.png`"
+        loading="lazy"
+        :alt="image.alt"
+      />
     </div>
 
     <div class="project-details">
