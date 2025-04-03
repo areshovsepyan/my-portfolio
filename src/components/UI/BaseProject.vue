@@ -2,18 +2,22 @@
 defineProps({
   image: Object,
   title: String,
+  description: String,
   technologies: Array,
+  website_url: String,
 });
 </script>
 
 <template>
   <div class="project-card">
     <div class="image-container">
-      <img :src="`/images/projects/${image.url}.jpg`" :alt="image.alt" />
+      <img :src="`/images/projects/${image.url}.png`" loading="lazy" :alt="image.alt" />
     </div>
 
     <div class="project-details">
       <h2>{{ title }}</h2>
+
+      <p class="description">{{ description }}</p>
 
       <div class="row-wrapper">
         <ul class="project-technologies">
@@ -22,7 +26,7 @@ defineProps({
           </li>
         </ul>
         <div class="action-wrapper">
-          <a href="">
+          <a :href="website_url" target="_blank">
             <img src="/icons/base/icon_external-link.svg" alt="External link icon" />
           </a>
         </div>
@@ -50,6 +54,7 @@ defineProps({
     width: 100%;
     border-radius: 12px 12px 0 0;
     overflow: hidden;
+    padding-bottom: 2rem;
 
     img {
       width: 100%;
@@ -58,7 +63,7 @@ defineProps({
       transition: all calc(var(--vt-transition-delay) * 1.5);
 
       &:hover {
-        scale: 1.1;
+        scale: 1.2;
       }
     }
   }
@@ -66,6 +71,15 @@ defineProps({
   .project-details {
     h2 {
       margin-bottom: 1rem;
+    }
+
+    .description {
+      margin-bottom: 2rem;
+      font-size: 18px;
+
+      @media (min-width: 1024px) {
+        font-size: 20px;
+      }
     }
 
     .row-wrapper {
@@ -112,6 +126,7 @@ defineProps({
           }
 
           img {
+            transition: all var(--vt-transition-delay);
             width: 100%;
           }
         }
