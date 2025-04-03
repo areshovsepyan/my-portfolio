@@ -49,11 +49,12 @@ const fetchData = async () => {
           <p class="employment-type">{{ item.employment_type }}</p>
           <div class="date-block">
             <span>{{ item.start_date }}</span>
-            <div class="dot-green"></div>
+            <div class="dot-gray"></div>
             <span>{{ item.end_date }}</span>
           </div>
           <p class="location">{{ item.location }}</p>
         </div>
+
         <div class="text-block">
           <a
             class="company-name"
@@ -69,12 +70,17 @@ const fetchData = async () => {
           <p class="job-description">
             {{ item.description }}
           </p>
-          <ul class="job-technologies">
+          <ul class="job-bullet-points" v-if="item.bullet_points.length">
             <li
-              v-for="(technology, index) in item.technologies"
-              :key="technology"
-              class="job-technology"
+              v-for="bullet_point in item.bullet_points"
+              :key="bullet_point"
+              class="job-bullet-point"
             >
+              <p>{{ bullet_point }}</p>
+            </li>
+          </ul>
+          <ul class="job-technologies">
+            <li v-for="(technology, index) in item.technologies" :key="technology">
               <div v-if="index" class="dot-purple"></div>
               {{ technology }}
             </li>
@@ -102,9 +108,15 @@ section {
     flex: 1 0 auto;
   }
 
+  .text-block {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
   .employment-type {
     font-size: 16px;
-    color: var(--vt-c-purple-300);
+    color: var(--vt-c-green);
     margin-bottom: 0.5rem;
 
     @media (min-width: 1024px) {
@@ -117,42 +129,67 @@ section {
     color: var(--vt-c-purple-300);
     font-size: 22px;
     font-weight: 600;
-    margin-bottom: 1.5rem;
   }
 
-  .job-description {
-    font-size: 14px;
-    line-height: 30px;
-
-    margin-bottom: 3rem;
-
-    @media (min-width: 1024px) {
-      font-size: 22px;
-      line-height: 42px;
-      margin-bottom: 1.5rem;
-    }
-  }
-
-  .job-technologies {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.5rem;
-
-    @media (min-width: 1024px) {
-      gap: 1rem;
-    }
-
-    .job-technology {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--vt-c-purple-300);
+  .job {
+    &-description {
       font-size: 14px;
+      line-height: 1.5;
+
+      @media (min-width: 1024px) {
+        font-size: 20px;
+        line-height: 1.7;
+      }
+    }
+
+    &-bullet-points {
+      display: flex;
+      flex-direction: column;
+      padding-left: 14px;
+      gap: 0.5rem;
 
       @media (min-width: 1024px) {
         gap: 1rem;
+      }
+
+      li {
+        list-style-type: disc;
+
+        p {
+          font-size: 13px;
+          font-style: italic;
+
+          @media (min-width: 1024px) {
+            font-size: 18px;
+            line-height: 1.5;
+          }
+        }
+      }
+    }
+
+    &-technologies {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+
+      @media (min-width: 1024px) {
+        gap: 0.75rem;
+      }
+
+      li {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--vt-c-purple-300);
+        font-size: 13px;
+
+        @media (min-width: 1024px) {
+          font-size: 16px;
+          gap: 0.75rem;
+        }
       }
     }
   }

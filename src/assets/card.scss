@@ -66,6 +66,7 @@
 .dot {
   &-big,
   &-green,
+  &-gray,
   &-purple {
     display: inline-block;
     width: 6px;
@@ -82,6 +83,10 @@
       inset -2px -2px 4px rgba(0, 0, 0, 0.2),
       2px 2px 4px rgba(0, 0, 0, 0.3);
   }
+  &-gray {
+    background-color: var(--vt-c-gray-400);
+  }
+
   &-green {
     background-color: var(--vt-c-green);
   }
@@ -114,6 +119,7 @@
     padding: 4rem;
   }
 }
+
 .border {
   &-gray {
     border: 2px solid var(--vt-c-gray-700);
