@@ -96,8 +96,8 @@ import BaseButton from './UI/BaseButton.vue';
     display: flex;
 
     .profile-picture {
-      background-color: var(--vt-c-purple-800);
-      background: linear-gradient(135deg, var(--vt-c-purple-600) 0%, var(--vt-c-purple-800) 50%);
+      // background-color: var(--vt-c-purple-800);
+      // background: linear-gradient(135deg, var(--vt-c-purple-600) 0%, var(--vt-c-purple-800) 50%);
       border-radius: 50%;
       width: 125px;
       height: 125px;
