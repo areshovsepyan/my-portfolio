@@ -27,3 +27,18 @@ a {
 li {
   list-style-type: none;
 }
+
+::selection {
+  background: var(--vt-c-purple-800);
+  color: white;
+}
+
+::-moz-selection {
+  background: var(--vt-c-purple-800);
+  color: white;
+}
+
+::-webkit-selection {
+  background: var(--vt-c-purple-800);
+  color: #ffffff;
+}
