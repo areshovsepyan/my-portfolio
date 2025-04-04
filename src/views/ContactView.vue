@@ -65,7 +65,7 @@ const submitForm = async () => {
     <p :class="['section-greeting', { 'scaled-down': formSubmitted }]">
       &lt; This is where you can <strong>reach out to me</strong> <br v-if="!isOnDesktop" />
       — whether <br v-if="isOnDesktop" />
-      you have a project, a question, <br v-if="isOnDesktop" />
+      you have a project, a question, <br v-if="!isOnDesktop" />
       or just want to <strong> say hello.</strong> /&gt;
     </p>
 
