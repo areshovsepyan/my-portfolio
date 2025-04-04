@@ -4,9 +4,12 @@ import BaseButton from './UI/BaseButton.vue';
 
 <template>
   <section class="introduction-section">
-    <div class="image-box">
+    <!-- PICTURE BOX REMOVED TIL I FIND PRO HEAD SHOT -->
+
+    <div v-if="false" class="image-box">
       <img class="profile-picture" src="/images/brackets.jpg" alt="HTML brackets" />
     </div>
+
     <div class="text-box">
       <span>BASED IN ARMENIA</span>
       <h3>Hi, I'm Ara</h3>
@@ -52,6 +55,7 @@ import BaseButton from './UI/BaseButton.vue';
       font-size: 18px;
 
       @media (min-width: 1024px) {
+        max-width: 850px;
         font-size: 24px;
         text-align: start;
         line-height: 42px;
