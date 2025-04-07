@@ -3,7 +3,7 @@ import { ref, onMounted } from 'vue';
 import { api } from '../../utils/axios';
 import toast from '../../utils/toast';
 import BaseCard from '@/components/UI/BaseCard.vue';
-import BaseButton from '@/components/UI/BaseButton.vue';
+import BaseLink from '@/components/UI/BaseLink.vue';
 import BaseLoader from '@/components/UI/BaseLoader.vue';
 import { useResize } from '@/composables/useResize';
 
@@ -38,7 +38,14 @@ const fetchData = async () => {
       and see my whole experience <br v-if="!isOnDesktop" />
       as a <strong>Front-End Developer.</strong> /&gt;
     </p>
-    <BaseButton>Download CV</BaseButton>
+
+    <BaseLink
+      class="download-cv"
+      href="/ara-hovsepyan-cv-2025.pdf"
+      download="CV - Ara Hovsepyan.pdf"
+    >
+      Download CV
+    </BaseLink>
 
     <BaseLoader v-if="isLoading" :isLoading="isLoading" loader_type="code" />
 
@@ -96,7 +103,7 @@ const fetchData = async () => {
 section {
   padding: 1rem 0 5rem 0;
 
-  button {
+  .download-cv {
     margin: 0 auto 6rem auto;
 
     @media (min-width: 1024px) {

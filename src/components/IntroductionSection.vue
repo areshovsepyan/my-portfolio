@@ -1,5 +1,5 @@
 <script setup>
-import BaseButton from './UI/BaseButton.vue';
+import BaseLink from './UI/BaseLink.vue';
 </script>
 
 <template>
@@ -19,7 +19,9 @@ import BaseButton from './UI/BaseButton.vue';
         functional web applications.
       </p>
       <div class="actions">
-        <BaseButton>Download CV</BaseButton>
+        <BaseLink href="/ara-hovsepyan-cv-2025.pdf" target="_blank" rel="noopener">
+          View CV
+        </BaseLink>
         <RouterLink to="/experience"> See experiences </RouterLink>
       </div>
     </div>

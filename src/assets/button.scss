@@ -30,8 +30,12 @@ button {
   }
 }
 
-.btn {
+.btn,
+.link {
   &-primary {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: var(--vt-c-white);
     color: var(--vt-c-gray-900);
     height: 44px;
@@ -39,6 +43,7 @@ button {
     padding: 0 25px;
     border-radius: 100px;
     max-width: fit-content;
+    cursor: pointer;
 
     @media (min-width: 1024px) {
       height: 50px;
@@ -47,6 +52,7 @@ button {
     }
 
     &:hover {
+      color: var(--vt-c-gray-900);
       scale: 1.05;
     }
   }
