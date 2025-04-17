@@ -8,6 +8,24 @@ import TheFooter from '@/components/layout/TheFooter.vue';
 import { ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
+import { useHead } from '@vueuse/head';
+
+useHead({
+  title: 'Ara Hovsepyan | Vue.js Front-End Developer',
+  meta: [
+    {
+      name: 'description',
+      content:
+        'Vue.js/Nuxt.js expert building fast, SEO-friendly web apps. Explore my portfolio and case studies.',
+    },
+    { property: 'og:title', content: 'Ara Hovsepyan | Vue.js Specialist' },
+    {
+      property: 'og:description',
+      content: 'Front-end developer focused on Vue.js, Nuxt.js, and modern JavaScript.',
+    },
+  ],
+});
+
 const router = useRouter();
 const route = useRoute();
 
