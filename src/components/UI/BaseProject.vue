@@ -77,8 +77,10 @@ defineProps({
       object-fit: cover;
       transition: all calc(var(--vt-transition-delay) * 1.5);
 
-      &:hover {
-        scale: 1.2;
+      @media (min-width: 1024px) {
+        &:hover {
+          scale: 1.025;
+        }
       }
     }
   }

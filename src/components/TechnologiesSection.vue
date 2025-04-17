@@ -134,9 +134,11 @@ const technologies = ref([
         }
       }
 
-      &:hover {
-        background-color: var(--vt-c-gray-800);
-        scale: 1.025;
+      @media (min-width: 1024px) {
+        &:hover {
+          background-color: var(--vt-c-gray-800);
+          scale: 1.025;
+        }
       }
     }
 
