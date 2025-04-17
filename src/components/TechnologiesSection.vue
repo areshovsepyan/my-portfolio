@@ -3,12 +3,20 @@ import { ref } from 'vue';
 import BaseCard from '@/components/UI/BaseCard.vue';
 
 const technologies = ref([
+  // {
+  //   label: 'TypeScript',
+  //   description: 'JavaScript but better',
+  //   img: {
+  //     alt: 'TypeScript icon',
+  //     icon: 'typescript',
+  //   },
+  // },
   {
-    label: 'TypeScript',
-    description: 'JavaScript but better',
+    label: 'JavaScript',
+    description: 'Programming language',
     img: {
-      alt: 'Typescript icon',
-      icon: 'typescript',
+      alt: 'JavaScript icon',
+      icon: 'javascript',
     },
   },
   {
