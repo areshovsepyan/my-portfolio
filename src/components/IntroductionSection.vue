@@ -1,11 +1,9 @@
 <script setup>
-import { getCurrentInstance } from 'vue';
+import { event } from 'vue-gtag';
 import BaseLink from './UI/BaseLink.vue';
 
-const { proxy } = getCurrentInstance();
-
 function trackViewCVClick() {
-  proxy.$gtag.event('view_cv_click', {
+  event('view_cv_click', {
     event_category: 'engagement',
     event_label: 'View CV Link',
     value: 1,

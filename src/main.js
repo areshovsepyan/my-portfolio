@@ -1,6 +1,7 @@
 import './assets/main.scss';
 
 import { createApp } from 'vue';
+import { createGtag } from 'vue-gtag';
 import { createPinia } from 'pinia';
 import { motionPlugin } from '@oku-ui/motion';
 
@@ -8,9 +9,14 @@ import App from './App.vue';
 import Toast from 'vue-toastification';
 import router from './router';
 
-import VueGtag from 'vue-gtag';
-
 const app = createApp(App);
+
+const gtag = createGtag({
+  tagId: import.meta.env.VITE_GA_MEASUREMENT_ID,
+  pageTracker: {
+    router,
+  },
+});
 
 app.use(createPinia());
 
@@ -18,13 +24,7 @@ app.use(motionPlugin);
 
 app.use(router);
 
-app.use(
-  VueGtag,
-  {
-    config: { id: 'G-D8F0BB5FJZ' },
-  },
-  router,
-);
+app.use(gtag);
 
 app.use(Toast, {
   closeButton: false,
