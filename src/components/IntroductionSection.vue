@@ -1,5 +1,16 @@
 <script setup>
+import { getCurrentInstance } from 'vue';
 import BaseLink from './UI/BaseLink.vue';
+
+const { proxy } = getCurrentInstance();
+
+function trackViewCVClick() {
+  proxy.$gtag.event('view_cv_click', {
+    event_category: 'engagement',
+    event_label: 'View CV Link',
+    value: 1,
+  });
+}
 </script>
 
 <template>
@@ -19,7 +30,12 @@ import BaseLink from './UI/BaseLink.vue';
         functional web applications.
       </p>
       <div class="actions">
-        <BaseLink href="/ara-hovsepyan-cv-2025.pdf" target="_blank" rel="noopener">
+        <BaseLink
+          @click="trackViewCVClick"
+          href="/ara-hovsepyan-cv-2025.pdf"
+          target="_blank"
+          rel="noopener"
+        >
           View CV
         </BaseLink>
         <RouterLink to="/experience"> See experiences </RouterLink>

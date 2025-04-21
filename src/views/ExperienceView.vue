@@ -1,11 +1,21 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, getCurrentInstance } from 'vue';
 import { api } from '../../utils/axios';
 import toast from '../../utils/toast';
 import BaseCard from '@/components/UI/BaseCard.vue';
 import BaseLink from '@/components/UI/BaseLink.vue';
 import BaseLoader from '@/components/UI/BaseLoader.vue';
 import { useResize } from '@/composables/useResize';
+
+const { proxy } = getCurrentInstance();
+
+function trackDownloadCVClick() {
+  proxy.$gtag.event('download_cv_click', {
+    event_category: 'engagement',
+    event_label: 'Download CV Button',
+    value: 2,
+  });
+}
 
 const { isOnDesktop } = useResize();
 
@@ -40,6 +50,7 @@ const fetchData = async () => {
     </p>
 
     <BaseLink
+      @click="trackDownloadCVClick"
       class="download-cv"
       href="/ara-hovsepyan-cv-2025.pdf"
       download="CV - Ara Hovsepyan.pdf"
