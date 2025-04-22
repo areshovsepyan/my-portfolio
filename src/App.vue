@@ -17,6 +17,11 @@ useHead({
       content:
         'Vue.js/Nuxt.js expert building fast, SEO-friendly web apps. Explore my portfolio and case studies.',
     },
+    {
+      name: 'keywords',
+      content:
+        'web developer, frontend developer, Vue.js developer, portfolio website, Armenian developer, Armenian web developer, Yerevan frontend developer, freelance developer Armenia, best Vue.js developer portfolio, minimalist web designer in Armenia',
+    },
     { property: 'og:title', content: 'Ara Hovsepyan | Vue.js Specialist' },
     {
       property: 'og:description',
