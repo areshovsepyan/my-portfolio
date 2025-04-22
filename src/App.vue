@@ -1,14 +1,13 @@
 <script setup>
+import { ref, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { useHead } from '@unhead/vue';
+
 import { Analytics } from '@vercel/analytics/vue';
 import { SpeedInsights } from '@vercel/speed-insights/vue';
 
 import TheHeader from '@/components/layout/TheHeader.vue';
 import TheFooter from '@/components/layout/TheFooter.vue';
-
-import { ref, watch } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
-
-import { useHead } from '@vueuse/head';
 
 useHead({
   title: 'Ara Hovsepyan | Vue.js Front-End Developer',

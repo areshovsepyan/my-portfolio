@@ -3,6 +3,7 @@ import './assets/main.scss';
 import { createApp } from 'vue';
 import { createGtag } from 'vue-gtag';
 import { createPinia } from 'pinia';
+import { createHead } from '@unhead/vue/client';
 import { motionPlugin } from '@oku-ui/motion';
 
 import App from './App.vue';
@@ -18,6 +19,8 @@ const gtag = createGtag({
   },
 });
 
+const head = createHead();
+
 app.use(createPinia());
 
 app.use(motionPlugin);
@@ -25,6 +28,8 @@ app.use(motionPlugin);
 app.use(router);
 
 app.use(gtag);
+
+app.use(head);
 
 app.use(Toast, {
   closeButton: false,
