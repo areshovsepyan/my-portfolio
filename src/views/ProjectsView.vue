@@ -42,13 +42,14 @@ const fetchData = async () => {
 
     <div v-else-if="projects.length" class="projects-container">
       <BaseProject
-        v-for="{ title, description, technologies, image, website_url } in projects"
+        v-for="{ title, description, technologies, image, website_url, repo_url } in projects"
         :key="title"
         :title
         :description
         :technologies
         :image
         :website_url
+        :repo_url
       />
     </div>
     <p v-else class="no-items">No projects found.</p>

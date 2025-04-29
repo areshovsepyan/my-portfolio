@@ -8,6 +8,7 @@ defineProps({
   title: String,
   description: String,
   technologies: Array,
+  repo_url: String,
   website_url: String,
 });
 </script>
@@ -41,6 +42,9 @@ defineProps({
           </li>
         </ul>
         <div class="action-wrapper">
+          <a v-if="repo_url" :href="repo_url" target="_blank">
+            <img src="/icons/base/icon_octocat.svg" alt="GitHub repo" />
+          </a>
           <a :href="website_url" target="_blank">
             <img src="/icons/base/icon_external-link.svg" alt="External link icon" />
           </a>
@@ -132,6 +136,7 @@ defineProps({
       .action-wrapper {
         display: flex;
         justify-content: center;
+        gap: 0.5rem;
 
         a {
           height: 25px;
