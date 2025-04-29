@@ -23,7 +23,12 @@ const { social } = useSocialStore();
       </ul>
     </nav>
 
-    <small> Copyright © 2025 Ara Hovsepyan. </small>
+    <small>
+      © 2025 Ara Hovsepyan ·
+      <a href="https://github.com/areshovsepyan/my-portfolio/blob/master/LICENSE" target="_blank">
+        MIT License
+      </a>
+    </small>
   </footer>
 </template>
 
@@ -44,6 +49,15 @@ footer {
       @media (min-width: 1024px) {
         font-size: 20px;
       }
+    }
+  }
+
+  small {
+    a {
+      all: unset;
+      font-size: smaller;
+      color: var(--vt-c-purple-300);
+      cursor: pointer;
     }
   }
 }
