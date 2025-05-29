@@ -1,4 +1,4 @@
-import { defineStore } from 'pinia'
+import { defineStore } from 'pinia';
 
 export const useSocialStore = defineStore('social', {
   state: () => ({
@@ -22,6 +22,15 @@ export const useSocialStore = defineStore('social', {
         },
       },
       {
+        label: 'Gumroad',
+        href: 'https://arahovsepyan.gumroad.com/',
+        type: 'link',
+        img: {
+          alt: 'Gumroad Icon',
+          icon: 'gumroad',
+        },
+      },
+      {
         label: 'LinkedIn',
         href: 'https://www.linkedin.com/in/ara-hovsepyan0/',
         type: 'link',
@@ -30,24 +39,6 @@ export const useSocialStore = defineStore('social', {
           icon: 'linkedin',
         },
       },
-      // {
-      //   label: 'Instagram',
-      //   href: 'https://www.instagram.com/armares0/',
-      //   type: 'link',
-      //   img: {
-      //     alt: 'Instagram Icon',
-      //     icon: 'instagram',
-      //   },
-      // },
-      // {
-      //   label: 'X (formerly Twitter)',
-      //   href: 'https://x.com/areshovsepyan',
-      //   type: 'link',
-      //   img: {
-      //     alt: 'X Icon',
-      //     icon: 'x',
-      //   },
-      // },
       {
         label: 'areshovsepyan@yahoo.com',
         href: 'mailto:areshovsepyan@yahoo.com',
@@ -57,17 +48,8 @@ export const useSocialStore = defineStore('social', {
           icon: 'email',
         },
       },
-      {
-        label: '+37477072487',
-        href: 'tel:+37477072487',
-        type: 'phone',
-        img: {
-          alt: 'Phone Icon',
-          icon: 'phone',
-        },
-      },
     ],
   }),
   getters: {},
   actions: {},
-})
+});
