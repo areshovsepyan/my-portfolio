@@ -70,6 +70,10 @@ button {
     }
   }
 
+  &-tertiary {
+    color: var(--vt-c-white);
+  }
+
   &-icon {
     span {
       display: flex;
