@@ -4,7 +4,6 @@ defineProps({
   description: String,
   image: Object,
   slug: String,
-  tags: Array,
   technologies: Array,
   versions: Object,
 });
@@ -94,11 +93,11 @@ defineProps({
       gap: 0.5rem;
 
       .product-technology {
-        background-color: var(--vt-c-gray-100);
-        font-size: 12px;
+        background-color: var(--vt-c-gray-700);
+        color: var(--vt-c-gray-300);
+        font-size: 14px;
         padding: 2px 12px;
         border-radius: 6px;
-        color: var(--vt-c-black);
 
         @media (min-width: 1024px) {
           font-size: 16px;

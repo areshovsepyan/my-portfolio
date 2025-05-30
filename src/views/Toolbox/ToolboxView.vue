@@ -42,13 +42,12 @@ const fetchData = async () => {
 
     <div v-else-if="products.length" class="products-container">
       <BaseProduct
-        v-for="{ id, title, description, image, slug, tags, technologies, versions } in products"
+        v-for="{ id, title, description, image, slug, technologies, versions } in products"
         :key="id"
         :title
         :description
         :image
         :slug
-        :tags
         :technologies
         :versions
       />
