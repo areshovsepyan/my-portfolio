@@ -14,6 +14,7 @@ const routes = [
   { label: 'home', path: '/' },
   { label: 'projects', path: '/projects' },
   { label: 'experience', path: '/experience' },
+  { label: 'toolbox', path: '/toolbox' },
   { label: 'contact', path: '/contact' },
 ];
 
@@ -115,6 +116,21 @@ header {
       overflow-y: hidden;
       scrollbar-width: none;
       -webkit-overflow-scrolling: touch;
+
+      @media (max-width: 768px) {
+        li {
+          &:first-child {
+            .social-links {
+              padding-left: 0;
+            }
+          }
+          &:last-child {
+            .social-links {
+              padding-right: 0;
+            }
+          }
+        }
+      }
 
       &::-webkit-scrollbar {
         display: none;

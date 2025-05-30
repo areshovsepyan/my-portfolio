@@ -116,8 +116,8 @@ defineProps({
         gap: 0.5rem;
 
         .project-technology {
-          color: var(--vt-c-gray-300);
           font-size: 16px;
+          color: var(--vt-c-gray-300);
           background-color: var(--vt-c-gray-700);
           padding: 6px 16px;
           border-radius: 8px;

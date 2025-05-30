@@ -67,29 +67,5 @@ section {
   @media (min-width: 1024px) {
     padding: 4rem 0;
   }
-
-  .card {
-    &-title {
-      margin: 0;
-    }
-
-    @media (min-width: 1024px) {
-      align-items: center;
-    }
-
-    .info-block {
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-
-      .certificate-name {
-        color: var(--vt-c-purple-300);
-
-        @media (min-width: 1024px) {
-          font-size: 22px;
-        }
-      }
-    }
-  }
 }
 </style>

@@ -10,7 +10,9 @@
 @use './text.scss';
 @use './input.scss';
 @use './button.scss';
+@use './tab.scss';
 
+@use './products.scss';
 @use './project.scss';
 @use './card.scss';
 @use './toast.scss';
@@ -213,4 +215,45 @@ section {
 .hidden {
   transform: translateY(-100%);
   opacity: 0;
+}
+
+.badge-free {
+  background-color: #e0f7fa;
+  color: #00796b;
+
+  &.active {
+    background-color: #b2ebf2;
+    color: #004d40;
+    font-weight: bold !important;
+    box-shadow:
+      0 0 0 2px #00bfa5,
+      0 0 8px #00bfa5;
+  }
+}
+
+.badge-pro {
+  background-color: #f3e5f5;
+  color: #6a1b9a;
+
+  &.active {
+    background-color: #e1bee7;
+    color: #4a148c;
+    font-weight: bold !important;
+
+    box-shadow:
+      0 0 0 2px #ab47bc,
+      0 0 8px #ab47bc;
+  }
+}
+
+.badge-free,
+.badge-pro {
+  transition: all 0.2s ease-in-out;
+}
+
+.divider {
+  width: 100%;
+  border: none;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.1);
 }

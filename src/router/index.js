@@ -14,6 +14,8 @@ import AdminLogsView from '@/views/admin/LogsView.vue';
 
 import HomeView from '@/views/HomeView.vue';
 import ProjectsView from '@/views/ProjectsView.vue';
+import ToolboxView from '@/views/Toolbox/ToolboxView.vue';
+import ToolView from '@/views/Toolbox/[slug]/ToolView.vue';
 import ExperienceView from '@/views/ExperienceView.vue';
 import ContactView from '@/views/ContactView.vue';
 
@@ -25,7 +27,9 @@ const router = createRouter({
     { path: '/', alias: '/home', component: HomeView, meta: { title: 'Home', id: 1 } },
     { path: '/projects', component: ProjectsView, meta: { title: 'Projects', id: 2 } },
     { path: '/experience', component: ExperienceView, meta: { title: 'Experience', id: 3 } },
-    { path: '/contact', component: ContactView, meta: { title: 'Contact', id: 4 } },
+    { path: '/toolbox', component: ToolboxView, meta: { title: 'Toolbox', id: 4 } },
+    { path: '/toolbox/:id', component: ToolView },
+    { path: '/contact', component: ContactView, meta: { title: 'Contact', id: 5 } },
     {
       path: '/login',
       component: LoginLayout,
