@@ -1,6 +1,9 @@
 <script setup>
 import { ref, computed } from 'vue';
 import BaseLink from './BaseLink.vue';
+import { useResize } from '@/composables/useResize.js';
+
+const { isOnMobile } = useResize();
 
 const props = defineProps({
   title: String,
@@ -56,15 +59,7 @@ const selectedVersion = computed(() => props.versions[selected.value]);
         <li v-for="(feature, index) in selectedVersion.features" :key="index">{{ feature }}</li>
       </ul>
 
-      <div v-if="selectedVersion.repo_url || selectedVersion.purchase_url" class="version-links">
-        <BaseLink
-          v-if="selectedVersion.repo_url"
-          :href="selectedVersion.repo_url"
-          target="_blank"
-          class="repo-link"
-        >
-          View Repo
-        </BaseLink>
+      <div v-if="selectedVersion.purchase_url" class="version-links">
         <BaseLink
           v-if="selectedVersion.purchase_url"
           :href="selectedVersion.purchase_url"
@@ -73,6 +68,11 @@ const selectedVersion = computed(() => props.versions[selected.value]);
         >
           {{ selectedVersion.call_to_action }}
         </BaseLink>
+        <p v-if="selectedVersion.repo_url" class="repo-message">
+          Need to peek under the hood?
+          <br v-if="isOnMobile" />
+          <a :href="selectedVersion.repo_url" target="_blank">View the source →</a>
+        </p>
       </div>
     </div>
   </section>
@@ -187,6 +187,7 @@ const selectedVersion = computed(() => props.versions[selected.value]);
 
     .version-links {
       display: flex;
+      flex-direction: column;
       gap: 1rem;
 
       a {
@@ -194,9 +195,12 @@ const selectedVersion = computed(() => props.versions[selected.value]);
         min-width: unset;
       }
 
-      .repo-link {
-        background-color: var(--vt-c-white);
-        color: var(--vt-c-black);
+      .repo-message {
+        font-size: 16px;
+        font-style: italic;
+        a {
+          font-size: 16px;
+        }
       }
 
       .buy-link {
