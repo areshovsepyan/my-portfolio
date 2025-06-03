@@ -48,30 +48,30 @@ const selectedVersion = computed(() => props.versions[selected.value]);
     </ul>
 
     <div v-if="selectedVersion" class="version-details">
-      <h3 class="version-title">
-        {{ selected === 'pro' ? 'Pro Version' : 'Free Version' }}
-        <span v-if="selectedVersion.status === 'coming-soon'" class="coming-soon">
-          Coming Soon
-        </span>
-      </h3>
+      <h3 class="version-title">{{ selectedVersion.description }}</h3>
 
       <ul class="version-features">
-        <li v-for="(feature, index) in selectedVersion.features" :key="index">{{ feature }}</li>
+        <li v-for="(feature, index) in selectedVersion.features" :key="index">
+          {{ feature }}
+        </li>
       </ul>
 
-      <div v-if="selectedVersion.purchase_url" class="version-links">
+      <p v-if="selectedVersion.isComingSoon" class="coming-soon">Coming Soon</p>
+
+      <div v-if="selectedVersion.isAvailable" class="version-links">
         <BaseLink
-          v-if="selectedVersion.purchase_url"
-          :href="selectedVersion.purchase_url"
+          :href="selectedVersion.purchaseUrl"
+          :disabled="!selectedVersion.purchaseUrl || !selectedVersion.isAvailable"
           target="_blank"
           class="buy-link"
         >
-          {{ selectedVersion.call_to_action }}
+          {{ selectedVersion.cta }}
         </BaseLink>
-        <p v-if="selectedVersion.repo_url" class="repo-message">
+
+        <p v-if="selectedVersion.repoUrl" class="repo-message">
           Need to peek under the hood?
           <br v-if="isOnMobile" />
-          <a :href="selectedVersion.repo_url" target="_blank">View the source →</a>
+          <a :href="selectedVersion.repoUrl" target="_blank">View the source →</a>
         </p>
       </div>
     </div>
@@ -100,7 +100,7 @@ const selectedVersion = computed(() => props.versions[selected.value]);
     font-size: 28px;
     font-weight: bold;
     text-align: start;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
 
     @media (max-width: 1024px) {
       font-size: 24px;
@@ -109,9 +109,11 @@ const selectedVersion = computed(() => props.versions[selected.value]);
 
   .product-description {
     font-size: 20px;
+    line-height: 30px;
     margin-bottom: 1.5rem;
 
     @media (max-width: 1024px) {
+      line-height: 24px;
       font-size: 16px;
     }
   }
@@ -121,7 +123,7 @@ const selectedVersion = computed(() => props.versions[selected.value]);
     flex-wrap: wrap;
     align-items: center;
     gap: 0.5rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2.5rem;
 
     .product-technology {
       background-color: var(--vt-c-gray-700);
@@ -139,7 +141,7 @@ const selectedVersion = computed(() => props.versions[selected.value]);
   .product-versions-tabs {
     display: flex;
     gap: 1rem;
-    margin: 1.5rem 0;
+    margin: 2.5rem 0;
 
     li {
       display: flex;
@@ -151,7 +153,7 @@ const selectedVersion = computed(() => props.versions[selected.value]);
         padding: 6px 2rem;
         text-transform: uppercase;
         font-weight: 500;
-        letter-spacing: 0.5px;
+        letter-spacing: 0.75px;
         font-size: 16px;
 
         @media (max-width: 1024px) {
@@ -166,29 +168,52 @@ const selectedVersion = computed(() => props.versions[selected.value]);
       display: flex;
       align-items: center;
       gap: 1rem;
-      margin-bottom: 0.5rem;
+      margin-bottom: 1rem;
+      line-height: 28px;
 
-      .coming-soon {
-        font-size: 0.875rem;
-        color: #f87171;
-        margin-left: 0.5rem;
+      @media (min-width: 1024px) {
+        font-size: 22px;
       }
     }
 
     .version-features {
       padding-left: 1.25rem;
-      margin-bottom: 3.5rem;
+      margin-bottom: 2.5rem;
 
       li {
-        list-style-type: circle;
-        margin-bottom: 0.25rem;
+        list-style-type: disc;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+
+        @media (min-width: 1024px) {
+          font-size: 18px;
+        }
+      }
+    }
+
+    .coming-soon {
+      display: inline-block;
+      background-color: #ff9800;
+      color: #111;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.25px;
+      padding: 6px 16px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      margin-left: 0.75rem;
+      rotate: -5deg;
+
+      @media (min-width: 1024px) {
+        font-size: 16px;
       }
     }
 
     .version-links {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 1.75rem;
+      margin-top: 3.5rem;
 
       a {
         border-radius: 4px;

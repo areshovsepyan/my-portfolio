@@ -25,11 +25,15 @@ defineProps({
       <div class="skeleton-tab"></div>
     </div>
 
+    <div class="skeleton-text short"></div>
+
     <ul class="skeleton-version-details">
       <li v-for="n in 4" :key="n">
         <div class="skeleton-text short"></div>
       </li>
     </ul>
+
+    <div class="cta"></div>
   </div>
 </template>
 
@@ -44,7 +48,11 @@ defineProps({
     border-radius: 8px;
     margin-bottom: 3rem;
 
-    @media (max-width: 1024px) {
+    @media (min-width: 768px) and (max-width: 1024px) {
+      height: 240px;
+    }
+
+    @media (max-width: 768px) {
       height: 140px;
     }
   }
@@ -84,7 +92,7 @@ defineProps({
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    margin: 1.5rem 0;
+    margin: 1.5rem 0 2.5rem 0;
 
     .skeleton-technology {
       width: 100px;
@@ -96,15 +104,16 @@ defineProps({
   }
 
   .skeleton-version-details {
+    margin: 2rem 0 3.5rem 0;
     padding-left: 1.25rem;
 
     li {
-      list-style-type: circle;
+      list-style-type: disc;
     }
   }
 
   .skeleton-tabs {
-    margin: 1.5rem 0;
+    margin: 2.5rem 0;
 
     .skeleton-tab {
       width: 100px;
@@ -127,6 +136,13 @@ defineProps({
       margin-bottom: 0.5rem;
       width: 90%;
     }
+  }
+
+  .cta {
+    width: 200px;
+    height: 44px;
+    background-color: #2a2a2a;
+    border-radius: 4px;
   }
 }
 </style>

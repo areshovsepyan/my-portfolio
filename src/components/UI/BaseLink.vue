@@ -10,10 +10,10 @@ defineProps({
 </script>
 
 <template>
-  <a v-if="download" :class="link_class" :href :rel :download :disabled>
+  <a v-if="download" :href :rel :download :class="[link_class, { disabled: disabled }]">
     <slot></slot>
   </a>
-  <a v-else :class="link_class" :href :rel :target :disabled>
+  <a v-else :href :rel :target :class="[link_class, { disabled: disabled }]">
     <slot></slot>
   </a>
 </template>
