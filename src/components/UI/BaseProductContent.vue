@@ -16,6 +16,14 @@ const props = defineProps({
 const selected = ref('free');
 
 const selectedVersion = computed(() => props.versions[selected.value]);
+
+const sortedFeatures = computed(() => {
+  return [...selectedVersion.value.features].sort((a, b) => {
+    if (a === 'and more...') return 1;
+    if (b === 'and more...') return -1;
+    return a.localeCompare(b);
+  });
+});
 </script>
 
 <template>
@@ -51,7 +59,7 @@ const selectedVersion = computed(() => props.versions[selected.value]);
       <h3 class="version-title">{{ selectedVersion.description }}</h3>
 
       <ul class="version-features">
-        <li v-for="(feature, index) in selectedVersion.features" :key="index">
+        <li v-for="(feature, index) in sortedFeatures" :key="index">
           {{ feature }}
         </li>
       </ul>
