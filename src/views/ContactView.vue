@@ -44,7 +44,13 @@ const submitForm = async () => {
 
     isLoading.value = true;
 
-    const { data } = await api.post('send-email', form.value);
+    const trimmedForm = {
+      name: form.value.name.trim(),
+      email: form.value.email.trim(),
+      message: form.value.message.trim(),
+    };
+
+    const { data } = await api.post('send-email', trimmedForm);
 
     toast.success(data.message);
 
@@ -105,6 +111,7 @@ const submitForm = async () => {
 
         <BaseButton :isLoading="isLoading" type="submit">Submit Message</BaseButton>
       </form>
+
       <div v-else class="form-submitted">
         <p>Thank you for reaching out!</p>
         <p>I've received your message and will get back to you soon.</p>
