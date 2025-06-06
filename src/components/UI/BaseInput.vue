@@ -15,25 +15,32 @@ const emit = defineEmits(['update:error']);
 const model = defineModel();
 const error = ref('');
 
-function capitalizeFirstLetter(val) {
+const capitalizeFirstLetter = (val) => {
   return String(val).charAt(0).toUpperCase() + String(val).slice(1);
-}
+};
+
+const onBlur = () => {
+  if (typeof model.value === 'string') {
+    model.value = model.value.trim();
+  }
+};
 
 const validate = () => {
   error.value = '';
+  const inputValue = model.value?.trim?.() || '';
 
-  if (props.required && !model.value)
+  if (props.required && !inputValue)
     error.value = capitalizeFirstLetter(props.name) + ' is required.';
   else {
-    if (props.type === 'email' && model.value) {
+    if (props.type === 'email' && inputValue) {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(model.value)) error.value = 'Invalid email format.';
+      if (!emailRegex.test(inputValue)) error.value = 'Invalid email format.';
     }
 
-    if (props.name === 'name' && (model.value.length < 3 || model.value.length > 20))
+    if (props.name === 'name' && (inputValue.length < 3 || inputValue.length > 20))
       error.value = 'Name must be between 3 and 20 characters.';
 
-    if (props.name === 'message' && (model.value.length < 10 || model.value.length > 200))
+    if (props.name === 'message' && (inputValue.length < 10 || inputValue.length > 200))
       error.value = 'Message must be between 10 and 200 characters.';
   }
   emit('update:error', error.value);
@@ -51,9 +58,12 @@ defineExpose({ validate });
 
 <template>
   <div class="input-group">
-    <label v-if="label" :for="id">{{ label }}</label>
-    <textarea v-if="textarea" v-model="model" :name :id></textarea>
-    <input v-else v-model="model" :type :name :id />
+    <label v-if="label" :for="id">
+      {{ label }}
+      <span v-if="required" class="required-asterisk">*</span>
+    </label>
+    <textarea v-if="textarea" @blur="onBlur" v-model="model" :name :id></textarea>
+    <input v-else v-model="model" @blur="onBlur" :type :name :id />
     <span v-if="error" class="error">{{ error }}</span>
   </div>
 </template>

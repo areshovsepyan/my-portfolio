@@ -121,3 +121,15 @@ input[type='checkbox'] {
   padding: 8px 0 0 20px;
   color: red;
 }
+
+.required-asterisk {
+  color: #e63946;
+  font-size: 18px;
+  font-weight: bold;
+  margin-left: 0.3rem;
+  vertical-align: top;
+
+  @media (min-width: 1024px) {
+    font-size: 20px;
+  }
+}
