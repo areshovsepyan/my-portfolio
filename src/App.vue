@@ -11,7 +11,7 @@ import TheFooter from '@/components/layout/TheFooter.vue';
 import GumroadPromo from './components/GumroadPromo.vue';
 
 useHead({
-  title: 'Ara Hovsepyan | Vue.js Front-End Developer',
+  title: 'Ara Hovsepyan | Senior Front-End Developer',
   meta: [
     {
       name: 'description',
