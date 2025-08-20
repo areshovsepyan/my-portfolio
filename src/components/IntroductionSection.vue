@@ -20,7 +20,7 @@ function trackViewCVClick() {
     </div>
 
     <div class="text-box">
-      <span>BASED IN ARMENIA</span>
+      <span>BASED IN VIETNAM</span>
       <h3>Hi, I'm Ara</h3>
       <p>
         a coding wizard with <strong>5+ years</strong> of experience in
