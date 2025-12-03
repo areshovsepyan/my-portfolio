@@ -21,11 +21,11 @@ defineProps({
 
         <p class="product-description">{{ description }}</p>
 
-        <ul class="product-versions">
+        <!-- <ul class="product-versions">
           <li v-for="version in Object.keys(versions)" :key="version" :class="`badge-${version}`">
             {{ version }}
           </li>
-        </ul>
+        </ul> -->
 
         <ul class="product-technologies">
           <li v-for="technology in technologies" :key="technology" class="product-technology">
@@ -91,6 +91,7 @@ defineProps({
       flex-wrap: wrap;
       align-items: center;
       gap: 0.5rem;
+      margin-top: 0.75rem;
 
       .product-technology {
         background-color: var(--vt-c-gray-700);

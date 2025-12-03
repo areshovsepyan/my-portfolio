@@ -34,7 +34,7 @@ const closePromo = () => {
             target="_blank"
             rel="noopener"
           >
-            Visit Store →
+            Get for free →
           </BaseLink>
         </div>
 

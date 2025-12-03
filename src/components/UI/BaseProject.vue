@@ -60,7 +60,11 @@ defineProps({
   flex-direction: column;
   gap: 1rem;
 
-  padding: 1rem 1rem 2rem 1rem;
+  @media (max-width: 480px) {
+    padding: 1rem;
+  }
+
+  padding: 2rem;
   border-radius: 1rem;
 
   background: radial-gradient(
