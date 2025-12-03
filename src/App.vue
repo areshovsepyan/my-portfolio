@@ -8,7 +8,7 @@ import { SpeedInsights } from '@vercel/speed-insights/vue';
 
 import TheHeader from '@/components/layout/TheHeader.vue';
 import TheFooter from '@/components/layout/TheFooter.vue';
-import GumroadPromo from './components/GumroadPromo.vue';
+// import GumroadPromo from './components/GumroadPromo.vue';
 
 useHead({
   title: 'Ara Hovsepyan | Senior Front-End Developer',
@@ -73,7 +73,7 @@ router.afterEach((to, from) => {
     </Transition>
   </router-view>
 
-  <GumroadPromo />
+  <!-- <GumroadPromo /> -->
 
   <TheFooter v-if="!isAdminRoute" />
 </template>
