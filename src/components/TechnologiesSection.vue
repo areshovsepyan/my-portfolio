@@ -3,24 +3,24 @@ import { ref } from 'vue';
 import BaseCard from '@/components/UI/BaseCard.vue';
 
 const technologies = ref([
+  {
+    label: 'TypeScript',
+    description: 'JavaScript but better',
+    img: {
+      alt: 'TypeScript icon',
+      icon: 'typescript',
+    },
+  },
   // {
-  //   label: 'TypeScript',
-  //   description: 'JavaScript but better',
+  //   label: 'JavaScript',
+  //   description: 'Programming language',
   //   img: {
-  //     alt: 'TypeScript icon',
-  //     icon: 'typescript',
+  //     alt: 'JavaScript icon',
+  //     icon: 'javascript',
   //   },
   // },
   {
-    label: 'JavaScript',
-    description: 'Programming language',
-    img: {
-      alt: 'JavaScript icon',
-      icon: 'javascript',
-    },
-  },
-  {
-    label: 'Vue.JS',
+    label: 'Vue',
     description: 'JavaScript framework',
     img: {
       alt: 'Vue icon',
@@ -28,11 +28,19 @@ const technologies = ref([
     },
   },
   {
-    label: 'Nuxt.JS',
+    label: 'Nuxt',
     description: 'Vue framework',
     img: {
       alt: 'Nuxt icon',
       icon: 'nuxt',
+    },
+  },
+  {
+    label: 'React',
+    description: 'JavaScript library',
+    img: {
+      alt: 'React icon',
+      icon: 'react-dark',
     },
   },
   {
@@ -43,14 +51,14 @@ const technologies = ref([
       icon: 'vite',
     },
   },
-  {
-    label: 'Git',
-    description: 'Version control',
-    img: {
-      alt: 'Git icon',
-      icon: 'git',
-    },
-  },
+  // {
+  //   label: 'Git',
+  //   description: 'Version control',
+  //   img: {
+  //     alt: 'Git icon',
+  //     icon: 'git',
+  //   },
+  // },
   {
     label: 'Tailwind',
     description: 'CSS framework',
