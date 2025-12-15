@@ -30,7 +30,7 @@ function trackViewCVClick() {
       <div class="actions">
         <BaseLink
           @click="trackViewCVClick"
-          href="/ara-hovsepyan-cv-2025.pdf"
+          href="/ara-hovsepyan-cv-2026.pdf"
           target="_blank"
           rel="noopener"
         >

@@ -51,7 +51,7 @@ const fetchData = async () => {
     <BaseLink
       @click="trackDownloadCVClick"
       class="download-cv"
-      href="/ara-hovsepyan-cv-2025.pdf"
+      href="/ara-hovsepyan-cv-2026.pdf"
       download="CV - Ara Hovsepyan.pdf"
     >
       Download CV
