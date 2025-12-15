@@ -11,22 +11,22 @@ import TheFooter from '@/components/layout/TheFooter.vue';
 // import GumroadPromo from './components/GumroadPromo.vue';
 
 useHead({
-  title: 'Ara Hovsepyan | Senior Front-End Developer',
+  title: 'Ara Hovsepyan | Front-End Developer',
   meta: [
     {
       name: 'description',
       content:
-        'Vue.js/Nuxt.js expert building fast, SEO-friendly web apps. Explore my portfolio and case studies.',
+        'Vue.js/React.js expert building fast, SEO-friendly web apps. Explore my portfolio and case studies.',
     },
     {
       name: 'keywords',
       content:
-        'web developer, frontend developer, Vue.js developer, portfolio website, Armenian developer, Armenian web developer, Yerevan frontend developer, freelance developer Armenia, best Vue.js developer portfolio, minimalist web designer in Armenia',
+        'web developer, frontend developer, Vue.js developer, React.js developer, portfolio website, Armenian developer, Armenian web developer, Yerevan frontend developer, freelance developer Armenia, best Vue.js developer portfolio, minimalist web designer in Armenia',
     },
-    { property: 'og:title', content: 'Ara Hovsepyan | Vue.js Specialist' },
+    { property: 'og:title', content: 'Ara Hovsepyan | Front-End Developer' },
     {
       property: 'og:description',
-      content: 'Front-end developer focused on Vue.js, Nuxt.js, and modern JavaScript.',
+      content: 'Front-end developer focused on Vue.js, React.js, and TypeScript.',
     },
     { property: 'og:image', content: 'https://ara-hovsepyan.com/og-image.png' },
     { property: 'og:image:width', content: '1200' },
