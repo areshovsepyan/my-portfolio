@@ -2,6 +2,9 @@
 import { ref, computed } from 'vue';
 import BaseLink from './BaseLink.vue';
 import { useResize } from '@/composables/useResize.js';
+import { useStorage } from '@/composables/useStorage.js';
+
+const { getImage } = useStorage();
 
 const { isOnMobile } = useResize();
 
@@ -29,7 +32,7 @@ const sortedFeatures = computed(() => {
 <template>
   <section class="product-content">
     <div class="product-image">
-      <img :src="`/images/products/${image.url}-big.png`" :alt="image.alt" />
+      <img :src="getImage(`products/${image.url}-wide.webp`)" :alt="image.alt" />
     </div>
 
     <h1 class="product-title">{{ title }}</h1>

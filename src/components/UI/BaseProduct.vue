@@ -1,4 +1,8 @@
 <script setup>
+import { useStorage } from '@/composables/useStorage.js';
+
+const { getImage } = useStorage();
+
 defineProps({
   title: String,
   description: String,
@@ -13,7 +17,7 @@ defineProps({
   <article class="product-card">
     <router-link :to="`/toolbox/${slug}`" class="product-link">
       <div class="image-container">
-        <img :src="`/images/products/${image.url}.png`" loading="lazy" :alt="image.alt" />
+        <img :src="getImage(`products/${image.url}.webp`)" loading="lazy" :alt="image.alt" />
       </div>
 
       <div class="product-details">
