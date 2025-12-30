@@ -3,6 +3,9 @@ import { ref, onMounted } from 'vue';
 import { api } from '../../utils/axios';
 import toast from '../../utils/toast';
 import { Carousel, Slide, Pagination } from 'vue3-carousel';
+import { useStorage } from '@/composables/useStorage.js';
+
+const { getImage } = useStorage();
 
 const config = {
   autoplay: 10000,
@@ -48,7 +51,7 @@ const fetchData = async () => {
 
           <div class="from">
             <img
-              :src="`/images/people/${from.image.url}.jpeg`"
+              :src="getImage(`avatars/${from.image.url}.webp`)"
               :alt="from.image.alt"
               class="from-image"
             />

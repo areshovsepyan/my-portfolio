@@ -4,8 +4,12 @@ import { useRoute, useRouter } from 'vue-router';
 import { useHead } from '@unhead/vue';
 import { api } from '../../../../utils/axios';
 import toast from '../../../../utils/toast';
+import { useStorage } from '@/composables/useStorage.js';
+
 import BaseProductSkeleton from '@/components/UI/BaseProductSkeleton.vue';
 import BaseProductContent from '@/components/UI/BaseProductContent.vue';
+
+const { getImage } = useStorage();
 
 const route = useRoute();
 const router = useRouter();
@@ -19,7 +23,7 @@ const metaTitle = computed(() =>
 );
 const metaDescription = computed(() => product.value?.description || 'Loading product...');
 const ogImage = computed(() =>
-  product.value?.image?.url ? `/images/products/${product.value.image.url}.png` : '',
+  product.value?.image?.url ? getImage(`products/${product.value.image.url}.webp`) : '',
 );
 
 useHead({

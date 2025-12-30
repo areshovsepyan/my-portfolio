@@ -1,6 +1,9 @@
 <script setup>
 import { event } from 'vue-gtag';
 import BaseLink from './UI/BaseLink.vue';
+import { useStorage } from '@/composables/useStorage.js';
+
+const { getDocument } = useStorage();
 
 function trackViewCVClick() {
   event('view_cv_click', {
@@ -13,12 +16,6 @@ function trackViewCVClick() {
 
 <template>
   <section class="introduction-section">
-    <!-- PICTURE BOX REMOVED TIL I FIND PRO HEAD SHOT -->
-
-    <div v-if="false" class="image-box">
-      <img class="profile-picture" src="/images/brackets.jpg" alt="HTML brackets" />
-    </div>
-
     <div class="text-box">
       <span>BASED IN ARMENIA</span>
       <h3>Hi, I'm Ara</h3>
@@ -30,7 +27,7 @@ function trackViewCVClick() {
       <div class="actions">
         <BaseLink
           @click="trackViewCVClick"
-          href="/ara-hovsepyan-cv-2026.pdf"
+          :href="getDocument('ara-hovsepyan-cv-2026.pdf')"
           target="_blank"
           rel="noopener"
         >

@@ -28,11 +28,11 @@ useHead({
       property: 'og:description',
       content: 'Front-end developer focused on Vue.js, React.js, and TypeScript.',
     },
-    { property: 'og:image', content: 'https://ara-hovsepyan.com/og-image.png' },
+    { property: 'og:image', content: 'https://ara-hovsepyan.com/og-image.webp' },
     { property: 'og:image:width', content: '1200' },
     { property: 'og:image:height', content: '630' },
     { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:image', content: 'https://ara-hovsepyan.com/og-image.png' },
+    { name: 'twitter:image', content: 'https://ara-hovsepyan.com/og-image.webp' },
   ],
 });
 
