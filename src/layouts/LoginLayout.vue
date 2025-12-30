@@ -5,9 +5,13 @@ import { api } from '../../utils/axios';
 import { useRouter } from 'vue-router';
 import toast from '../../utils/toast';
 import { useResize } from '@/composables/useResize';
+import { useStorage } from '@/composables/useStorage.js';
+
 import BaseInput from '@/components/UI/BaseInput.vue';
 import BaseButton from '@/components/UI/BaseButton.vue';
 import BaseCheckbox from '@/components/UI/BaseCheckbox.vue';
+
+const { getImage } = useStorage();
 
 const { isOnDesktop } = useResize();
 
@@ -82,7 +86,7 @@ const handleMouseMove = (event) => {
         as="img"
         :animate="isOnDesktop && { x: mousePosition.x * 0.02, y: mousePosition.y * 0.02 }"
         :transition="{ duration: 0.5 }"
-        src="/images/art-knight.jpg"
+        :src="getImage(`other/art-knight.webp`)"
         alt="Login art - night in the flowers."
         loading="lazy"
       />
