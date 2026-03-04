@@ -24,7 +24,7 @@ const { social } = useSocialStore();
     </nav>
 
     <small>
-      © 2025 Ara Hovsepyan ·
+      © 2026 Ara Hovsepyan ·
       <a href="https://github.com/areshovsepyan/my-portfolio/blob/master/LICENSE" target="_blank">
         MIT License
       </a>
